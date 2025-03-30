@@ -7,7 +7,6 @@
 #include "Patches/All Patches.h"
 #include "Patcher/patch.h"
 #include "RPCHandler.h"
-#include "ErrorManager.h"
 #include "LuaHandler.h"
 #include "DFEngine.h"
 #include "Mem/Memory.h"
