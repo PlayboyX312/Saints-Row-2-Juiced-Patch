@@ -778,8 +778,12 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
                 wcscat_s(errorPopup, L"Details:\nInvalid Bitmap Error\nA texture failed to load properly and caused the game to crash.\n\n");
                 break;
 
-            case 0x00703E7C:
+            case 0x00693C7A:
                 wcscat_s(errorPopup, L"Details:\nSave file could not be loaded due to corruption or this saved game was saved using mods that are no longer installed.\n\n");
+                break;
+
+            case 0x00703E7C:
+                wcscat_s(errorPopup, L"Details:\nA bad model or mesh mover has caused the game to crash.\n\n");
                 break;
 
             case 0x00c14a8d:
