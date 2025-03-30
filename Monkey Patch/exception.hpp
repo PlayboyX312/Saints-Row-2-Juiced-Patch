@@ -686,6 +686,13 @@ StackTracer::Trace* StackTracer::Walk()
     return nullptr;
 }
 
+char* wchar_to_char(const wchar_t* wstr) {
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);
+    char* str = new char[size_needed];  // Dynamically allocate memory
+    WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, size_needed, NULL, NULL);
+    return str; // Caller must free the memory
+}
+
 LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
 {
     // step 1: write minidump
@@ -779,9 +786,11 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
                 wcscat_s(errorPopup, L"Details:\nCorrupted Input Driver.\n\nA corrupted input driver has tried to access vibration and caused the game to crash.\n\nTo fix this, turn \"ForceDisableVibration\" in reloaded.ini to 1.\n\nIf that doesn't work, vjoy is a device driver known to be problematic to SR2. If you have that installed it is recommended that you uninstall it.\n\n");
                 break;
             }
-            wcscat_s(errorPopup, L"Please send this logging file:\n\n");
+            wcscat_s(errorPopup, L"Please send this logging file located at:\n\n");
             wcscat_s(errorPopup, filename);
             wcscat_s(errorPopup, L"\n\nto someone who understands debuggers / reverse engineering.");
+            char* typedeP = wchar_to_char(errorPopup);
+            Logger::TypedLog(CHN_DLL, "%s\n", typedeP); // Print Error to MessageBox along with Console.
             MessageBoxW(NULL, errorPopup, errorTitle, MB_ICONERROR | MB_OK);
         }
         else
