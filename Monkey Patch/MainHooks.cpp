@@ -44,6 +44,7 @@
 #include "General/General.h"
 
 #include "exception.hpp"
+#include <Shlwapi.h>
 
 using namespace General;
 const char ServerNameSR2[] = "[Saints Row 2]";
@@ -1503,6 +1504,13 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 		patchCall((void*)0x0052050C, (void*)RenderLoopStuff_Hacked); // Patch stuff into Render loop, we could do game loop but this was easier to find, and works i guess.
 	}
 
+	// Instead of data being in %LOCALAPPDATA%\\THQ\\Saints Row 2, move it to current direcetory\\userdata
+	if (GameConfig::GetValue("Misc", "portable", 0) && PathAppendA(NameBuffer, "userdata")) {
+		CreateDirectoryA(NameBuffer, NULL);
+		Logger::TypedLog(CHN_DLL, "Final Path: %s \n", NameBuffer);
+		strcpy_s((char*)0x0144E650, MAX_PATH, NameBuffer);
+		patchNop((void*)0x00520FCD, 5);
+	}
 #if !JLITE
 	InternalPrint::Init();
 	RPCHandler::Init();
