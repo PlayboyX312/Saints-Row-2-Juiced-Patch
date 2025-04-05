@@ -14,6 +14,7 @@ and / or run completely on startup or after we check everything else.*/
 #include <safetyhook.hpp>
 #include "../Render/Render3D.h"
 #include "../Render/Render2D.h"
+#include "..\LUA\InGameConfig.h"
 namespace General {
 	bool DeletionMode;
 	const wchar_t* SaveMessage = L"Are you sure you want to delete this save?"; // ultimately, if we get extra strings to load, we should use a string label and request the string instead of hardcoding it
@@ -341,9 +342,9 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		const char* buff = (const char*)ctx.ebp;
 		const char* filename = (const char*)(ctx.esp + 0x14);
 		size_t& sz = ctx.ecx;
-#if !JLITE
-		std::string convertedBuff(buff);
 
+		std::string convertedBuff(buff);
+#if !JLITE
 		int* resX = (int*)(0xE8DF14);
 		int* resY = (int*)(0xE8DF4C);
 
@@ -386,6 +387,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 				replace_all(convertedBuff, "MENU_VSYNC\",\t\t\t\t\t\t", "Fullscreen VSync\",");
 				replace_all(convertedBuff, "Shadow_Maps", "Shadows    ");
 			}
+
 			size_t& sz = ctx.edx;
 			sz = convertedBuff.length();
 
@@ -393,54 +395,68 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			const_cast<char*>(buff)[sz] = '\0';
 		}
 #endif
-		if (Render2D::UltrawideFix
+		bool needBufferMod = Render2D::UltrawideFix
 #if !JLITE
-|| Render2D::IVRadarScaling
+			|| Render2D::IVRadarScaling
 #endif
-) {
+			|| (strcmp(filename, "pause_menu.lua") == 0 && !InGameConfig::g_sliders.empty());
+		{
 			// Clean up previous buffer if it exists (regardless of which file it was for)
-			if (currentModifiedBuffer != nullptr) {
-				delete[] currentModifiedBuffer;
-				currentModifiedBuffer = nullptr;
-			}
+			if (needBufferMod) {
+				// Clean up previous buffer
+				if (currentModifiedBuffer != nullptr) {
+					delete[] currentModifiedBuffer;
+					currentModifiedBuffer = nullptr;
+				}
+				// Start with the current buffer state
+				const char* currentBuff = buff;
+				bool modified = false;
 
-			// remove .lua
-			std::string cached_str = filename;
-			size_t dotPosition = cached_str.find(".lua");
-			if (dotPosition != std::string::npos) {
-				cached_str = cached_str.substr(0, dotPosition);
-			}
 
-			std::string customCode = "";
-			const char* lua_command = "vint_set_property(vint_object_find(\"%s\", 0, vint_document_find(\"%s\")), \"%s\", %f, %f)";
+				std::string finalContent;
+				finalContent = std::string(currentBuff, sz);
 
-			// re-center the HUD.
-			char buffer[512];
+				// Your existing UltrawideFix code to generate customCode
+				std::string customCode = "";
+				// remove .lua
+				std::string cached_str = filename;
+				size_t dotPosition = cached_str.find(".lua");
+				if (dotPosition != std::string::npos) {
+					cached_str = cached_str.substr(0, dotPosition);
+				}
+
+				const char* lua_command = "vint_set_property(vint_object_find(\"%s\", 0, vint_document_find(\"%s\")), \"%s\", %f, %f)";
+				char buffer[512];
 #if !JLITE
-			if (Render2D::IVRadarScaling) {
-				if (cached_str == "hud") {
-					snprintf(buffer, sizeof(buffer), lua_command, "map_grp", cached_str.c_str(), "scale",
-						Render2D::RadarScale, Render2D::RadarScale);
-					customCode += "\n";
-					customCode += buffer;
+				if (Render2D::IVRadarScaling) {
+					if (cached_str == "hud") {
+						snprintf(buffer, sizeof(buffer), lua_command, "map_grp", cached_str.c_str(), "scale",
+							Render2D::RadarScale, Render2D::RadarScale);
+						customCode += "\n";
+						customCode += buffer;
 
-					snprintf(buffer, sizeof(buffer), lua_command, "map_grp", cached_str.c_str(), "anchor",
-						50.f, 710.f);
-					customCode += "\n";
-					customCode += buffer;
-				}
-				else if (cached_str == "hud_msg") {
-					snprintf(buffer, sizeof(buffer), lua_command, "msg_diversion_anchor", cached_str.c_str(), "scale",
-						Render2D::RadarScale, Render2D::RadarScale);
-					customCode += "\n";
-					customCode += buffer;
+						snprintf(buffer, sizeof(buffer), lua_command, "map_grp", cached_str.c_str(), "anchor",
+							50.f, 710.f);
+						customCode += "\n";
+						customCode += buffer;
+					}
+					else if (cached_str == "hud_msg") {
+						snprintf(buffer, sizeof(buffer), lua_command, "msg_diversion_anchor", cached_str.c_str(), "scale",
+							Render2D::RadarScale, Render2D::RadarScale);
+						customCode += "\n";
+						customCode += buffer;
 
-					snprintf(buffer, sizeof(buffer), lua_command, "msg_diversion_anchor", cached_str.c_str(), "anchor",
-						75.f, 520.f);
-					customCode += "\n";
-					customCode += buffer;
+						snprintf(buffer, sizeof(buffer), lua_command, "msg_diversion_anchor", cached_str.c_str(), "anchor",
+							75.f, 520.f);
+						customCode += "\n";
+						customCode += buffer;
+					}
+					if (!customCode.empty()) {
+						finalContent += customCode;
+						modified = true;
+					}
 				}
-			}
+
 #endif
 				if (Render2D::UltrawideFix) {
 					snprintf(buffer, sizeof(buffer), lua_command, "safe_frame", cached_str.c_str(), "anchor",
@@ -497,23 +513,40 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 				}
 				// If we have code to add
 				if (!customCode.empty()) {
-					// Create a new buffer
-					size_t customCodeLen = customCode.length();
-					size_t newSize = sz + customCodeLen + 1; // +1 for null terminator
+					finalContent += customCode;
+					modified = true;
+				}
+				// Check if we need to apply slider patches
+				if (strcmp(filename, "pause_menu.lua") == 0 && !InGameConfig::g_sliders.empty()) {
+					if (!modified) {
+						// If we haven't created finalContent yet, do it now
+						finalContent = std::string(currentBuff, sz);
+					}
 
-					currentModifiedBuffer = new char[newSize];
-					memcpy(currentModifiedBuffer, buff, sz);
-					memcpy(currentModifiedBuffer + sz, customCode.c_str(), customCodeLen + 1);
+					if (GameConfig::GetValue("Debug", "PopulateInGameOptions", 1)) {
+						bool sliderModified = InGameConfig::PatchSliderContent(finalContent, filename);
+						if (sliderModified) {
+							modified = true;
+						}
+					}
+				}
+				// If any modifications were made, create a new buffer
+				if (modified) {
+					size_t newSize = finalContent.length();
+					currentModifiedBuffer = new char[newSize + 1]; // +1 for null terminator
+					memcpy(currentModifiedBuffer, finalContent.c_str(), newSize);
+					currentModifiedBuffer[newSize] = '\0';
 
 					// Update the context
 					ctx.ebp = (DWORD)currentModifiedBuffer;
-					sz = newSize - 1;
+					ctx.edx = newSize;
+					ctx.ecx = newSize;
 
-					//printf("Modified %s with custom code\n", filename);
+					//Logger::TypedLog(CHN_LUA, "Applied combined modifications to %s", filename);
 				}
 			}
-
 		}
+	}
 	
 	SafetyHookMid cleanupBufferHook;
 	void CleanupModifiedScript() {
@@ -807,7 +840,14 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			mp.AddWriteRelCall(0x00C08493,(uintptr_t)TextureCrashFix);
 		},
 	};
+	std::function<void()> D3D9_create = nullptr;
+
+	SAFETYHOOK_NOINLINE void CreateD3D9DeviceFunction(safetyhook::Context32& ctx) {
+	
+		Render3D::ChangeShaderOptions();
+	}
 	void TopWinMain() {
+		static SafetyHookMid D3D9Create = safetyhook::create_mid(0x00D1F7B0, &CreateD3D9DeviceFunction);
 #if !JLITE
 		WriteRelJump(0x007F46EB, (UInt32)&AddStrings); // add custom string loading - the game automatically appends the string so it will load the right string file based on your language, eg - juiced_us.le_strings
 		WriteRelJump(0x00B91541, (UInt32)&AddVintLib); // allows us to add our own side lib for vint to add new global variables without messing up mod support
@@ -857,11 +897,8 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 #endif
 			cleanupBufferHook = safetyhook::create_mid(0x00CDE388, [](safetyhook::Context32& ctx) {
 				General::CleanupModifiedScript();
-				},safetyhook::MidHook::StartDisabled);
+				},safetyhook::MidHook::Default);
 			luaLoadBuffHook = safetyhook::create_mid(0x00CDE379, &VINT_DOC_luaLoadBuff
-#if JLITE
-				,safetyhook::MidHook::StartDisabled
-#endif
 );
 			if (GameConfig::GetValue("Graphics", "FixUltrawideHUD", 1) == 1) {
 				Logger::TypedLog(CHN_MOD, "Patching Ultrawide HUD %d \n", 1);

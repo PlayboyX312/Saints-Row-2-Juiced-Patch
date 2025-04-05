@@ -45,6 +45,7 @@
 
 #include "exception.hpp"
 #include <Shlwapi.h>
+#include "LUA/InGameConfig.h"
 
 using namespace General;
 const char ServerNameSR2[] = "[Saints Row 2]";
@@ -1463,6 +1464,7 @@ bool FileExists(const char* fileName) {
 }
 int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+	InGameConfig::AddOptions();
 	General::TopWinMain();
 
 	char NameBuffer[260];

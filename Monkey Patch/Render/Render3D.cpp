@@ -16,6 +16,9 @@
 
 #include <safetyhook.hpp>
 
+#include "d3d9.h"
+#include "../General/General.h"
+
 namespace Render3D
 {
 	const char FPSCam[] = "camera_fpss.xtbl";
@@ -72,11 +75,11 @@ namespace Render3D
 		}
 
 		__asm pushad
-		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
+
 			if (_stricmp(ShaderName, "distortion_tint_desat") == 0) {
 				SafeWriteBuf((UInt32)ShaderPointer, X360GammaShader, sizeof(X360GammaShader));
 			}
-		}
+		
 
 		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 0)) {
 			if (_stricmp(ShaderName, "shadow_combiner_xxxx") == 0) {
@@ -219,7 +222,22 @@ namespace Render3D
 		Logger::TypedLog(CHN_MOD, "Making loading screens slightly faster.\n");
 		patchBytesM((BYTE*)0x0068C714, (BYTE*)"\x6A\x0F", 2); // this is a sleep call for first load/legal disclaimers, its set to 30 by default, halfing increases fps to 60 and makes loading faster.
 	}
-
+	volatile float Brightness = 1.32f;
+	volatile float Saturation = 0.8f;
+	volatile float Contrast = 1.58f;
+	inline void VFXBrightnesstoggle() {
+		if ((ShaderOptions & SHADER_X360_GAMMA)) {
+			  Brightness = 1.32f;
+			  Saturation = 0.8f;
+			  Contrast = 1.58f;
+		}
+		else {
+			Brightness = 1.26f;
+			Saturation = 0.8f;
+			Contrast = 1.62f;
+		}
+		//printf("Brit %f Satur %f Cont %f \n", Brightness, Saturation, Contrast);
+	}
 	CMultiPatch CMPatches_VFXPlus = {
 
 		[](CMultiPatch& mp) {
@@ -227,15 +245,15 @@ namespace Render3D
 		},
 
 		[](CMultiPatch& mp) {
-			mp.AddSafeWriteBuf(0x0051A952, "\xD9\x05\x7F\x2C\x7B\x02", 6);
+			mp.AddSafeWrite32(0x0051A952 + 2, (uint32_t)&Brightness);
 		},
 
 		[](CMultiPatch& mp) {
-			mp.AddSafeWriteBuf(0x0051A997, "\xD9\x05\x83\x2C\x7B\x02", 6);
+			mp.AddSafeWrite32(0x0051A997 + 2, (uint32_t)&Saturation);
 		},
 
 		[](CMultiPatch& mp) {
-			mp.AddSafeWriteBuf(0x0051A980, "\xD9\x05\x87\x2C\x7B\x02", 6);
+			mp.AddSafeWrite32(0x0051A980 + 2, (uint32_t)&Contrast);
 		},
 
 		[](CMultiPatch& mp) {
@@ -248,19 +266,6 @@ namespace Render3D
 
 		[](CMultiPatch& mp) {
 			mp.AddSafeWrite8(0x00517051,0x8B);
-		},
-
-		[](CMultiPatch& mp) {
-		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
-			mp.AddSafeWrite<float>(0x027B2C7F,1.32f);
-			mp.AddSafeWrite<float>(0x027B2C83, 0.8f);
-			mp.AddSafeWrite<float>(0x027B2C87, 1.58f);
-			}
-		else {
-			mp.AddSafeWrite<float>(0x027B2C7F,1.26f);
-			mp.AddSafeWrite<float>(0x027B2C83, 0.8f);
-			mp.AddSafeWrite<float>(0x027B2C87, 1.62f);
-}
 		},
 		[](CMultiPatch& mp) {
 		mp.AddSafeWriteBuf(0x00524BA4, (BYTE*)"\xD9\x05\xBA\x2C\x7B\x02", 6);
@@ -494,15 +499,9 @@ namespace Render3D
 	typedef int SetGraphicsT();
 	SetGraphicsT* SetGraphics = (SetGraphicsT*)(0x7735C0);
 
-	bool halfFxQuality = false;
-
 	void ResizeEffects() {
 		int CurrentX = *(int*)0x22FD84C;
 		int CurrentY = *(int*)0x22FD850;
-		if (halfFxQuality == true) {
-			CurrentX = CurrentX / 2;
-			CurrentY = CurrentY / 2;
-		}
 		SetDOFRes(CurrentX, CurrentY);
 		SetBloomRes(CurrentX, CurrentY, (float)CurrentX, (float)CurrentY);
 		SetWaterReflRes(CurrentX, CurrentY);
@@ -517,13 +516,8 @@ namespace Render3D
 		SafeWrite32(0x005169BB + 2, (UInt32)&BloomResY);
 		patchCall((void*)0x007740D9, (void*)ResizeEffects);
 		patchCall((void*)0x007743CE, (void*)ResizeEffects);
-		if (GameConfig::GetValue("Graphics", "UHQScreenEffects", 2) == 1) {
-			Logger::TypedLog(CHN_MOD, "Patching UHQScreenEffects at half quality...\n");
-			halfFxQuality = true;
-		}
-		else {
-			Logger::TypedLog(CHN_MOD, "Patching UHQScreenEffects at full quality...\n");
-		}
+
+		Logger::TypedLog(CHN_MOD, "Patching UHQScreenEffects at full quality...\n");
 
 	}
 
@@ -726,9 +720,27 @@ namespace Render3D
 			mp.AddWriteRelCall(0x00C0900D,(uintptr_t)&PatchAddToEntryPoint);
 		},
 	};
-
+	int ShaderOptions;
+	 
+	void ChangeShaderOptions() {
+		IDirect3DDevice9* pDevice = *reinterpret_cast<IDirect3DDevice9**>(0x0252A2D0);
+		float arr4[4];
+		arr4[0] = (ShaderOptions & SHADER_X360_GAMMA) != 0 ? 0.0f : 1.0f;
+		arr4[1] = 0.f;
+		arr4[2] = 0.f;
+		arr4[3] = 0.f;
+		// distortion_juicedsettings for Gamma.
+		if(pDevice)
+		pDevice->SetPixelShaderConstantF(187, &arr4[0], 1);
+	}
 	void Init()
 	{
+		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
+			ShaderOptions |= SHADER_X360_GAMMA;
+		}
+		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 1)) {
+			ShaderOptions |= SHADER_SHADOW_FILTER;
+		}
 		add_to_entry_test = safetyhook::create_mid(0x00C080EC, &add_to_entry_crashaddr_hook);
 #if !JLITE
 		if (GameConfig::GetValue("Graphics", "RemoveVignette", 0))
@@ -807,7 +819,7 @@ namespace Render3D
 			Logger::TypedLog(CHN_DEBUG, "FOV Multiplier: %f,\n", FOVMultiplier);
 		}
 
-		if (GameConfig::GetValue("Graphics", "UHQScreenEffects", 2) > 0 && GameConfig::GetValue("Graphics", "UHQScreenEffects", 2) < 3)
+		if (GameConfig::GetValue("Graphics", "UHQScreenEffects", 1))
 		{
 			UHQEffects();
 		}
