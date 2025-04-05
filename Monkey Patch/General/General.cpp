@@ -483,6 +483,16 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 							weirdscale, 1.f);
 						customCode += "\n";
 						customCode += extraBuffer;
+
+						snprintf(extraBuffer, sizeof(extraBuffer), lua_command, "vignettes", "hud", "scale",
+							weirdscale, 1.f);
+						customCode += "\n";
+						customCode += extraBuffer;
+
+						snprintf(extraBuffer, sizeof(extraBuffer), lua_command, "vignettes", "hud", "anchor",
+							-((get_vint_x_resolution() - 1280) / 2.f), 0.f);
+						customCode += "\n";
+						customCode += extraBuffer;
 					}
 				}
 				// If we have code to add

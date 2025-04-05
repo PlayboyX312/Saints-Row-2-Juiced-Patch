@@ -330,6 +330,12 @@ namespace Render2D
 			float weirdscale = 1.f / (widescreenvalue / *currentAR);
 			snprintf(buffer, sizeof(buffer), lua_command, "mayhem_grp", "hud", "scale", weirdscale, 1.f);
 			General::VintExecute(buffer);
+
+			snprintf(buffer, sizeof(buffer), lua_command, "vignettes", "hud", "anchor", -((get_vint_x_resolution() - 1280) / 2.f), 0.f);
+			General::VintExecute(buffer);
+
+			snprintf(buffer, sizeof(buffer), lua_command, "vignettes", "hud", "scale", weirdscale, 1.f);
+			General::VintExecute(buffer);
 		}
 	}
 
