@@ -939,9 +939,32 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			Logger::TypedLog(CHN_DLL, "Not patching 2x Filtering.\n");
 		}
 	}
+	// Fixes the Low Gravity cheat ignoring if you have the no fall damage unlockable, stripping it away due to the float being saved in the save file.
+	// Here we check if the reward is unlocked and thus setting it to 0.f, using ASM isn't required I just wanted a singular function handler for both apply/restore
+	void __declspec(naked) LowGravity_cheat_fix_basejumping() {
+		// maybe pushad/fd here?
+		int player;
+		__asm {
+			mov player, eax
+			fstp dword ptr[eax + 0x18B4]
+			pushad
+			pushfd
+		}
+		if (*(bool*)0x027DD27C) // unlockable_item.is_unlocked for no_fall_damage
+			*(float*)(player + 0x18B4) = 0.f; // This is the damage multiplier or something.
+		__asm {
+			popfd
+			popad
+			mov esp,ebp
+			pop ebp
+			ret
+		}
 
+	}
 	void BottomWinMain()
 	{
+		WriteRelJump(0x00685858, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Apply()
+		WriteRelJump(0x00685EE0, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Restore()
 		patchNop((BYTE*)0x004D6795, 5); // Fix for the sun flare disappearing upon reloading a save. Prevents the game from deallocating the flare.
 
 		patchBytesM((BYTE*)0x009D3C70, (BYTE*)"\xD9\x05\x5A\x30\x7B\x02", 6); // TP X
