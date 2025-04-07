@@ -942,19 +942,15 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 	// Fixes the Low Gravity cheat ignoring if you have the no fall damage unlockable, stripping it away due to the float being saved in the save file.
 	// Here we check if the reward is unlocked and thus setting it to 0.f, using ASM isn't required I just wanted a singular function handler for both apply/restore
 	void __declspec(naked) LowGravity_cheat_fix_basejumping() {
-		// maybe pushad/fd here?
-		int player;
 		__asm {
-			mov player, eax
 			fstp dword ptr[eax + 0x18B4]
-			pushad
-			pushfd
 		}
+		int player;
+		__asm
+		mov player, eax
 		if (*(bool*)0x027DD27C) // unlockable_item.is_unlocked for no_fall_damage
 			*(float*)(player + 0x18B4) = 0.f; // This is the damage multiplier or something.
 		__asm {
-			popfd
-			popad
 			mov esp,ebp
 			pop ebp
 			ret
