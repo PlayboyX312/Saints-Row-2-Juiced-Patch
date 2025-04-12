@@ -205,8 +205,11 @@ namespace Render2D
 	}
 
 	float get_vint_x_resolution() {
-		
-		return *currentAR * 720;
+		if (*currentAR >= 1.77777777778f)
+			return *currentAR * 720;
+		// Hack to fix odd weird res widescreens like 1.6f during display changes 
+		// between ultrawide and non-ultrawide, only sometimes so it's still super buggy and weird.
+		else return 1280.f; 
 	}
 
 	void __declspec(naked) InGamePrintASM(const char* Text, int x, int y, int font) {
@@ -358,6 +361,7 @@ namespace Render2D
 
 			snprintf(buffer, sizeof(buffer), lua_command, "vignettes", "hud", "scale", weirdscale, 1.f);
 			General::VintExecute(buffer);
+
 		}
 	}
 
