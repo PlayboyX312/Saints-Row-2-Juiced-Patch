@@ -417,6 +417,8 @@ char SR2Ultrawide_HUDScale() {
 		else {
 
 			Logger::TypedLog(CHN_DEBUG, "SR2Ultrawide Refreshing HUD %d\n", 4);
+			Logger::TypedLog(CHN_MOD, "Disabling Vignette...\n");
+			patchNop((BYTE*)0x00E0C62C, 9); // nop aVignette
 			UltrawideFix = true;
 		}
 	}
