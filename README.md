@@ -1,3 +1,5 @@
+
+
 # Saints Row 2 Juiced Patch
 
 Juiced Patch is a collaboration of fixes and enhancements for Saints Row 2 created by Uzis, Tervel, Clippy95 and Scanti
@@ -5,6 +7,10 @@ using an inject-able DLL file running using the Monkey Patch framework backend b
 Juiced Patch provides these fixes and enhancements to the Saints Row 2 PC port, only supporting the latest uncensored update of the game.
 
 [Features fixed that Juiced provides](FEATURED_FIXES.md)
+
+<p>
+  <img width="550" src="https://github.com/user-attachments/assets/6a542edc-bca4-4eb9-9608-cefe46fe435c">
+</p>
 
 This is the entire project of SR2 Juiced Patch in it's entirety minus some SR2 Reloaded code. \
 Juiced Patch was originally based on Monkey Patch by [Scanti](https://github.com/scanti2) \
