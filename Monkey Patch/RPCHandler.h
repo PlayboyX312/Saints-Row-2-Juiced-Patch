@@ -644,18 +644,20 @@ namespace RPCHandler {
             params->achievement_version = DISCORD_ACHIEVEMENT_MANAGER_VERSION;
         }
 
-        enum EDiscordResult DiscordCreate(DiscordVersion version, struct DiscordCreateParams* params, struct IDiscordCore** result);
+        //enum EDiscordResult DiscordCreate(DiscordVersion version, struct DiscordCreateParams* params, struct IDiscordCore** result);
 #ifdef __cplusplus
     }
 #endif
 
 #endif
-
+    typedef EDiscordResult(*DiscordCreateFn)(DiscordVersion version,
+        struct DiscordCreateParams* params,
+        struct IDiscordCore** result);
     // ...
     extern uint8_t Enabled;
     //extern bool CFunc_SetRichPresenceMode();
     extern void DiscordCallbacks();
-    extern void InitRPC();
+    extern void InitRPC(DiscordCreateFn EDiscordCreate);
     extern void ShutdownRPC();
     extern void ChangeDetails();
     extern void UpdateDiscordParams();

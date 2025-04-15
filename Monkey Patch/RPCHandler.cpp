@@ -6,8 +6,8 @@
 #include "Patcher/patch.h"
 #include <codecvt>
 #include "GameConfig.h"
-#pragma comment (lib, "../Discord/discord_game_sdk.dll.lib")
-
+//#pragma comment (lib, "../Discord/discord_game_sdk.dll.lib")
+#define DISCORD_LIB_NAME "discord_game_sdk.dll"
 
 namespace RPCHandler {
 	struct Application {
@@ -358,20 +358,34 @@ namespace RPCHandler {
 		}
 
 	}
-
 	void Init() {
 		Enabled = GameConfig::GetValue("Misc", "RichPresence", 0);
 
 		if (Enabled)
 		{
 			Logger::TypedLog(CHN_RPC, "Attempting to initialize Discord RPC...\n");
-			InitRPC();
+			HMODULE discord_handle = LoadLibraryA(DISCORD_LIB_NAME);
+			if (!discord_handle) {
+				Logger::TypedLog(CHN_RPC, "Discord's DLL not found, skipping RPC.\n");
+				Enabled = false;
+				return;
+			}
+				DiscordCreateFn DiscordCreate = (DiscordCreateFn)GetProcAddress(discord_handle, "DiscordCreate");
+				if (!DiscordCreate) {
+					Logger::TypedLog(CHN_RPC, "Discord's DLL ProcAddress fail. \n\n");
+					Enabled = false;
+					return;
+				} else InitRPC(DiscordCreate);
+			}
+			
 			//RPCHandler::DiscordCallbacks(); callbacks needs to be hooked into a game loop
 		}
-	}
+	
 
-	void InitRPC()
+	void InitRPC(DiscordCreateFn EDiscordCreate)
 	{
+		if (!EDiscordCreate)
+			Logger::TypedLog(CHN_RPC, "Discord RPC Initialization failed !!!!!!!!\n");
 #if !RELOADED
 		memset(&app, 0, sizeof(Application));
 		memset(&users_events, 0, sizeof(users_events));
@@ -385,7 +399,7 @@ namespace RPCHandler {
 		params.activity_events = &activities_events;
 		params.relationship_events = &relationships_events;
 		params.user_events = &users_events;
-		int fail = DiscordCreate(DISCORD_VERSION, &params, &app.core);
+		int fail = EDiscordCreate(DISCORD_VERSION, &params, &app.core);
 		if (fail)
 		{
 			Logger::TypedLog(CHN_RPC, "Discord RPC Initialization failed !!!!!!!!\n");
@@ -428,7 +442,7 @@ namespace RPCHandler {
 		params.relationship_events = &relationships_events;
 		params.user_events = &users_events;
 		//DiscordCreate(DISCORD_VERSION, &params, &app.core);
-		int fail = DiscordCreate(DISCORD_VERSION, &params, &app.core);
+		int fail = EDiscordCreate(DISCORD_VERSION, &params, &app.core);
 		if (fail)
 		{
 			Logger::TypedLog(CHN_RPC, "Discord RPC Initialization failed !!!!!!!!\n");
