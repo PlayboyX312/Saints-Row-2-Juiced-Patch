@@ -789,6 +789,10 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
             case 0x00c14a8d:
                 wcscat_s(errorPopup, L"Details:\nCorrupted Input Driver.\n\nA corrupted input driver has tried to access vibration and caused the game to crash.\n\nTo fix this, turn \"ForceDisableVibration\" in reloaded.ini to 1.\n\nIf that doesn't work, vjoy is a device driver known to be problematic to SR2. If you have that installed it is recommended that you uninstall it.\n\n");
                 break;
+
+            case 0x00C13519:
+                wcscat_s(errorPopup, L"Details:\nCannot poll connected input device\n\nOne or more input devices connected to your computer is causing issues with Saints Row 2.\n\nIf it is a controller, consider using an input re-mapper like Steam Input or DS4Windows.\n\n");
+                break;
             }
             wcscat_s(errorPopup, L"Please send this logging file located at:\n\n");
             wcscat_s(errorPopup, filename);
