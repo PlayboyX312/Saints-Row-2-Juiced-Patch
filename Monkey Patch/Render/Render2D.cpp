@@ -411,7 +411,7 @@ char SR2Ultrawide_HUDScale() {
 		RefreshHUD_thread.detach();
 	}
 	if ((GameConfig::GetValue("Graphics", "FixUltrawideHUD", 1) == 1)) {
-		if (aspectRatio <= 1.79777777778f) {
+		if (aspectRatio <= 1.79777777778f && aspectRatio != 1.5f) {
 
 			UltrawideFix = false;
 			General::CleanupModifiedScript();
@@ -421,7 +421,11 @@ char SR2Ultrawide_HUDScale() {
 		else {
 
 			Logger::TypedLog(CHN_DEBUG, "SR2Ultrawide Refreshing HUD %d\n", 4);
+			if(aspectRatio != 1.5f)
 			UltrawideFix = true;
+			if (aspectRatio == 1.5f) {
+				General::CleanupModifiedScript();
+			}
 		}
 	}
 
@@ -430,11 +434,11 @@ char SR2Ultrawide_HUDScale() {
 	float stretchedX = currentX / 1280.0f;
 	float adjustedX = stretchedX * correctionFactor;
 
-	if (aspectRatio <= 1.45f) {
+	if (aspectRatio <= 1.59f) {
 		result = 0;
 		*(uint8_t*)0x0213c383 = 0;
 		*(uint8_t*)0x025272dd = 0;
-		*(float*)0x022fdcc0 = adjustedX;
+		*(float*)0x022fdcc0 = currentX / 640.0;
 		*(float*)0x022fdcbc = currentY / 480.0f;
 	}
 	else {
