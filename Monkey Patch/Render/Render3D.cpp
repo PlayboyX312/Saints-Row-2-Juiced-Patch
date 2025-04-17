@@ -19,6 +19,8 @@
 #include "d3d9.h"
 #include "../General/General.h"
 
+#include "Render2D.h"
+
 namespace Render3D
 {
 	const char FPSCam[] = "camera_fpss.xtbl";
@@ -28,6 +30,7 @@ namespace Render3D
 	bool ARfov = 0;
 	bool ARCutscene = 0;
 	double FOVMultiplier = 1;
+	double UltrawideFixRatio = 1;
 	const double fourbythreeAR = 1.333333373069763;
 
 	void AspectRatioFix(bool update_aspect_ratio) {
@@ -35,34 +38,65 @@ namespace Render3D
 		const float a169 = 1.777777791;
 		const double defaultFOV = 1.33333337306976;
 		//double currentFOV = *(double*)0x0E5C808;
-		double correctFOV = (defaultFOV * ((double)currentAR / (double)a169));
+		double FOVmulti;
+		if (currentAR > 1.55f)
+			FOVmulti = defaultFOV;
+		else FOVmulti = 1.0;
+		double correctFOV;
+
+		UltrawideFixRatio = ((double)currentAR / (double)a169);
+
+		if (currentAR > 1.55f)
+		correctFOV = (FOVmulti * UltrawideFixRatio);
+		else
+		correctFOV = (FOVmulti * ((double)currentAR / (double)currentAR));
 		correctFOV *= Render3D::FOVMultiplier;
-		if (currentAR > a169 && Render3D::ARfov && update_aspect_ratio) { // otherwise causes issues for odd ARs like 16:10/5:4 and the common 4:3.
-			patchDouble((BYTE*)0x00E5C808, correctFOV);
+		if ((currentAR > a169 && Render3D::ARfov && update_aspect_ratio)) { // otherwise causes issues for odd ARs like 16:10/5:4 and the common 4:3.
+			//patchDouble((BYTE*)0x00E5C808, correctFOV);
 			patchNop((BYTE*)0x00797181, 6); // Crosshair location that is read from FOV, we'll replace with our own logic below.
 			patchFloat((BYTE*)0x00EC2614, correctFOV);
 			Logger::TypedLog(CHN_DEBUG, "Aspect Ratio FOV fixed...\n");
-
-			if (Render3D::ARCutscene) {
-				static double correctCFOV = 57.2957795131 * ((double)currentAR / (double)a169);
-				if (correctCFOV > 125) {
-					correctCFOV = 125; // arbiratry number close to 32:9 CFOV, 
-					//this will stop most scenes from going upside down in 48:9, we need a beter address for cutscenes similiar to world FOV.
-				}
-				patchDWord((BYTE*)0x00494DE8 + 2, (uint32_t)&correctCFOV);
-				Logger::TypedLog(CHN_DEBUG, "Aspect Ratio Cutscenes (might break above 21:9) hack...\n");
-				Render3D::ARCutscene = 0;
-
-			}
 		}
 
 			double multipliedFOV = correctFOV * Render3D::FOVMultiplier;
-			patchDouble((BYTE*)0x00E5C808, multipliedFOV);
+			//patchDouble((BYTE*)0x00E5C808, multipliedFOV);
 			patchNop((BYTE*)0x00797181, 6);
 			patchFloat((BYTE*)0x00EC2614, (float)multipliedFOV);
 		
 		return;
 
+	}
+	double __cdecl ConvertVerticalFOVToHorizontal_fixwidescreen(float a1, bool cutscene)
+	{
+		float v2;
+		float v3;
+		float v4;
+		float v5;
+		float v6;
+		float v7;
+
+		v2 = a1 * 0.01745299994945526;
+		v3 = v2 * 0.5;
+		v4 = tan(v3);
+		v5 = v4 * 1.333333373069763 * UltrawideFixRatio;
+		if (!cutscene)
+			v5 *= Render3D::FOVMultiplier;
+		v6 = atan(v5);
+		v7 = v6 + v6;
+		return (v7 * 57.29582977294922);
+	}
+	double GetFOV() {
+		bool* is_cutscene_active = (bool*)0x02527D14;
+		bool* unk = (bool*)((*(int*)0x2527D10) + 0xAFF);
+		float* cf_real_fov_deg = (float*)0x025F5BA4;
+		bool* r_is_widescreen = (bool*)0x025272DD;
+		// HUD Ultrawide HUD fix needs to be active so I can get this bool.
+		if (*is_cutscene_active && !*unk && !Render2D::UltrawideFix)
+			// Yes return a float as a double.
+			return *cf_real_fov_deg;
+		if (*r_is_widescreen || Render3D::FOVMultiplier != 1.f)
+			return ConvertVerticalFOVToHorizontal_fixwidescreen(*cf_real_fov_deg, *is_cutscene_active && !*unk);
+		return *cf_real_fov_deg;
 	}
 	void __declspec(naked) LoadShadersHook() {
 		static int Continue = 0x00D1B7D3;
@@ -798,14 +832,11 @@ namespace Render3D
 #endif
 		WriteRelJump(0x00D1B7CE, (UInt32)&LoadShadersHook);
 
+
+		WriteRelJump(0x00494080, (UInt32)&GetFOV);
 		if (GameConfig::GetValue("Gameplay", "FixUltrawideFOV", 1))
 		{
 			ARfov = 1;
-		}
-
-		if (GameConfig::GetValue("Gameplay", "FixUltrawideCutsceneFOV", 1))
-		{
-			ARCutscene = 1;
 		}
 
 		if (GameConfig::GetDoubleValue("Gameplay", "FOVMultiplier", 1.0)) // 1.0 isn't go anywhere.
