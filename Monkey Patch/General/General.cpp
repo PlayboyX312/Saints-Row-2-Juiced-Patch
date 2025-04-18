@@ -910,6 +910,8 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 				Logger::TypedLog(CHN_MOD, "Patching Ultrawide HUD %d \n", 1);
 				using namespace Render2D;
 				//SR2Ultrawide_hook = safetyhook::create_inline(0xD1C910, &SR2Ultrawide_HUDScale);
+				// Lets 3:2 act as 4:3 at least..
+				patchDouble((void*)0x00E5C080, 1.55f);
 				WriteRelCall(0x00D1EF2F, (UInt32)&SR2Ultrawide_HUDScale);
 				WriteRelCall(0x00D1F944, (UInt32)&SR2Ultrawide_HUDScale);
 			}
@@ -920,6 +922,8 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		if (GameConfig::GetValue("Graphics", "FixUltrawideHUD", 1) >= 2) {
 			Logger::TypedLog(CHN_MOD, "Patching Ultrawide HUD %d \n", 2);
 			using namespace Render2D;
+			// Lets 3:2 act as 4:3 at least..
+			patchDouble((void*)0x00E5C080, 1.55f);
 			WriteRelCall(0x00D1EF2F, (UInt32)&SR2Ultrawide_HUDScale);
 			WriteRelCall(0x00D1F944, (UInt32)&SR2Ultrawide_HUDScale);
 			vint_create_process_hook.enable();
