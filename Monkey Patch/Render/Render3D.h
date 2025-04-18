@@ -15,7 +15,6 @@ namespace Render3D
     extern void HookSleep();
     extern void UnHookSleep();
     extern bool ARfov;
-    extern bool ARCutscene;
     extern double FOVMultiplier;
     extern const double fourbythreeAR;
     extern bool IsSleepHooked;

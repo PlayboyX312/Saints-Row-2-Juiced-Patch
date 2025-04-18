@@ -28,7 +28,6 @@ namespace Render3D
 	bool VFXP_fixFog = 0;
 	float AOStrength = 1.5;
 	bool ARfov = 0;
-	bool ARCutscene = 0;
 	double FOVMultiplier = 1;
 	double UltrawideFixRatio = 1;
 	const double fourbythreeAR = 1.333333373069763;
@@ -66,39 +65,36 @@ namespace Render3D
 		return;
 
 	}
-	double __cdecl ConvertVerticalFOVToHorizontal_fixwidescreen(float a1, bool cutscene)
+	double __cdecl ConvertVerticalFOVToHorizontal_fixwidescreen(float verticalFOV, bool cutscene)
 	{
-		float v2;
-		float v3;
-		float v4;
-		float v5;
-		float v6;
-		float v7;
+		float radians = verticalFOV * 0.01745299994945526;  // Convert to radians
+		float tangent = tan(radians * 0.5);
 
-		v2 = a1 * 0.01745299994945526;
-		v3 = v2 * 0.5;
-		v4 = tan(v3);
-		if(!cutscene)
-		v5 = v4 * 1.333333373069763 * UltrawideFixRatio;
-		else
-			v5 = v4 * UltrawideFixRatio;
-		if (!cutscene)
-			v5 *= Render3D::FOVMultiplier;
-		v6 = atan(v5);
-		v7 = v6 + v6;
-		return (v7 * 57.29582977294922);
+		// Apply aspect ratio adjustment
+		float adjusted = tangent * UltrawideFixRatio;
+		if (!cutscene) {
+			adjusted *= 1.333333373069763 * Render3D::FOVMultiplier;
+		}
+
+		// Convert back to degrees
+		return atan(adjusted) * 2.0 * 57.29582977294922;
 	}
+
 	double GetFOV() {
 		bool* is_cutscene_active = (bool*)0x02527D14;
 		bool* unk = (bool*)((*(int*)0x2527D10) + 0xAFF);
 		float* cf_real_fov_deg = (float*)0x025F5BA4;
 		bool* r_is_widescreen = (bool*)0x025272DD;
+
+		bool isCutsceneMode = *is_cutscene_active && !*unk;
 		// HUD Ultrawide HUD fix needs to be active so I can get this bool.
-		if (*is_cutscene_active && !*unk && !Render2D::UltrawideFix)
-			// Yes return a float as a double.
+		// Early return for cutscene when UltrawideFix is not active, this is original game behaviour
+		if (isCutsceneMode && !Render2D::UltrawideFix)
 			return *cf_real_fov_deg;
+
 		if (*r_is_widescreen || Render3D::FOVMultiplier != 1.f)
-			return ConvertVerticalFOVToHorizontal_fixwidescreen(*cf_real_fov_deg, *is_cutscene_active && !*unk);
+			return ConvertVerticalFOVToHorizontal_fixwidescreen(*cf_real_fov_deg, isCutsceneMode);
+
 		return *cf_real_fov_deg;
 	}
 	void __declspec(naked) LoadShadersHook() {
@@ -841,7 +837,6 @@ namespace Render3D
 		{
 			ARfov = 1;
 		}
-
 		if (GameConfig::GetDoubleValue("Gameplay", "FOVMultiplier", 1.0)) // 1.0 isn't go anywhere.
 		{
 			FOVMultiplier = GameConfig::GetDoubleValue("Gameplay", "FOVMultiplier", FOVMultiplier);
