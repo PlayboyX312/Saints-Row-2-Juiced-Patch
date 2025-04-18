@@ -78,7 +78,10 @@ namespace Render3D
 		v2 = a1 * 0.01745299994945526;
 		v3 = v2 * 0.5;
 		v4 = tan(v3);
+		if(!cutscene)
 		v5 = v4 * 1.333333373069763 * UltrawideFixRatio;
+		else
+			v5 = v4 * UltrawideFixRatio;
 		if (!cutscene)
 			v5 *= Render3D::FOVMultiplier;
 		v6 = atan(v5);
