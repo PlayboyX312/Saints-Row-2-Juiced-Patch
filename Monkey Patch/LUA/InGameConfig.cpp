@@ -6,6 +6,7 @@
 #include "../FileLogger.h"
 #include "../Player/Behavior.h"
 #include "../GameConfig.h"
+#include "../Game/Game.h"
 #include <iomanip>
 #include <sstream>
 int AddMessage(const wchar_t* Title, const wchar_t* Desc);
@@ -43,7 +44,8 @@ namespace InGameConfig {
     {"SR1QuickSwitch",&Behavior::CMPatches_SR1QuickSwitch,nullptr,"Gameplay","SR1QuickSwitch"},
     {"BetterAnimBlend",nullptr,&Behavior::CAnimBlend,"Gameplay","BetterAnimBlend"},
     {"UseWeaponAfterEmpty",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","Keep Weapon After Empty"},
-    {"TauntCancelling",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","TauntCancelling"}
+    {"TauntCancelling",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","TauntCancelling"},
+    {"DisableTutorials",nullptr,&Game::CDisable_Tutorials,"Gameplay","DisableTutorials"}
 #endif
     };
     void AddOptions() {
@@ -61,6 +63,7 @@ namespace InGameConfig {
 #if !JLITE
         InGameConfig::RegisterBoolSlider("IVRadarScaling", "IV Radar Scaling");
 #endif
+        InGameConfig::RegisterBoolSlider("DisableTutorials", "DisableTutorials");
         InGameConfig::RegisterSlider("DisableAimAssist", "Disable Aim Assist", { "CONTROL_NO","On Mouse only","Always"}, MenuType::CONTROLS);
 #if !JLITE
         InGameConfig::RegisterSlider(

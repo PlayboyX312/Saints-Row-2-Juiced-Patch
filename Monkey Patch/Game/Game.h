@@ -1,4 +1,5 @@
 #pragma once
+#include "../Patcher/CPatch.h"
 enum vint_message_type {
 	top_of_screen = 0,
 	middle_of_screen = 1,
@@ -32,7 +33,8 @@ struct xtbl_node
 
 namespace Game
 {
-	extern void CreateSafetyHooks();
+	extern CPatch CDisable_Tutorials;
+	extern void Init();
 	namespace Timer {
 		typedef double (*havok_get_time_this_frameT)();
 		extern havok_get_time_this_frameT havok_get_time_this_frame;

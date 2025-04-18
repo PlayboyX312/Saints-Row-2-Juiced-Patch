@@ -4,6 +4,7 @@
 #include "../GameConfig.h"
 #include "Game.h"
 #include <safetyhook.hpp>
+#include "../Patcher/CPatch.h"
 namespace Game
 {
 	namespace Timer {
@@ -59,7 +60,12 @@ namespace Game
 			) / (float)havok_get_time_this_frame();*/
 		}
 	}
-	void CreateSafetyHooks() {
+	CPatch CDisable_Tutorials = CPatch::SafeWrite8(0x006B7260, 0xC3);
+	void Init() {
+
+		if (GameConfig::GetValue("Gameplay", "DisableTutorials", 0))
+			CDisable_Tutorials.Apply();
+
 		using namespace Physical;
 		motorcycle_should_eject_passengers_MIDASMHOOK = safetyhook::create_mid(0x00AB599F, &motorcycle_should_eject_passengers_asmhook);
 	}

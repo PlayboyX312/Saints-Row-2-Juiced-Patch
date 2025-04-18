@@ -1549,7 +1549,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 #if !JLITE
 	General::BottomWinMain();
 #endif
-	Game::CreateSafetyHooks();
+	Game::Init();
 	// Continue to the program's WinMain.
 
 	WinMain_Type OldWinMain = (WinMain_Type)offset_addr(0x00520ba0);
