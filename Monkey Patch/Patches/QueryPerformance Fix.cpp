@@ -52,6 +52,12 @@ void PatchQueryPerformance()
 	
 	HMODULE main_handle=GetModuleHandleA(NULL);
 
+	if (fabs(query_perf_mult - 1.0) < 0.00001)
+	{
+		Logger::TypedLog(CHN_DLL, "No speed-up bug detected. Skipping patch.\n");
+		return;
+	}
+
 	if(PatchIat(main_handle, (char*)"Kernel32.dll", (char*)"QueryPerformanceFrequency", (void *)hook_QueryPerformanceFrequency, &old_proc)==S_OK)
 		Logger::TypedLog(CHN_DLL, "Patched Kernel32.QueryPerformanceFrequency.\n");
 	else
