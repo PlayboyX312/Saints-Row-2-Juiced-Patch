@@ -8,7 +8,7 @@
 #include "../SafeWrite.h"
 #include "../RPCHandler.h"
 #include "../Game/Game.h"
-
+#include <safetyhook.hpp>
 namespace XACT
 {
 	void FixAudioHack()
@@ -37,9 +37,20 @@ namespace XACT
 			Logger::TypedLog(CHN_MOD, "Forcing the use of a fixed XACT version.\n");
 		}
 	}
+	// sidokuthps had a crash while playing The Ronin - Rest In Peace, this section of code seems to only execute in missions? need to confirm, either ways they jump to an else if v0 is null but not if *v0 is null
+	// thus it crashes, here I check for that as well - Clippy95
+	SAFETYHOOK_NOINLINE void FixAudioLoop_null_crash1(SafetyHookContext& ctx) {
 
+		if (ctx.ebx) {
+			if (*(int*)ctx.ebx == NULL) {
+				// So Safetyhook converts the jnz short loc_46EE5B to a jne, so we'll jump by 6 bytes to keep on going.
+				ctx.eip += 0x6;
+			}
+		}
+	}
 	void ChangeSpeakerCount()
 	{
+		static auto FixAudioLoop_null_crash1_hook = safetyhook::create_mid(0x0046EE64, &FixAudioLoop_null_crash1);
 		if (GameConfig::GetValue("Audio", "51Surround", 0) == 1)
 		{
 			Logger::TypedLog(CHN_AUDIO, "Using 5.1 Surround Sound...\n");
