@@ -7,6 +7,8 @@ namespace Input {
 		MOUSE,
 		CONTROLLER,
 	};
+	extern void Process_Inventory_Hack_KBM();
+	extern bool allow_hacked_inventory_KBM;
 	inline bool betterTags;
 	extern void UnloadXInputDLL();
 	extern BYTE disable_aim_assist_noMatterInput;
