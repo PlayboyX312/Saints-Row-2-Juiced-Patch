@@ -53,14 +53,14 @@ namespace Render3D
 		if ((currentAR > a169 && Render3D::ARfov && update_aspect_ratio)) { // otherwise causes issues for odd ARs like 16:10/5:4 and the common 4:3.
 			//patchDouble((BYTE*)0x00E5C808, correctFOV);
 			patchNop((BYTE*)0x00797181, 6); // Crosshair location that is read from FOV, we'll replace with our own logic below.
-			patchFloat((BYTE*)0x00EC2614, correctFOV);
+			//patchFloat((BYTE*)0x00EC2614, correctFOV * Render3D::FOVMultiplier);
 			Logger::TypedLog(CHN_DEBUG, "Aspect Ratio FOV fixed...\n");
 		}
 
 			double multipliedFOV = correctFOV * Render3D::FOVMultiplier;
 			//patchDouble((BYTE*)0x00E5C808, multipliedFOV);
 			patchNop((BYTE*)0x00797181, 6);
-			patchFloat((BYTE*)0x00EC2614, (float)multipliedFOV);
+			patchFloat((BYTE*)0x00EC2614, (float)correctFOV);
 		
 		return;
 
