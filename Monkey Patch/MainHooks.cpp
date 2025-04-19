@@ -1,3 +1,8 @@
+// these don't really matter?
+#pragma warning( disable : 4834)
+#pragma warning( disable : 4309)
+#pragma warning( disable : 4244)
+#pragma warning( disable : 4473)
 #include "MainHooks.h"
 #include "UtilsGlobal.h"
 #include "General/General.h"

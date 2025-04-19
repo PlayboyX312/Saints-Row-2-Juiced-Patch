@@ -1,7 +1,11 @@
 // Render2D.cpp (uzis, Tervel, Clippy95)
 // --------------------
 // Created: 25/02/2025
-
+#pragma warning( disable : 4834)
+#pragma warning( disable : 4309)
+#pragma warning( disable : 4244)
+#pragma warning( disable : 4473)
+#pragma warning( disable : 4996)
 #include "../FileLogger.h"
 #include "../Patcher/patch.h"
 #include "../GameConfig.h"

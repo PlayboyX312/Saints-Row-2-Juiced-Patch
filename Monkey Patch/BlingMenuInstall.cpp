@@ -1,4 +1,6 @@
 #if !RELOADED && !JLITE
+#pragma warning( disable : 4834)
+#pragma warning( disable : 4309)
 #include "GameConfig.h"
 #include "Patcher/CPatch.h"
 #include "BlingMenu_public.h"

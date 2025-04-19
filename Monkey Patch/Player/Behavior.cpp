@@ -14,6 +14,7 @@
 #include "../BlingMenu_public.h"
 #include "../UtilsGlobal.h"
 #include "..\Game\Game.h"
+#pragma warning( disable : 4834)
 // Use me to store garbagedata when NOP doesn't work.
 static float garbagedata = 0;
 double bogusPi = 2.90;

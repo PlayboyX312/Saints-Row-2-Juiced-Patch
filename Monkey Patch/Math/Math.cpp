@@ -6,6 +6,7 @@
 #include "../Patcher/patch.h"
 #include "../GameConfig.h"
 #include "Math.h"
+/*
 namespace Math
 {
 	Velocity CalculateVelocity(uintptr_t CoordsPointer) {
@@ -46,3 +47,4 @@ namespace Math
 		return { vx, vy, vz, magnitude };
 	}
 }
+*/

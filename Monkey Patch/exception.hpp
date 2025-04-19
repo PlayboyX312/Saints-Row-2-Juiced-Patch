@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning( disable : 4996)
+#pragma warning( disable : 4477)
 /*
  * Unhandled Exception Tracer
  * by LINK/2012 <dma_2012@hotmail.com>

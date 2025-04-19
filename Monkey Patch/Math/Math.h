@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+/*
 namespace Math
 {
     extern struct Velocity {
@@ -11,3 +12,4 @@ namespace Math
     };
     extern Velocity CalculateVelocity(uintptr_t CoordsPointer);
 }
+*/

@@ -29,6 +29,7 @@ namespace Input {
 
 	}
 
+#pragma warning( disable : 4995)
 	typedef int(__stdcall* XInputEnableT)(bool Enable); // this is a deprecated feature and I couldn't get it to register through the XInput lib
 	XInputEnableT XInputEnable = (XInputEnableT)0x00CCD4F8;
 
