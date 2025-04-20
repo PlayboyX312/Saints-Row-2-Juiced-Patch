@@ -51,6 +51,7 @@
 #include "exception.hpp"
 #include <Shlwapi.h>
 #include "LUA/InGameConfig.h"
+#include "../Game/CrashFixes.h"
 
 using namespace General;
 const char ServerNameSR2[] = "[Saints Row 2]";
@@ -1472,6 +1473,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 {
 	InGameConfig::AddOptions();
 	General::TopWinMain();
+	CrashFixes::Init();
 
 	char NameBuffer[260];
 	PIMAGE_DOS_HEADER dos_header;

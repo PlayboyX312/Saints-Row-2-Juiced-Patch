@@ -668,8 +668,9 @@ namespace Render3D
 			crash = false;
 		}*/
 		uint16_t* width = (uint16_t*)(ctx.eax + 0x4);
+		DWORD* wtf = (DWORD*)(ctx.eax + 0x24);
 		// gtfo out of function
-		if (!IsMemoryReadable(width)) {
+		if (!IsMemoryReadable(width) || !IsMemoryReadable(wtf)) {
 			Logger::TypedLog("the other add_to_entry hook", "!!!Invalid result->width: %p\n", width);
 			ctx.eip = 0x00C08101;
 		}
