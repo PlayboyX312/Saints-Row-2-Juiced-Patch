@@ -2,3 +2,6 @@
 namespace CrashFixes {
 	extern void Init();
 }
+namespace AssertHandler {
+	inline void AssertOnce(const char* id, const char* message);
+}
