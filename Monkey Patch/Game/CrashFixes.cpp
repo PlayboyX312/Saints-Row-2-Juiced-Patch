@@ -35,6 +35,7 @@ namespace CrashFixes {
 		if (ctx.ebx) {
 			if (*(int*)ctx.ebx == NULL) {
 				// So Safetyhook converts the jnz short loc_46EE5B to a jne, so we'll jump by 6 bytes to keep on going.
+				Logger::TypedLog(CHN_DEBUG, "Mission? audio crash prevented, 0x0046EE64\n");
 				ctx.eip += 0x6;
 			}
 		}
