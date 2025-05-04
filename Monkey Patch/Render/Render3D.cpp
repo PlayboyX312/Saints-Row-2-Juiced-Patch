@@ -20,7 +20,7 @@
 #include "../General/General.h"
 
 #include "Render2D.h"
-
+#include "../Game/CrashFixes.h"
 namespace Render3D
 {
 	const char FPSCam[] = "camera_fpss.xtbl";
@@ -671,11 +671,19 @@ namespace Render3D
 		DWORD* wtf = (DWORD*)(ctx.eax + 0x24);
 		// gtfo out of function
 		if (!IsMemoryReadable(width) || !IsMemoryReadable(wtf)) {
+			AssertHandler::AssertOnce("the other add_to_entry hook", "Crashed prevented due to an invalid be->current_peg_entry in add_to_entry, it's recommended to make a save of your game at this point as the game still has a high chance to crash! \n");
 			Logger::TypedLog("the other add_to_entry hook", "!!!Invalid result->width: %p\n", width);
 			ctx.eip = 0x00C08101;
 		}
 		
 
+	}
+	void possible_unload_entry_func(SafetyHookContext& ctx) {
+
+		if (!IsMemoryReadable((void*)ctx.ecx)) {
+			AssertHandler::AssertOnce("possible_unload_entry_func", "Crashed prevented due to an invalid be->current_peg_entry in add_to_entry, it's recommended to make a save of your game at this point as the game still has a high chance to crash! \n");
+			ctx.eip = 0x00BD8665;
+		}
 	}
  int __stdcall SafeAddToEntry(bitmap_entry* be, peg_entry* pe) {
 	 /*if (crash) {
@@ -769,6 +777,7 @@ namespace Render3D
 	}
 	void Init()
 	{
+		//static auto unload_tex = safetyhook::create_mid(0x00BD865D, &possible_unload_entry_func);
 		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
 			ShaderOptions |= SHADER_X360_GAMMA;
 		}
