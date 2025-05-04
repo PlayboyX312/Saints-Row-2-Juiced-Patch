@@ -9,22 +9,31 @@
 
 namespace AssertHandler {
 	static std::unordered_set<std::string> ignored_asserts;
+	static std::mutex assert_mutex;
 
 	inline void AssertOnce(const char* id, const char* message) {
-		if (ignored_asserts.count(id))
-			return;
+		{
+			std::lock_guard<std::mutex> lock(assert_mutex);
+			if (ignored_asserts.count(id))
+				return;
+		}
 
+		std::string id_copy(id);
+		std::string msg_copy(message);
 		std::string full_message =
-			"[Assert ID: " + std::string(id) + "]\n" +
-			message +
+			"[Assert ID: " + id_copy + "]\n" +
+			msg_copy +
 			"\n\nPress 'Yes' to ignore this warning for the session.";
 
 		Logger::TypedLog(CHN_DEBUG, "[Assert ID: %s] %s", id, message);
 
-		int result = MessageBoxA(nullptr, full_message.c_str(), "Error Occurred", MB_ICONWARNING | MB_YESNO);
-		if (result == IDYES) {
-			ignored_asserts.insert(id);
-		}
+		std::thread([id_copy, full_message]() {
+			int result = MessageBoxA(nullptr, full_message.c_str(), "Error Occurred", MB_ICONWARNING | MB_YESNO);
+			if (result == IDYES) {
+				std::lock_guard<std::mutex> lock(assert_mutex);
+				ignored_asserts.insert(id_copy);
+			}
+			}).detach();
 	}
 }
 
