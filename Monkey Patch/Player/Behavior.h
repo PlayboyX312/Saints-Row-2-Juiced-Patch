@@ -16,4 +16,5 @@ namespace Behavior
 	extern CMultiPatch CMPatches_UseWeaponAfterEmpty;
 	extern CMultiPatch CMPatches_TauntCancelling;
 	extern SafetyHookMid cf_do_control_mode_sticky_MIDASMHOOK;
+	extern CPatch CAllowWeaponSwitchInAllCases_KBM;
 }

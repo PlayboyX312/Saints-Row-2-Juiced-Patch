@@ -45,7 +45,8 @@ namespace InGameConfig {
     {"BetterAnimBlend",nullptr,&Behavior::CAnimBlend,"Gameplay","BetterAnimBlend"},
     {"UseWeaponAfterEmpty",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","Keep Weapon After Empty"},
     {"TauntCancelling",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","TauntCancelling"},
-    {"DisableTutorials",nullptr,&Game::CDisable_Tutorials,"Gameplay","DisableTutorials"}
+    {"DisableTutorials",nullptr,&Game::CDisable_Tutorials,"Gameplay","DisableTutorials"},
+    {"AllowWeaponSwitchInAllCases",nullptr,&Behavior::CAllowWeaponSwitchInAllCases_KBM,"Gameplay","AllowWeaponSwitchInAllCases"}
 #endif
     };
     void AddOptions() {
@@ -87,6 +88,7 @@ namespace InGameConfig {
         InGameConfig::RegisterBoolSlider("BetterHandbrakeCam", "Better Handbrake Cam", InGameConfig::MenuType::CONTROLS);
         InGameConfig::RegisterBoolSlider("SR1Reloading", "SR1Reloading", InGameConfig::MenuType::CONTROLS);
         InGameConfig::RegisterBoolSlider("SR1QuickSwitch", "SR1QuickSwitch", InGameConfig::MenuType::CONTROLS);
+        InGameConfig::RegisterBoolSlider("AllowWeaponSwitchInAllCases", "AllowWeaponSwitchInAllCases", InGameConfig::MenuType::CONTROLS);
         //InGameConfig::RegisterSlider("BetterAO", "Better Ambient Occlusion", {"FUCK OFF ", "fucked off"}, 50);
 #endif
 #if !JLITE

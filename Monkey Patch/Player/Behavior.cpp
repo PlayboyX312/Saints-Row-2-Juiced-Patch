@@ -240,6 +240,7 @@ CMultiPatch CMPatches_SR1Reloading = {
 
 #if !JLITE
 	CPatch CAnimBlend = CPatch::SafeWrite32(0x006F1CA6 + 2, (uint32_t)&animBlend);
+	CPatch CAllowWeaponSwitchInAllCases_KBM = CPatch::PatchNop(0x004F7F1E, 0x23);
 #endif
 	void Init()
 	{
@@ -252,6 +253,11 @@ CMultiPatch CMPatches_SR1Reloading = {
 	//		patchDWord((void*)(0x00D26587 + 2), (uint32_t)&bogusPi);
 		//}
 #if !JLITE
+		if (GameConfig::GetValue("Gameplay", "AllowWeaponSwitchInAllCases", 0))
+		{
+			CAllowWeaponSwitchInAllCases_KBM.Apply();
+		}
+
 		if (GameConfig::GetValue("Gameplay", "BetterAnimBlend", 0))
 		{
 			CAnimBlend.Apply();
