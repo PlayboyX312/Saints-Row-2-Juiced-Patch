@@ -895,9 +895,6 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			CMPatches_TervelTextureCrashWorkaround_be_as_pe.Apply(); // incorrect behaviour
 
 		}
-		if (GameConfig::GetValue("Debug", "ClippyTextureCrashExceptionHandle", 1)) { 
-			Render3D::CMPatches_ClippysIdiotTextureCrashExceptionHandle.Apply(); // also not ideal, might have perfomance impact, implementation in Render3D.cpp
-		}
 #if !JLITE
 		if (GameConfig::GetValue("Debug", "Hook_lua_load_dynamic_script_buffer", 1)) {
 #endif

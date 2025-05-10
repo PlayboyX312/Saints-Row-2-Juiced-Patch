@@ -617,17 +617,6 @@ namespace Render3D
 	bool crash;
 
 	constexpr uintptr_t add_to_entry_func_addr = 0xC080C0;
-	__declspec(naked) int __cdecl add_to_entry_func(void* be, void* pe) {
-		__asm {
-
-			mov edi, dword ptr[esp + 4]  // be
-			mov esi, dword ptr[esp + 8]  // pe
-
-			call dword ptr[add_to_entry_func_addr]
-
-			ret
-		}
-	}
 	struct peg_entry
 	{
 		unsigned __int8* data;
@@ -685,60 +674,6 @@ namespace Render3D
 			ctx.eip = 0x00BD8665;
 		}
 	}
- int __stdcall SafeAddToEntry(bitmap_entry* be, peg_entry* pe) {
-	 /*if (crash) {
-		 Logger::TypedLog(CHN_DEBUG, "CRASH TEST: Forcing invalid memory access\n");
-		 be = reinterpret_cast<void*>(0xDEADBEEF);
-		 crash = false;
-	 }*/
-		if (!IsMemoryReadable(be)) {
-			for(int i = 0; i<11; i++)
-			Logger::TypedLog("add_to_entry hook", "!!!Invalid be pointer: %p\n", be);
-			return 0;
-		}
-		
-
-		peg_entry* result = be->current_peg_entry;
-		if (!IsMemoryReadable(&result)) {
-			for (int i = 0; i < 11; i++)
-			Logger::TypedLog("add_to_entry hook","!!!Invalid memory at be->current_peg_entry: %p\n", reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(be) + 4));
-			return 0;
-		}
-		if (result) {
-			//printf("width 0x%X \n", &result->width);
-			if (pe && !IsMemoryReadable(&result->width)) {
-				for (int i = 0; i < 11; i++)
-					Logger::TypedLog("add_to_entry hook", "!!!Invalid pe pointer: %p\n", pe);
-				return 0;
-			}
-		}
-		if (pe && !IsMemoryReadable(pe)) {
-			for (int i = 0; i < 11; i++)
-			Logger::TypedLog("add_to_entry hook", "!!!Invalid pe pointer: %p\n", pe);
-			return 0;
-		}
-			return add_to_entry_func(be, pe);
-
-	}
-
-
-	__declspec(naked) void PatchAddToEntryPoint() {
-		__asm {
-			push ebx
-			push ecx
-			push edx
-
-			push esi    // pe
-			push edi    // be
-			call SafeAddToEntry
-
-			pop edx
-			pop ecx
-			pop ebx
-
-			ret
-		}
-	}
 #if !JLITE
 	CMultiPatch CMPatches_ClassicGTAIdleCam = {
 
@@ -752,16 +687,6 @@ namespace Render3D
 	};
 #endif
 	// This whole thing might have a performance hit.
-	CMultiPatch CMPatches_ClippysIdiotTextureCrashExceptionHandle = {
-
-		[](CMultiPatch& mp) {
-			mp.AddWriteRelCall(0x00C08493,(uintptr_t)&PatchAddToEntryPoint);
-		},
-
-		[](CMultiPatch& mp) {
-			mp.AddWriteRelCall(0x00C0900D,(uintptr_t)&PatchAddToEntryPoint);
-		},
-	};
 	int ShaderOptions;
 	 
 	void ChangeShaderOptions() {
@@ -784,7 +709,11 @@ namespace Render3D
 		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 1)) {
 			ShaderOptions |= SHADER_SHADOW_FILTER;
 		}
-		add_to_entry_test = safetyhook::create_mid(0x00C080EC, &add_to_entry_crashaddr_hook);
+		add_to_entry_test = safetyhook::create_mid(0x00C080EC, &add_to_entry_crashaddr_hook,safetyhook::MidHook::StartDisabled);
+		if (GameConfig::GetValue("Debug", "ClippyTextureCrashExceptionHandle", 1)) {
+			add_to_entry_test.enable();
+		}
+		
 #if !JLITE
 		if (GameConfig::GetValue("Graphics", "RemoveVignette", 0))
 		{

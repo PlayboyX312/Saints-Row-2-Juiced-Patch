@@ -171,16 +171,14 @@ namespace BlingMenuInstall
         using namespace Render3D;
         if (action != -1) {
             General::CMPatches_TervelTextureCrashWorkaround_be_as_pe.Restore();
-            if (CMPatches_ClippysIdiotTextureCrashExceptionHandle.IsApplied()) {
+            if (add_to_entry_test.enabled()) {
                 add_to_entry_test.disable();
-                CMPatches_ClippysIdiotTextureCrashExceptionHandle.Restore();
             }
             else {
-                CMPatches_ClippysIdiotTextureCrashExceptionHandle.Apply();
                 add_to_entry_test.enable();
             }
         }
-        switch (CMPatches_ClippysIdiotTextureCrashExceptionHandle.IsApplied()) {
+        switch (add_to_entry_test.enabled()) {
         case false: return "OFF";
             break;
         case true: return "ON ";
@@ -192,10 +190,10 @@ namespace BlingMenuInstall
     const char* BM_TervelCrashWorkAround(void* userdata, int action) {
         using namespace General;
 
-        if (Render3D::CMPatches_ClippysIdiotTextureCrashExceptionHandle.IsApplied()) {
+        if (Render3D::add_to_entry_test.enabled()) {
             return "EXCEPTION-ish HANDLER HOOKED";
         }
-        if (action != -1 && !Render3D::CMPatches_ClippysIdiotTextureCrashExceptionHandle.IsApplied()) {
+        if (action != -1 && !Render3D::add_to_entry_test.enabled()) {
             if (CMPatches_TervelTextureCrashWorkaround_be_as_pe.IsApplied()) {
                 CMPatches_TervelTextureCrashWorkaround_be_as_pe.Restore();
             }
