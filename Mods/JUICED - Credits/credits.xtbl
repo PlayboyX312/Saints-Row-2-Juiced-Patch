@@ -1,0 +1,3467 @@
+<root>
+	<Table>
+	    <Credits>
+			<Name>INMEMIDOL</Name>
+			<section_title>IN MEMORY OF MIKE WATSON (IDOLNINJA)</section_title>
+			<headings>
+				<headings>
+					<heading>Community Manager and Gentleman of the Row</heading>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>1971 - 2021</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>KOBRAWORKS</Name>
+			<section_title>KOBRAWORKS TEAM</section_title>
+			<headings>
+				<headings>
+					<heading>DEVELOPERS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Uzis</name>
+							<desc>Juiced Patch, tha Row - (Founder)</desc>
+						</items>
+						<items>
+							<name>Janson</name>
+							<desc>tha Row - (Co-Founder)</desc>
+						</items>
+						<items>
+							<name>SidokuTHPS</name>
+							<desc>tha Row - (Co-Founder)</desc>
+						</items>
+						<items>
+							<name>Tervel</name>
+							<desc>Juiced Patch</desc>
+						</items>
+						<items>
+							<name>Clippy95</name>
+							<desc>Juiced Patch</desc>
+						</items>
+						<items>
+							<name>Scanti</name>
+							<desc>Juiced Patch - (Monkey Patch Founder)</desc>
+						</items>
+						<items>
+							<name>CabooseSayzWTF</name>
+							<desc>tha Row, Juiced Patch</desc>
+						</items>
+						<items>
+							<name>jif</name>
+							<desc>tha Row, SR1 Deadly Escapade</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>SPECIAL THANKS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Joshua Macdonald</name>
+							<desc>xDelta3</desc>
+						</items>
+						<items>
+							<name>ThirteenAG</name>
+							<desc>Hooking.Patterns Patcher</desc>
+						</items>
+						<items>
+							<name>jason098</name>
+							<desc>Slew Mode Fixes</desc>
+						</items>
+						<items>
+							<name>MasakoTeam</name>
+							<desc>Additional Help</desc>
+						</items>
+						<items>
+							<name>Silent</name>
+							<desc>Helpful Info on Fixing FPS Issues</desc>
+						</items>
+						<items>
+							<name>Zedek</name>
+							<desc>Patching Methods + Old Error Handler</desc>
+						</items>
+						<items>
+							<name>CHC</name>
+							<desc>Openspy</desc>
+						</items>
+						<items>
+							<name>IMF24</name>
+							<desc>tha Row Updater Codebase</desc>
+						</items>
+						<items>
+							<name>Row and Theft Discord</name>
+							<desc>Playtesting for tha Row</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>https://www.kobraworks.com</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name></name>
+							<desc></desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>ART</Name>
+			<section_title>ART</section_title>
+			<headings>
+				<headings>
+					<heading>ART LEADS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Frank Marquart</name>
+							<desc>Project Art Director</desc>
+						</items>
+						<items>
+							<name>Chris Claflin</name>
+							<desc>Associate Project Art Director</desc>
+						</items>
+						<items>
+							<name>Mitri Vanichtheeranont</name>
+							<desc>Technical Art Director</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ART COORDINATORS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Tim Borrelli</name>
+							<desc>Animation Coordinator</desc>
+						</items>
+						<items>
+							<name>Chris Fortier</name>
+							<desc>Character Art Coordinators</desc>
+						</items>
+						<items>
+							<name>Doug Champine</name>
+						</items>
+						<items>
+							<name>Ev Religioso</name>
+							<desc>Cinematics Coordinator</desc>
+						</items>
+						<items>
+							<name>Jon Schmidt</name>
+							<desc>Environment Art Coordinators</desc>
+						</items>
+						<items>
+							<name>Mike Anaya</name>
+						</items>
+						<items>
+							<name>Stephen Quirk</name>
+						</items>
+						<items>
+							<name>Tim Wasson</name>
+						</items>
+						<items>
+							<name>Marc Kirkland</name>
+						</items>
+						<items>
+							<name>Jeff Harris</name>
+							<desc>Interface Coordinator</desc>
+						</items>
+						<items>
+							<name>Justin Miller</name>
+							<desc>Vehicle Art Coordinator</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ART TEAM</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Will Tam</name>
+							<desc>Animators</desc>
+						</items>
+						<items>
+							<name>Zach Lowery</name>
+						</items>
+						<items>
+							<name>Colin Brown</name>
+						</items>
+						<items>
+							<name>Ando Tammik</name>
+						</items>
+						<items>
+							<name>Eric Barrios</name>
+							<desc>Character Artists</desc>
+						</items>
+						<items>
+							<name>Tommy Stanton</name>
+						</items>
+						<items>
+							<name>Heath Vincent</name>
+						</items>
+						<items>
+							<name>Ding Ye</name>
+							<desc>Cinematic Artists</desc>
+						</items>
+						<items>
+							<name>Benny Lo</name>
+						</items>
+						<items>
+							<name>Steve Holt</name>
+							<desc>Concept Artists</desc>
+						</items>
+						<items>
+							<name>James Holland</name>
+						</items>
+						<items>
+							<name>Jose Vazquez</name>
+						</items>
+						<items>
+							<name>Dave Samuel</name>
+							<desc>Effects</desc>
+						</items>
+						<items>
+							<name>Brian Traficante</name>
+							<desc>Environment Artists</desc>
+						</items>
+						<items>
+							<name>David Seabaugh</name>
+						</items>
+						<items>
+							<name>Tyson Allen</name>
+						</items>
+						<items>
+							<name>Camden Bayer</name>
+						</items>
+						<items>
+							<name>Greg Moudy</name>
+						</items>
+						<items>
+							<name>Matt Currey</name>
+						</items>
+						<items>
+							<name>Matt Upholz</name>
+						</items>
+						<items>
+							<name>Peter Hartmann</name>
+						</items>
+						<items>
+							<name>Sean Koske</name>
+						</items>
+						<items>
+							<name>Seth Hawk</name>
+						</items>
+						<items>
+							<name>Victor Duarte</name>
+						</items>
+						<items>
+							<name>David Payne</name>
+						</items>
+						<items>
+							<name>Filmer Tolentino</name>
+						</items>
+						<items>
+							<name>Ret Kritzon</name>
+						</items>
+						<items>
+							<name>John Gnuechtel</name>
+							<desc>Interface Artists</desc>
+						</items>
+						<items>
+							<name>Derik Schneider</name>
+						</items>
+						<items>
+							<name>Billy Vanderburg</name>
+							<desc>Props</desc>
+						</items>
+						<items>
+							<name>Jason Hayes</name>
+							<desc>Technical Artists</desc>
+						</items>
+						<items>
+							<name>Nathaniel Albright</name>
+						</items>
+						<items>
+							<name>Brendan Holloway</name>
+						</items>
+						<items>
+							<name>Jason Childress</name>
+						</items>
+						<items>
+							<name>Brian Mehrman</name>
+						</items>
+						<items>
+							<name>Frank Fisher</name>
+						</items>
+						<items>
+							<name>Will Smith</name>
+						</items>
+						<items>
+							<name>Craig Johnson</name>
+							<desc>Vehicle Artists</desc>
+						</items>
+						<items>
+							<name>Shayne Smith</name>
+						</items>
+						<items>
+							<name>Angela Lee</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL ART</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Elliotte Bagg</name>
+							<desc>Character Art</desc>
+						</items>
+						<items>
+							<name>Eric Maki</name>
+						</items>
+						<items>
+							<name>Louis Sremac</name>
+						</items>
+						<items>
+							<name>Stephan Royer</name>
+						</items>
+						<items>
+							<name>Chad Greene</name>
+							<desc>Cinematics</desc>
+						</items>
+						<items>
+							<name>Jeff Spoonhower</name>
+						</items>
+						<items>
+							<name>Blake Low</name>
+							<desc>Environment Art</desc>
+						</items>
+						<items>
+							<name>Frank Pierce</name>
+						</items>
+						<items>
+							<name>Michael Curtin</name>
+						</items>
+						<items>
+							<name>Sloan Hood</name>
+						</items>
+						<items>
+							<name>Mike Buelterman</name>
+							<desc>Props</desc>
+						</items>
+						<items>
+							<name>Dustin Dobson</name>
+							<desc>Vehicles</desc>
+						</items>
+						<items>
+							<name>Kenny Thompson</name>
+						</items>
+						<items>
+							<name>Bryan Mentock</name>
+							<desc>Vehicles, Cinematics</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>DESIGN</Name>
+			<section_title>DESIGN</section_title>
+			<headings>
+				<headings>
+					<heading>DESIGN LEADS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>James Tsai</name>
+							<desc>Project Design Director</desc>
+						</items>
+						<items>
+							<name>Scott Phillips</name>
+							<desc>Project Design Architect</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>DESIGN COORDINATORS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Frank Petreikis</name>
+							<desc>Audio Coordinator</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>DESIGN TEAM</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Anoop Shekar</name>
+							<desc>Gameplay Designers</desc>
+						</items>
+						<items>
+							<name>Bryan Dillow</name>
+						</items>
+						<items>
+							<name>Brad Johnson</name>
+						</items>
+						<items>
+							<name>Chris Allen</name>
+						</items>
+						<items>
+							<name>Chris King</name>
+						</items>
+						<items>
+							<name>David Bowring</name>
+						</items>
+						<items>
+							<name>Lorcan Murphy</name>
+						</items>
+						<items>
+							<name>Ariel Gross</name>
+							<desc>Sound Designers</desc>
+						</items>
+						<items>
+							<name>Josh Davidson</name>
+						</items>
+						<items>
+							<name>David Cubberly</name>
+						</items>
+						<items>
+							<name>Steve Jaros</name>
+							<desc>Writers</desc>
+						</items>
+						<items>
+							<name>Drew Holmes</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL DESIGN</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Frank Favre</name>
+							<desc>Audio</desc>
+						</items>
+						<items>
+							<name>Raison Varner</name>
+						</items>
+						<items>
+							<name>Alvan Monje</name>
+							<desc>Gameplay Design</desc>
+						</items>
+						<items>
+							<name>Liz England</name>
+							<desc>Gameplay Intern</desc>
+						</items>
+						<items>
+							<name>Caleb Hoffman</name>
+							<desc>Writing</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>PRODUCTION</Name>
+			<section_title>PRODUCTION</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Greg Donovan</name>
+							<desc>Producer</desc>
+						</items>
+						<items>
+							<name>Mike Hawkins</name>
+							<desc>Senior Associate Producer</desc>
+						</items>
+						<items>
+							<name>Dan Sutton</name>
+							<desc>Associate Producers</desc>
+						</items>
+						<items>
+							<name>James Torbit</name>
+						</items>
+						<items>
+							<name>Rojé Smith</name>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Clint Ourso</name>
+							<desc>Project Manager</desc>
+						</items>
+						<items>
+							<name>Rose Hunt</name>
+							<desc>Senior Associate Project Manager</desc>
+						</items>
+						<items>
+							<name>Shannon Kelley</name>
+						</items>
+						<items>
+							<name>Deb Israel</name>
+							<desc>Associate Project Managers</desc>
+						</items>
+						<items>
+							<name>Lesley Wells-Lewis</name>
+						</items>
+						<items>
+							<name>Mike Kosakowski</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL PRODUCTION</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Jim Boone</name>
+							<desc>Producer</desc>
+						</items>
+						<items>
+							<name>Jeff Carroll</name>
+							<desc>Senior Associate Producer</desc>
+						</items>
+						<items>
+							<name>Brooke Woodruff</name>
+							<desc>Senior Associate Project Manager</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>PROGRAMMING</Name>
+			<section_title>PROGRAMMING</section_title>
+			<headings>
+				<headings>
+					<heading>PROGRAMMING LEADS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Nick Lee</name>
+							<desc>Project Technical Directors</desc>
+						</items>
+						<items>
+							<name>Jeff Thompson</name>
+						</items>
+						<items>
+							<name>Randy Oberlerchner</name>
+							<desc>Project System Architect</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>PROGRAMMING COORDINATORS</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Brian Bossé</name>
+							<desc>Networking/Online Coordinator</desc>
+						</items>
+						<items>
+							<name>Chris Helvig</name>
+							<desc>AI Coordinator</desc>
+						</items>
+						<items>
+							<name>Nate Ward</name>
+							<desc>Systems Coordinator</desc>
+						</items>
+						<items>
+							<name>Randall Turner</name>
+							<desc>Technical Guru</desc>
+						</items>
+						<items>
+							<name>Ryan Spencer</name>
+							<desc>Gameplay Coordinator</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>PROGRAMMING TEAM</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Joe Taylor</name>
+							<desc>AI</desc>
+						</items>
+						<items>
+							<name>Kevin Price</name>
+						</items>
+						<items>
+							<name>Isaac Vanier</name>
+							<desc>Animation</desc>
+						</items>
+						<items>
+							<name>Jon Breuer</name>
+							<desc>Cinematics</desc>
+						</items>
+						<items>
+							<name>Alan Hickman</name>
+							<desc>Rendering</desc>
+						</items>
+						<items>
+							<name>Mike Flavin</name>
+						</items>
+						<items>
+							<name>Erik Rounds</name>
+							<desc>Gameplay</desc>
+						</items>
+						<items>
+							<name>Michael Slone</name>
+						</items>
+						<items>
+							<name>Phillip Alexander</name>
+						</items>
+						<items>
+							<name>Frank Reese</name>
+						</items>
+						<items>
+							<name>Kevin Hassett</name>
+						</items>
+						<items>
+							<name>Mark Gabby</name>
+						</items>
+						<items>
+							<name>RJ Wardinsky</name>
+						</items>
+						<items>
+							<name>Justin Christofoli</name>
+							<desc>Gameplay (Multiplayer)</desc>
+						</items>
+						<items>
+							<name>Sherwin Tam</name>
+						</items>
+						<items>
+							<name>Sean Rose</name>
+							<desc>Interface</desc>
+						</items>
+						<items>
+							<name>Darryl Davis</name>
+						</items>
+						<items>
+							<name>Russell Aasland</name>
+							<desc>Networking (Co-op)</desc>
+						</items>
+						<items>
+							<name>Christopher Forseth</name>
+							<desc>Networking (Multiplayer)</desc>
+						</items>
+						<items>
+							<name>Jeremiah Zanin</name>
+							<desc>Physics</desc>
+						</items>
+						<items>
+							<name>Shawn Lindberg</name>
+						</items>
+						<items>
+							<name>Victor Cepeda</name>
+							<desc>Tools, Interface</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL PROGRAMMING</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Alan Lawrance</name>
+							<desc>General Programming</desc>
+						</items>
+						<items>
+							<name>Jason Lowe</name>
+						</items>
+						<items>
+							<name>Matt Bandy</name>
+						</items>
+						<items>
+							<name>Andy Tidball</name>
+						</items>
+						<items>
+							<name>Eric Arnold</name>
+							<desc>Physics</desc>
+						</items>
+						<items>
+							<name>Albert McDaniel</name>
+							<desc>Networking</desc>
+						</items>
+						<items>
+							<name>Eric Braun</name>
+							<desc>Animation</desc>
+						</items>
+						<items>
+							<name>Aaron Hanson</name>
+							<desc>Gameplay</desc>
+						</items>
+						<items>
+							<name>Matt Power</name>
+						</items>
+						<items>
+							<name>Nolan Irving</name>
+						</items>
+						<items>
+							<name>Stephen Horn</name>
+						</items>
+						<items>
+							<name>Philip Hounslow</name>
+							<desc>Animation</desc>
+						</items>
+						<items>
+							<name>Aaron Canary</name>
+							<desc>AI</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>MASS MEDIA</Name>
+			<section_title>MASS MEDIA</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Lee Chidgey</name>
+							<desc>Lead Engineer</desc>
+						</items>
+						<items>
+							<name>Ken Jordan</name>
+							<desc>Technical Director</desc>
+						</items>
+						<items>
+							<name>Stan Vasilyev</name>
+							<desc>Rendering Engineer</desc>
+						</items>
+						<items>
+							<name>Roman Scharnberg</name>
+							<desc>Optimization Engineer</desc>
+						</items>
+						<items>
+							<name>Jeff Campeau</name>
+							<desc>Physics Engineer</desc>
+						</items>
+						<items>
+							<name>Dan Pinal</name>
+							<desc>Lead Audio Engineer</desc>
+						</items>
+						<items>
+							<name>Amy Nelson</name>
+							<desc>Audio Engineer</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL PROGRAMMING</heading>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Srikanth Basappa</name>
+						</items>
+						<items>
+							<name>Alex Rowell</name>
+						</items>
+						<items>
+							<name>Nigel Spencer</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>MASS MEDIA PRODUCTION</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>David Todd</name>
+							<desc>Studio General Manager</desc>
+						</items>
+						<items>
+							<name>David White</name>
+							<desc>Producer</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>QA</Name>
+			<section_title>QA</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Aaron Koontz</name>
+							<desc>QA Supervisor</desc>
+						</items>
+						<items>
+							<name>Andrew Eads</name>
+							<desc>Assistant QA Supervisor</desc>
+						</items>
+						<items>
+							<name>Andrew Frederiksen</name>
+							<desc>Assistant QA Supervisor</desc>
+						</items>
+						<items>
+							<name>Mitch Cronin</name>
+							<desc>Compliance Coordinator</desc>
+						</items>
+						<items>
+							<name>Jesse Farrell</name>
+							<desc>Build Technician</desc>
+						</items>
+						<items>
+							<name>Shaun Edmonds</name>
+							<desc>QA Training</desc>
+						</items>
+						<items>
+							<name>Matthew Hevey</name>
+						</items>
+						<items>
+							<name>Robert Gable</name>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Clay Held</name>
+							<desc>QA Leads</desc>
+						</items>
+						<items>
+							<name>Nick Sans</name>
+						</items>
+						<items>
+							<name>Kenny Schwarz</name>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Amanda Miller</name>
+							<desc>Testers</desc>
+						</items>
+						<items>
+							<name>Blake Stubbs</name>
+						</items>
+						<items>
+							<name>Brad Ashby</name>
+						</items>
+						<items>
+							<name>Brian Davis</name>
+						</items>
+						<items>
+							<name>Chris DeSouza</name>
+						</items>
+						<items>
+							<name>Christina Kniskern</name>
+						</items>
+						<items>
+							<name>Dan Thorndyke</name>
+						</items>
+						<items>
+							<name>David Campbell</name>
+						</items>
+						<items>
+							<name>David Lowry</name>
+						</items>
+						<items>
+							<name>Elizabeth Zelle</name>
+						</items>
+						<items>
+							<name>Justin McCarty</name>
+						</items>
+						<items>
+							<name>Kyle Spesard</name>
+						</items>
+						<items>
+							<name>Levi Gordon</name>
+						</items>
+						<items>
+							<name>Matt Dehlinger</name>
+						</items>
+						<items>
+							<name>Matt Pappas</name>
+						</items>
+						<items>
+							<name>Michael Beutel</name>
+						</items>
+						<items>
+							<name>Shannon Swords</name>
+						</items>
+						<items>
+							<name>Timmer Ratajczyk</name>
+						</items>
+						<items>
+							<name>Yuji Niizuma</name>
+						</items>
+						<items>
+							<name>Zack Campbell</name>
+						</items>
+						<items>
+							<name>Zavian Porter</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL QA</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Adam Kouzmanoff</name>
+							<desc>Testers</desc>
+						</items>
+						<items>
+							<name>Ben Brenner</name>
+						</items>
+						<items>
+							<name>Ed Vollenweider</name>
+						</items>
+						<items>
+							<name>Jason Strauman</name>
+						</items>
+						<items>
+							<name>Nora Pruis</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>CD PROJEKT</Name>
+			<section_title>CD PROJEKT</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Aleksandra Cwalina</name>
+							<desc>Managing Director</desc>
+						</items>
+						<items>
+							<name>Jacek Bedynek</name>
+							<desc>Head of Development</desc>
+						</items>
+						<items>
+							<name>Oleg Klapovsky</name>
+							<desc>Head of Business Development</desc>
+						</items>
+						<items>
+							<name>Ian Mackenzie</name>
+							<desc>Business Development Managers</desc>
+						</items>
+						<items>
+							<name>Dominika Szulc-Lewandowska</name>
+						</items>
+						<items>
+							<name>Slawomir Bubel</name>
+							<desc>Junior Business Development Manager</desc>
+						</items>
+						<items>
+							<name>Agnieszka Kosla</name>
+							<desc>Project Managers</desc>
+						</items>
+						<items>
+							<name>Mariusz Szlanta</name>
+						</items>
+						<items>
+							<name>Adam Bienias</name>
+							<desc>Lead Programmer</desc>
+						</items>
+						<items>
+							<name>Krzysztof Wojcik</name>
+							<desc>Programmers</desc>
+						</items>
+						<items>
+							<name>Tomasz Tkaczuk</name>
+						</items>
+						<items>
+							<name>Marek Siemieniuk</name>
+						</items>
+						<items>
+							<name>Michal Taszycki</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>ADDITIONAL PROGRAMMING</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Sebastian Mrowiec</name>
+						</items>
+						<items>
+							<name>Marian Jarmoszko</name>
+						</items>
+						<items>
+							<name>Cyryl Matuszewski</name>
+						</items>
+						<items>
+							<name>Norbert Siebor</name>
+						</items>
+						<items>
+							<name>Dawid Chemloul</name>
+						</items>
+						<items>
+							<name>Stanislaw Gromadowski</name>
+						</items>
+						<items>
+							<name>Grzegorz Taracha</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>Volition - Studio</Name>
+			<section_title>Volition - Studio</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Mike Kulas</name>
+							<desc>General Manager</desc>
+						</items>
+						<items>
+							<name>Dan Cermak</name>
+							<desc>Vice President of Development</desc>
+						</items>
+						<items>
+							<name>Jason Scott</name>
+							<desc>Studio Design Director</desc>
+						</items>
+						<items>
+							<name>Keith Self-Ballard</name>
+							<desc>Studio Artist Manager</desc>
+						</items>
+						<items>
+							<name>Kelly Snapka</name>
+							<desc>Studio Art Director</desc>
+						</items>
+						<items>
+							<name>Mark Allender</name>
+							<desc>Studio Technical Director</desc>
+						</items>
+						<items>
+							<name>Dan Wentz</name>
+							<desc>Audio Supervisor</desc>
+						</items>
+						<items>
+							<name>Matthew Madigan</name>
+							<desc>Financy Pants</desc>
+						</items>
+						<items>
+							<name>Teresa Bell</name>
+							<desc>Associate Financial Analyst</desc>
+						</items>
+						<items>
+							<name>Bonnie Lynn Judy</name>
+							<desc>Office Administrator</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Brooke White</name>
+							<desc>Development Consultant</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Rory Prendergast</name>
+							<desc>Sr. IT Manager</desc>
+						</items>
+						<items>
+							<name>Paul Burk</name>
+							<desc>IT Lead Technician</desc>
+						</items>
+						<items>
+							<name>Devin Barkley</name>
+							<desc>IT Technicians</desc>
+						</items>
+						<items>
+							<name>Eric Osmundson</name>
+						</items>
+						<items>
+							<name>George Wirfs</name>
+						</items>
+						<items>
+							<name>Tim Adamson</name>
+							<desc>Intranet Support</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Alex Mejia</name>
+							<desc>Video Editor</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Laural Mitchem</name>
+							<desc>HR Manager</desc>
+						</items>
+						<items>
+							<name>David Trinkle</name>
+							<desc>HR Coordinators</desc>
+						</items>
+						<items>
+							<name>Erica Claxton</name>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>James Cannon</name>
+							<desc>Custodians</desc>
+						</items>
+						<items>
+							<name>Rahman Kariem</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>Volition Special Thanks</Name>
+			<section_title>Volition Special Thanks</section_title>
+			<headings>
+				<headings>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Jacques Hennequet</name>
+						</items>
+						<items>
+							<name>Rick White</name>
+						</items>
+						<items>
+							<name>Todd Masten</name>
+						</items>
+						<items>
+							<name>Bill Todd</name>
+						</items>
+						<items>
+							<name>To our families and friends.  Without their support, patience and limitless understanding, this project simply wouldn't be.</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>Art Coding</Name>
+			<section_title>Art Coding</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Oliver He</name>
+							<desc>Studio President</desc>
+						</items>
+						<items>
+							<name>Jonathan Wu</name>
+							<desc>Project Director</desc>
+						</items>
+						<items>
+							<name>Eric Wang</name>
+							<desc>Project Manager</desc>
+						</items>
+						<items>
+							<name>Cady Shao</name>
+							<desc>Associate Project Manager</desc>
+						</items>
+						<items>
+							<name>Benny Yang</name>
+							<desc>Studio Art Director</desc>
+						</items>
+						<items>
+							<name>Tang Hairong</name>
+							<desc>Project Art Director</desc>
+						</items>
+						<items>
+							<name>Vivian Zhou</name>
+							<desc>Lead Technical Artist</desc>
+						</items>
+						<items>
+							<name>Bao Jianhui</name>
+							<desc>Environment Art Leads</desc>
+						</items>
+						<items>
+							<name>Chen Qikai</name>
+						</items>
+						<items>
+							<name>Su Yi</name>
+						</items>
+						<items>
+							<name>Pan Wenjie</name>
+						</items>
+						<items>
+							<name>Xu Dong</name>
+						</items>
+						<items>
+							<name>Wang Xiang</name>
+						</items>
+						<items>
+							<name>Zhu Chongyang</name>
+						</items>
+						<items>
+							<name>Shu Jiong</name>
+							<desc>Environment Artists</desc>
+						</items>
+						<items>
+							<name>Li Mu</name>
+						</items>
+						<items>
+							<name>Wu Xin</name>
+						</items>
+						<items>
+							<name>Zhang Yandong</name>
+						</items>
+						<items>
+							<name>Li Ying</name>
+						</items>
+						<items>
+							<name>Jin Jin</name>
+						</items>
+						<items>
+							<name>Liang Shangjie</name>
+						</items>
+						<items>
+							<name>Huang Baoming</name>
+						</items>
+						<items>
+							<name>Guo Xuebin</name>
+						</items>
+						<items>
+							<name>Hu Wenli</name>
+						</items>
+						<items>
+							<name>Yan Mingyu</name>
+						</items>
+						<items>
+							<name>Wu Xianghui</name>
+						</items>
+						<items>
+							<name>Hu Xiao</name>
+						</items>
+						<items>
+							<name>Gao Fei</name>
+						</items>
+						<items>
+							<name>Liu Hong</name>
+						</items>
+						<items>
+							<name>Jiang Wenting</name>
+						</items>
+						<items>
+							<name>Peng Rong</name>
+						</items>
+						<items>
+							<name>Zhang Qingjun</name>
+						</items>
+						<items>
+							<name>Li Tao</name>
+						</items>
+						<items>
+							<name>Wang Fang</name>
+						</items>
+						<items>
+							<name>Guo Jun</name>
+						</items>
+						<items>
+							<name>Chen Yu</name>
+						</items>
+						<items>
+							<name>Zhang Chunpeng</name>
+						</items>
+						<items>
+							<name>Zeng Jia</name>
+						</items>
+						<items>
+							<name>Luan Xiaolan</name>
+						</items>
+						<items>
+							<name>Fan Zhihai</name>
+						</items>
+						<items>
+							<name>Chen Ruo</name>
+						</items>
+						<items>
+							<name>Vivian Zhou</name>
+							<desc>QA Lead</desc>
+						</items>
+						<items>
+							<name>Zhou Gang</name>
+							<desc>QA Testers</desc>
+						</items>
+						<items>
+							<name>Gao Yuqing</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>Technicolor</Name>
+			<section_title>Technicolor</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Chan Park</name>
+							<desc>Vice President</desc>
+						</items>
+						<items>
+							<name>Martin Leeper</name>
+							<desc>Animatics/Cinematics Lead</desc>
+						</items>
+						<items>
+							<name>Dan Smith</name>
+							<desc>Producer (Cinematics)</desc>
+						</items>
+						<items>
+							<name>Robert Castaneda</name>
+							<desc>Animation Director</desc>
+						</items>
+						<items>
+							<name>David Yang</name>
+							<desc>Ex. Producer (Cinematics)</desc>
+						</items>
+						<items>
+							<name>Joe McGuffin</name>
+							<desc>Ex.Producer (Animatics)</desc>
+						</items>
+						<items>
+							<name>Eric Kovats</name>
+							<desc>Producer (Animatics)</desc>
+						</items>
+						<items>
+							<name>Brad Starleaf</name>
+							<desc>Associate Producers</desc>
+						</items>
+						<items>
+							<name>Andres Anglade</name>
+						</items>
+						<items>
+							<name>Dan Godinez</name>
+							<desc>Senior Animator</desc>
+						</items>
+						<items>
+							<name>Kent Culotta</name>
+							<desc>Animator</desc>
+						</items>
+						<items>
+							<name>Alina Chau</name>
+							<desc>Animatic Artists</desc>
+						</items>
+						<items>
+							<name>Mark Villagracia</name>
+						</items>
+						<items>
+							<name>Melissa Thompson</name>
+						</items>
+						<items>
+							<name>David Vodhanel</name>
+							<desc>Senior Engineer</desc>
+						</items>
+						<items>
+							<name>Todd Hawkins</name>
+							<desc>Systems Engineer</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>Paprikaas Interactive Services</Name>
+			<section_title>Paprikaas Interactive Services</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Prithi Amarnath</name>
+							<desc>Producer</desc>
+						</items>
+						<items>
+							<name>Somu Achary</name>
+							<desc>Animation Lead</desc>
+						</items>
+						<items>
+							<name>Selvam Venkatesan</name>
+							<desc>Animators</desc>
+						</items>
+						<items>
+							<name>GuruPrasad Krishnan</name>
+						</items>
+						<items>
+							<name>Vishnu Chakravarthy</name>
+						</items>
+						<items>
+							<name>Aneesh BS</name>
+						</items>
+						<items>
+							<name>Srikanth Muralidhar</name>
+						</items>
+						<items>
+							<name>Anish KG</name>
+						</items>
+						<items>
+							<name>Raviteja Varma</name>
+						</items>
+						<items>
+							<name>Raphael Joseph</name>
+						</items>
+						<items>
+							<name>Amit Mohan</name>
+						</items>
+						<items>
+							<name>Manoj Pillai</name>
+						</items>
+						<items>
+							<name>Mahesh Panchangam</name>
+						</items>
+						<items>
+							<name>Arun N Kamath</name>
+						</items>
+						<items>
+							<name>Subi Surendranath</name>
+						</items>
+						<items>
+							<name>Surendra Kamath</name>
+							<desc>Sr. System Engineers</desc>
+						</items>
+						<items>
+							<name>Manjunath NS</name>
+						</items>
+						<items>
+							<name>Ranganath Sagar</name>
+						</items>
+						<items>
+							<name>Nagendra Prasad</name>
+							<desc>System Engineers</desc>
+						</items>
+						<items>
+							<name>Manjunath</name>
+						</items>
+						<items>
+							<name>Keshav BA</name>
+						</items>
+						<items>
+							<name>Nandish Domlur</name>
+							<desc>CEO</desc>
+						</items>
+						<items>
+							<name>Veerendra Patil</name>
+							<desc>Creative Director</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Audio Design for Cinematics and Vehicles provided by Dane Tracks, Inc.</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>VOICE ACTORS</Name>
+			<section_title>VOICE ACTORS</section_title>
+			<headings>
+				<headings>
+					<heading>Featuring</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Brian Tee</name>
+							<desc>Jyunichi</desc>
+						</items>
+						<items>
+							<name>Daniel Dae Kim</name>
+							<desc>Gat</desc>
+						</items>
+						<items>
+							<name>Eliza Dushku</name>
+							<desc>Shaundi</desc>
+						</items>
+						<items>
+							<name>Jaime Pressly</name>
+							<desc>Jessica</desc>
+						</items>
+						<items>
+							<name>Jay Mohr</name>
+							<desc>Dane Vogel</desc>
+						</items>
+						<items>
+							<name>Keith David</name>
+							<desc>Julius</desc>
+						</items>
+						<items>
+							<name>Michael Dorn</name>
+							<desc>Maero</desc>
+						</items>
+						<items>
+							<name>Michael Rapaport</name>
+							<desc>Troy</desc>
+						</items>
+						<items>
+							<name>Neil Patrick Harris</name>
+							<desc>Veteran Child</desc>
+						</items>
+						<items>
+							<name>Yuri Lowenthal</name>
+							<desc>Shogo</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>Also With</heading>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Adam Bobrow</name>
+						</items>
+						<items>
+							<name>Adrienne Wilkinson</name>
+						</items>
+						<items>
+							<name>Alex Bolling</name>
+						</items>
+						<items>
+							<name>Alex Fernandez</name>
+						</items>
+						<items>
+							<name>Alex Mendoza</name>
+						</items>
+						<items>
+							<name>Ana Maria Lagasca</name>
+						</items>
+						<items>
+							<name>Andre Sogliuzzo</name>
+						</items>
+						<items>
+							<name>Andre Zafra</name>
+						</items>
+						<items>
+							<name>Andrew Kishino</name>
+						</items>
+						<items>
+							<name>Andy Nyman</name>
+						</items>
+						<items>
+							<name>Anndi McAfee</name>
+						</items>
+						<items>
+							<name>Anthony Pulcini</name>
+						</items>
+						<items>
+							<name>Arif Kinchen</name>
+						</items>
+						<items>
+							<name>Asante Jones</name>
+						</items>
+						<items>
+							<name>Becky Boxer</name>
+						</items>
+						<items>
+							<name>Bernadette Balagtas</name>
+						</items>
+						<items>
+							<name>Brandon Keener</name>
+						</items>
+						<items>
+							<name>Brian Tochi</name>
+						</items>
+						<items>
+							<name>Carlos Ferro</name>
+						</items>
+						<items>
+							<name>Charles Shaughnessy</name>
+						</items>
+						<items>
+							<name>Courtenay Kellen Taylor</name>
+						</items>
+						<items>
+							<name>Cricket Leigh "Lee"</name>
+						</items>
+						<items>
+							<name>Dave Cooley</name>
+						</items>
+						<items>
+							<name>Dave Fennoy</name>
+						</items>
+						<items>
+							<name>Dave Wittenberg</name>
+						</items>
+						<items>
+							<name>Effrain Figueroa</name>
+						</items>
+						<items>
+							<name>Eliza Jane Schneider</name>
+						</items>
+						<items>
+							<name>Erin Fitzgerald</name>
+						</items>
+						<items>
+							<name>Fred Tatasciore</name>
+						</items>
+						<items>
+							<name>Giselle Jones</name>
+						</items>
+						<items>
+							<name>GK Bowes</name>
+						</items>
+						<items>
+							<name>James Sie</name>
+						</items>
+						<items>
+							<name>Jason Harris</name>
+						</items>
+						<items>
+							<name>Jentle Phoenix</name>
+						</items>
+						<items>
+							<name>Jocelyn Blue</name>
+						</items>
+						<items>
+							<name>Joe Camareno</name>
+						</items>
+						<items>
+							<name>John Bentley</name>
+						</items>
+						<items>
+							<name>JoNell Kennedy</name>
+						</items>
+						<items>
+							<name>Julienne Beuscher</name>
+						</items>
+						<items>
+							<name>Justin Cowden</name>
+						</items>
+						<items>
+							<name>Ka' Ramuu Kush</name>
+						</items>
+						<items>
+							<name>Karl T. Wright</name>
+						</items>
+						<items>
+							<name>Kate Higgins</name>
+						</items>
+						<items>
+							<name>Kathryn Feller</name>
+						</items>
+						<items>
+							<name>Katie Samine</name>
+						</items>
+						<items>
+							<name>Keith Ferguson</name>
+						</items>
+						<items>
+							<name>Keith Szarabajka</name>
+						</items>
+						<items>
+							<name>Kenn Michael</name>
+						</items>
+						<items>
+							<name>Khary Payton</name>
+						</items>
+						<items>
+							<name>Kirk Thornton</name>
+						</items>
+						<items>
+							<name>Laura Miro</name>
+						</items>
+						<items>
+							<name>Laura Simms</name>
+						</items>
+						<items>
+							<name>Lauri Hendler</name>
+						</items>
+						<items>
+							<name>Lei Yin</name>
+						</items>
+						<items>
+							<name>Leslie Carrara</name>
+						</items>
+						<items>
+							<name>Lisa Tamashiro</name>
+						</items>
+						<items>
+							<name>Maggie Baird</name>
+						</items>
+						<items>
+							<name>Masasa Mayo</name>
+						</items>
+						<items>
+							<name>Maurice Compte</name>
+						</items>
+						<items>
+							<name>Michael Beattie</name>
+						</items>
+						<items>
+							<name>Michael Yama</name>
+						</items>
+						<items>
+							<name>Michael Yurchack</name>
+						</items>
+						<items>
+							<name>Miguel Caballero</name>
+						</items>
+						<items>
+							<name>Monica Allison</name>
+						</items>
+						<items>
+							<name>Nolan North</name>
+						</items>
+						<items>
+							<name>Nyima Funk</name>
+						</items>
+						<items>
+							<name>Ogie Banks</name>
+						</items>
+						<items>
+							<name>Phil Morris</name>
+						</items>
+						<items>
+							<name>Philip Anthony Rodriguez</name>
+						</items>
+						<items>
+							<name>Ptosha Storey</name>
+						</items>
+						<items>
+							<name>Rebecca Sanabria</name>
+						</items>
+						<items>
+							<name>Richard Tatum</name>
+						</items>
+						<items>
+							<name>Roxanne Hernandez</name>
+						</items>
+						<items>
+							<name>Ryun Yu</name>
+						</items>
+						<items>
+							<name>Saffron Henderson</name>
+						</items>
+						<items>
+							<name>Salli Saffiotti</name>
+						</items>
+						<items>
+							<name>Sonya Eddy</name>
+						</items>
+						<items>
+							<name>Steve Blum</name>
+						</items>
+						<items>
+							<name>Steve DeFrisco</name>
+						</items>
+						<items>
+							<name>Sulo Williams</name>
+						</items>
+						<items>
+							<name>Sy Smith</name>
+						</items>
+						<items>
+							<name>Tangie Ambrose</name>
+						</items>
+						<items>
+							<name>Vince Green</name>
+						</items>
+						<items>
+							<name>Zev Esquenazi</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>RADIO COMMERCIAL VOICES</heading>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Alicia Levy</name>
+						</items>
+						<items>
+							<name>Amy Love</name>
+						</items>
+						<items>
+							<name>Brad Abelle</name>
+						</items>
+						<items>
+							<name>Brian Bielawski</name>
+						</items>
+						<items>
+							<name>Bryan Fenkart</name>
+						</items>
+						<items>
+							<name>Charles Everett</name>
+						</items>
+						<items>
+							<name>Dan Goettel</name>
+						</items>
+						<items>
+							<name>Debby DeLuca</name>
+						</items>
+						<items>
+							<name>Dennis Ostermaier</name>
+						</items>
+						<items>
+							<name>Diana Preisler</name>
+						</items>
+						<items>
+							<name>Ed Jewett</name>
+						</items>
+						<items>
+							<name>Frank Simms</name>
+						</items>
+						<items>
+							<name>Gary Littman</name>
+						</items>
+						<items>
+							<name>Harry Chase</name>
+						</items>
+						<items>
+							<name>Jason Zumwalt</name>
+						</items>
+						<items>
+							<name>Jeff David</name>
+						</items>
+						<items>
+							<name>Kathleen McNenny</name>
+						</items>
+						<items>
+							<name>Kelly Mealia</name>
+						</items>
+						<items>
+							<name>L.J. Ganser</name>
+						</items>
+						<items>
+							<name>Larry Caringer</name>
+						</items>
+						<items>
+							<name>Maggi-Meg Reed</name>
+						</items>
+						<items>
+							<name>Margaret Reed</name>
+						</items>
+						<items>
+							<name>Mike Landry</name>
+						</items>
+						<items>
+							<name>Monica Yudovich</name>
+						</items>
+						<items>
+							<name>Nick Stevens</name>
+						</items>
+						<items>
+							<name>Patty Steele</name>
+						</items>
+						<items>
+							<name>Pheobe Summersquash</name>
+						</items>
+						<items>
+							<name>Robb Pruitt</name>
+						</items>
+						<items>
+							<name>Tory Wood</name>
+						</items>
+						<items>
+							<name>Troy Lavallee</name>
+						</items>
+						<items>
+							<name>Wendell Craig</name>
+						</items>
+						<items>
+							<name>Ziska</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>VOICE OVER PRODUCTION</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>VoiceWorks Productions, Inc.</name>
+							<desc>Voice Over Production</desc>
+						</items>
+						<items>
+							<name>Douglas Carrigan</name>
+							<desc>Casting and Voice Over Direction</desc>
+						</items>
+						<items>
+							<name>Laurie Wagner Storlie</name>
+							<desc>Voice Works Administrative</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Atlantis Group Recording</name>
+							<desc>Recording Studio</desc>
+						</items>
+						<items>
+							<name>Jaimie Siedow</name>
+							<desc>Engineer</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Erik Hastings</name>
+							<desc>Radio Commercials Producer</desc>
+						</items>
+						<items>
+							<name>Conor Hall</name>
+							<desc>Radio Station Stingers Producer</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>MO-CAP ACTORS</Name>
+			<section_title>MO-CAP ACTORS</section_title>
+			<headings>
+				<headings>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Henry Layton</name>
+						</items>
+						<items>
+							<name>Andrew Ray</name>
+						</items>
+						<items>
+							<name>James Grino</name>
+						</items>
+						<items>
+							<name>Jenny Fitzpatrick</name>
+						</items>
+						<items>
+							<name>Adrian Mishek</name>
+						</items>
+						<items>
+							<name>Aden Hakimi</name>
+						</items>
+						<items>
+							<name>David Huber</name>
+						</items>
+						<items>
+							<name>Niki Notarile</name>
+						</items>
+						<items>
+							<name>Lynnette Nicholas</name>
+						</items>
+						<items>
+							<name>Brandon McCluskey</name>
+						</items>
+						<items>
+							<name>Randy Spence</name>
+						</items>
+						<items>
+							<name>Maggie McDonald</name>
+						</items>
+						<items>
+							<name>Rob Bradford</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>MUSIC</Name>
+			<section_title>MUSIC</section_title>
+			<headings>
+				<headings>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>"1 Thing" / Performed by Amerie / Written by Rich Harrison, Stanley Walden and Amerie Rogers / Published by EMI BLACKWOOD MUSIC INC. and EMI U CATALOG INC., and Universal Music Corp. on behalf of itself and Mi Suk Publishing (ASCAP) / Courtesy of Columbia Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"All That I've Got" / Performed by The Used / Written by Robert McCracken, Jeph Howard, Quinn Allman and Branden Steineckert / Published by EMI BLACKWOOD MUSIC INC. / (p) 2004 Reprise Records / By arrangement with Warner Music Group Video Game Licensing</name>
+						</items>
+						<items>
+							<name>"And She Would Darken The Memory" / Performed by The Twilight Sad / Written by MacFarlane and Graham / (c) 2007 The Twilight Sad / (p) 2007 Fatcat Records</name>
+						</items>
+						<items>
+							<name>"Anthem (We Are The Fire)" / Performed by Trivium / Written by Matthew K. Heafy and Paolo Gregoletto / Published by Robot of the Century Songs (BMI) on behalf of itself and Hammer the Currents Productions, Sonic Assault Music, Hammer Fall Publishing and Metalkid Publishing (BMI) / (p) 2006 The All Blacks B.V.</name>
+						</items>
+						<items>
+							<name>"Barnburner" / Performed by The Agony Scene / (c) 2007 Magic Arts Publishing (ASCAP) / Courtesy of Century Media Records</name>
+						</items>
+						<items>
+							<name>"Bat Country" / Performed by Avenged Sevenfold / Written by Matthew Sanders, James Sullivan, Zachary Baker and Brian Haner, Jr. Published by EMI APRIL MUSIC INC. / (p) 2005 Warner Bros. Records Inc. / By arrangement with Warner Music Group Video Game Licensing</name>
+						</items>
+						<items>
+							<name>"Boom Shak A-Tack" / Performed by Born Jamericans / Written by N. Howell, H. Payne, R. Thwaite and L. Donaldson / Published by Universal - Polygram Int. Publishing, Inc. Dub Plate Music Publishing Ltd, Published by Mud Slide Music (BMI) administered by Spirit One Music (BMI) / Published by EMI UNART CATALOG INC. / (p) 1993 Delicious Vinyl, LLC / By arrangement with Shelly Bay Music</name>
+						</items>
+						<items>
+							<name>"(Brother) Stop The Fussing and Fighting" / Performed by Dennis Brown / Written by Dennis Brown and Joel Gibbs / Published by Basement Music Ltd. (PRS), administered by Bug / Worldwide rights for Joe Gibbs Music administered by Keep On Kicking Music Ltd./Keep On Moving Music (BMI) in the USA / Dennis Brown Music administered by RYKOMUSIC (ASCAP)</name>
+						</items>
+						<items>
+							<name>"Call In The Debts" / Performed by South Street / Written by Brunskill, Sams, Gallagher, Connelly and Quinn / All copyright South Street</name>
+						</items>
+						<items>
+							<name>"Cheer It On" / Performed by Tokyo Police Club / Written by G. Alsop, J. Hook, D. Monks and G. Wright / Courtesy of Paper Bag Records</name>
+						</items>
+						<items>
+							<name>"Coat of Arms" / Performed by The Life and Times / Written by Allen Epley, Eric Abert and Chris Metcalf / Courtesy of DeSoto Records</name>
+						</items>
+						<items>
+							<name>"Colony Of Birchmen" / Performed by Mastodon / Written by B. Kelliher, B. Dailor, T. Sanders and B. Hinds / Published by Release Relapse Music (BMI), Administered by Domino Publishing Company of America, Inc. (BMI) / (p) 2006 Reprise Records / By arrangement with Warner Music Group Video Game Licensing</name>
+						</items>
+						<items>
+							<name>"Crossover Appeal" / Performed by Guns 'N Bombs / Turbotito Music (ASCAP) and Cannolis / Frijoles Music (ASCAP) / (p) and (c) 2006 Kitsune France</name>
+						</items>
+						<items>
+							<name>"Dead Friends" / Performed by The Saps / Published by The Saps Music, LLC</name>
+						</items>
+						<items>
+							<name>"Deadly Sinners" / Written and Performed by 3 Inches of Blood / Published by Robot of the Century Songs (BMI) / (p) 2004 The All Blacks B.V.</name>
+						</items>
+						<items>
+							<name>"Death Of A Moralist" / Performed by Daniel Mansury / Written by Daniel Hamid / Pebble Toss Music c/o Miserable Beast (ASCAP), Thorn01 Records (administrated by Miserable Beast)</name>
+						</items>
+						<items>
+							<name>"Don and Sherri" / Performed by Matthew Dear / Written by Matthew Dear / (c) 2007 Ghostly Songs, Published by The Ghostly International Company (ASCAP) / (p) 2007 Ghostly International</name>
+						</items>
+						<items>
+							<name>"Don't Call It A Ghetto" / Performed by The Architects / Written by Brandon Phillips and Zachary Phillips / Published by Edible Panties Music (BMI) and Very Crucial Music (BMI), Administered by Wixen Music Publishing, Inc. (BMI) / (c) 2006 Anodyne Records</name>
+						</items>
+						<items>
+							<name>"Don't Get Discouraged" / Performed by UPC Allstars / Written by Luther Davis / Boulder Heave Music c/o Miserable Beast (BMI) / Soul Cal Records, LLC (administered by Now Again Records)</name>
+						</items>
+						<items>
+							<name>"Don't You Forget About Me" / Performed by Simple Minds / Written by Keith Forsey and Steve W. Schiff / Published by Songs of Universal, Inc. o/b/o USI B Global Music Publishing, Universal Music Corp. o/b/o USI A Music Publishing / Courtesy of Virgin Records Ltd. / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Down Under" / Performed by Men At Work / Written by Colin Hay and Ron Strykert / Published by EMI BLACKWOOD MUSIC INC. / Courtesy of Columbia Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Drugs Ain't Cool" / Performed by Ebony Rhythm Band / Written by Matthew Watson, Lester Johnson, John Ricky Jackson, Robert Townsend / Gold Bulb Music Miserable Beast (BMI) / Courtesy of Now Again Records, LLC</name>
+						</items>
+						<items>
+							<name>"Every Single Line Means Something" / Written and Performed by Marnie Stern / Courtesy of Kill Rock Stars / Published by Spirit In The Night Music (ASCAP)</name>
+						</items>
+						<items>
+							<name>"Everybody Wants To Rule The World" / Performed by Tears For Fears / Written by Roland Orzabal, Ian Stanley and Chris Hughes / Published by EMI VIRGIN SONGS, INC. / Courtesy of Mercury Records Limited under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"Everybody's Working For The Weekend" / Performed by Loverboy / Written by Mike Reno, Paul Dean and Matthew Frenette / Published by EMI APRIL MUSIC INC. and EMI BLACKWOOD MUSIC INC. / Courtesy of Columbia Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Face Down" / Performed by Red Jump Suit Apparatus / Written by Ronnie Winter / Published by Songs of Universal, Inc. o/b/o itself and Grim Goodbye Music (BMI) Courtesy of Virgin Records America, Inc. / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Fandango" by DJ Quik featuring B-Real / Written by D. Blake and L. Freeze / (c) 2005 Mad Science, Inc. / Q Baby Music (ASCAP) c/o Fischbach, Perlstein, Lieberman and Almond, LLP</name>
+						</items>
+						<items>
+							<name>"Final Countdown" / Performed by Europe / Written by Joey Tempest / Published by SCREEN GEMS-EMI MUSIC INC. / Courtesy of Epic Records / By arrangement with Sony BMG Music Entertainment</name>
+						</items>
+						<items>
+							<name>"For Real" / Performed by Okkervil River / Written by Will Sheff / Published by Joundsongs (ASCAP) / Courtesy of Jagjaguwar Records / By Arrangement with Bank Robber Music</name>
+						</items>
+						<items>
+							<name>"Funky In Here" / Performed by Dayton Sidewinders / Written by Carl Cowen / Courtesy of Now Again Records, LLC / Published by Boulder Heave Music c/o Miserable Beast (BMI)</name>
+						</items>
+						<items>
+							<name>"Gangsta Bitch" / Performed by Apache / Written by Anthony Peaks and Kamaal Ibn John Farreed / Published by Universal Music - Z Tunes LLC o/b/o itself and JAZZ MERCHANT MUSIC (ASCAP) / Courtesy of Tommy Boy Records / By arrangement with Warner Music Group Film and TV Licensing / 1991 Tommy Boy Records</name>
+						</items>
+						<items>
+							<name>"Ganja Smuggling" / Performed by Eek-A-Mouse / Written by H. Lawes and J. Hylton / Greensleeves Publishing Ltd. / License arranged by Fine Gold Productions LLC / (P) and (c) 1982 Greensleeves Records Ltd.</name>
+						</items>
+						<items>
+							<name>"Ghosts of Perdition" / Performed by Opeth / Music and Lyrics by Mikael Akerfeldt / Published by Zomba Music Publishers Ltd. (SOCAN) / Universal Music +IBM MGB Songs o/b/o VILE MUSIC (ASCAP) / (P) 2005 The All Blacks B.V.</name>
+						</items>
+						<items>
+							<name>"Give Me Every Little Thing" / Performed by Juan MacLean / Written by Juan MacLean, Nancy Whang and James Murphy / Published by Guy With Head And Arms Music / administered by Kobalt Music Publishing America, Inc. (ASCAP) / Published by EMI BLACKWOOD MUSIC INC. / Courtesy of EMI Records Ltd. / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Good Girl" / Performed by Chrisette Michelle / Written by Chrisette Payne and Salaam Remi / Published by EMI APRIL MUSIC INC. and FORAY MUSIC / Courtesy of The Island Def Jam Music Group under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"Gotta Get Your Love" / Performed by Chocolate Star / Written by Gary Davis / Admin for Master and Publishing by Miserable Beast</name>
+						</items>
+						<items>
+							<name>"Guns Out" / Performed by Ninjaman / Written by Ballentine and Dehaney / Dehsimmon Publishing / Greensleeves Publishing Ltd. / (P) 1998 Prestige Records Ltd. / Courtesy of Prestige Elite Records Ltd. (UK)</name>
+						</items>
+						<items>
+							<name>"Hands Up" / Performed by Lloyd Banks / Written by T. Crawford, C. Jackson, C. Lloyd, M. Mathers, P. Pitts and L. Resto / Published by Universal Music Corp. o/b/o of itself and Club 700 Music and 50 Cent Music and Songs of Universal, Inc. / Published by Nueve Music, LLC/Resto World Music, LLC (ASCAP) / Courtesy of Interscope Records under license from Universal Music Enterprises / Big Sound Worldwide (BMI)</name>
+						</items>
+						<items>
+							<name>"Hate (I Really Don't Like You)" / Performed by Plain White T's / Written by Tom Higgenson / (c) 2007 WB Music Corp. (ASCAP) and So Happy Publishing (ASCAP) / All rights administered by WB Music Corp. (ASCAP) / Courtesy of Hollywood Records</name>
+						</items>
+						<items>
+							<name>"Hazel Street" / Written and Performed by Deerhunter / Appears Courtesy of Kranky, Ltd.</name>
+						</items>
+						<items>
+							<name>"Heads High" / Performed by Mr. Vegas / Written by Clifford R. Smith and Haldane Wayne Browne / Greensleeves Publishing Ltd. / License arranged by Fine Gold Productions LLC / (P) and (c)1998 Greensleeves Records Ltd. / Published by Universal - Polygram Int. Publishing, Inc. o/b/o Dubplate Music Publishing Ltd. (ASCAP)</name>
+						</items>
+						<items>
+							<name>"Here I Come (Broader Than Broadway)" / Written and Performed by Barrington Levy / Brickwall Music/Fairwood Music Ltd. / License arranged by Fine Gold Productions LLC / (P) and (c) 1985 Greensleeves Records Ltd. / Published by Music by Tafari (BMI) o/b/o Lipstic Music</name>
+						</items>
+						<items>
+							<name>"Here's Your Future" / Performed by The Thermals / Written by Hutch Harris and Kathy Foster / Courtesy of Sub Pop Records / Published by Royal We Publishing</name>
+						</items>
+						<items>
+							<name>"Hey Boy" by Buju Banton / Written by Mark Myria and Dave Kelly and M. Brissett / Gargamel Music/EMI Music Publishing (BMI) / EMI BLACKWOOD MUSIC INC. / Courtesy of Gargamel Music, Inc.</name>
+						</items>
+						<items>
+							<name>"Hole In The Earth" / Performed by The Deftones / Written by Chino Moreno, Stephen Carpenter, Chi Cheng, Abe Cunningham and Frank Delgado / (c) 2006 WB Music Corp. (ASCAP) and My Rib Is Broke (ASCAP) / All rights administered by WB Music Corp. (ASCAP) / Courtesy of Maverick Recording Company / By arrangement with Warner Music Group Video Game Licensing / (P) 2007 Maverick Recording Company</name>
+						</items>
+						<items>
+							<name>"House of Cards" / Written and Performed by Shipwreck / Courtesy of Rabbit in the Kitchen Music / Published by Rabid in the Kitchen (ASCAP)</name>
+						</items>
+						<items>
+							<name>"I Luv It" / Performed by Young Jeezy / Written by Jay Jenkins and Aldrin Davis / Published by EMI BLACKWOOD MUSIC INC. / All Rights Reserved / Used by Permission / Courtesy of The Island Def Jam Music Group under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"Karma Chameleon" / Performed by Culture Club / Written by M. Craig, R. Hay, J. Moss, G. O'Dawd and P. Pickett / Published by EMI Virgin Music, Inc. (ASCAP) / Universal Music - MGB Songs o/b/o Imagem Music (BMI) / Courtesy of Virgin Records Ltd. / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Keep Running" / Performed by Cliff Nyren / Written by Cliff Nyren / Boulder Heave Music c/o Miserable Beast (BMI) / Soul Cal Records, LLC (administered by Now Again Records)</name>
+						</items>
+						<items>
+							<name>"Knights" / Performed by Minus The Bear / Written by Jake Snider, Dave Knudson, Erin Johnson, Cory Murchy and Alex Rose / Suicide Squeeze Records / Published by Songs Music Publishing, LLC o/b/o Songs For Beans (BMI), World Party Music 2000 (BMI)</name>
+						</items>
+						<items>
+							<name>"Krazy" / Performed by Elephant Man / Written by O. Bryan and D. Bennett / Greensleeves Publishing Ltd. / License arranged by Fine Gold Productions LLC / (P) 2002 Greensleeves Records Ltd.</name>
+						</items>
+						<items>
+							<name>"Let Me In" / Performed by Hot Hot Heat / Written by Paul Hawley, Dustin Hawthorne, Steve Bays and Luke Paquin / Published by Hot Hot Heat Songs (SOCAN) / Administered by Wixen Music Publishing, Inc. (BMI) / Courtesy of Warner Bros. Records Inc. / By arrangement with Warner Music Group Video Game Licensing / (P) 2007 Sire Records Company</name>
+						</items>
+						<items>
+							<name>"Look What You've Done To Me" / Performed by Sheila Skipworth / Written by Arthur Lane / Boulder Heave Music c/o Miserable Beast (BMI) / Now Again Records, LLC</name>
+						</items>
+						<items>
+							<name>"Love Fades" / Performed by Amnesty / Written by James Massie / Pebble Toss Music c/o Miserable Beast (ASCAP) / Now Again Records, LLC</name>
+						</items>
+						<items>
+							<name>"Lying Is The Most Fun A Girl Can Have Without Taking Her Clothes Off" / Performed by Panic! At The Disco / Written by Brendon Urie, Ryan Ross, Spencer Smith and Brent Wilson / Published by EMI APRIL MUSIC INC. / Courtesy of Atlantic Recording Corp. / Fueled By Ramen, Inc. / By arrangement with Warner Music Group Video Game Licensing / (P) 2005 Fueled By Ramen, Inc.</name>
+						</items>
+						<items>
+							<name>"Makedamnsure" / Written and Performed by Taking Back Sunday / Courtesy of Warner Bros. Records Inc. / By arrangement with Warner Music Group Video Game Licensing / (P) 2006 Warner Bros. Records Inc.</name>
+						</items>
+						<items>
+							<name>"Me and U" / Performed by Cassie / Written by Ryan Leslie / Courtesy of Bad Boy Records/Atlantic Recording Corp. / By arrangement with Warner Music Group Video Game Licensing / (P) 2006 Bad Boy Records, LLC / Next Selection Music/Aspen Songs (ASCAP) / administered by Arthouse Entertainment</name>
+						</items>
+						<items>
+							<name>"Milk Lizard" / Performed by Dillinger Escape Plan / Written by Gregory Puciato, Ben Weinman / (P) and (c) 2007 Release Records, Inc. / Published by Relapse Release Publishing (ASCAP) / Published by Domino Publishing Company of America, Inc.</name>
+						</items>
+						<items>
+							<name>"Misery Business" / Performed by Paramore / Written by Hayley Williams and Joshua Farro / (c) 2007 WB Music Corp. (ASCAP), But Father, I Just Want To Sing Music (ASCAP), FBR Music (ASCAP) And Josh's Music (ASCAP) / All rights administered by WB Music Corp. / Courtesy of Atlantic Recording Corp./Fueled By Ramen / By arrangement with Warner Music Group Video Game Licensing / (P) 2007 Atlantic Recording Corp.</name>
+						</items>
+						<items>
+							<name>"Murder She Wrote" / Performed by Chaka Demus and Pliers / Written by Everton Bonner, Sly Dunbar, John Christopher Taylor and Lloyd Oliver Willis / Published by Universal - Songs Of Polygram Int., Inc. / Published by Fairwood Music USA (ASCAP), Spirit Music Publishing / Published by Blue Mountain Music Ltd. (PRS) / Administered by Spirit Two Music, Inc. (ASCAP) / Courtesy of The Island Def Jam Music Group under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"New York State of Mind" / Performed by Nas / Written by Eric Barrier, William Griffin, Nasir Jones and Chris E. Martin p/k/a Dj Premier Martin / Published by Universal Music - Z Tunes LLC o/b/o Ill Will Music, Inc. and Skematics, Inc. (ASCAP) / Published by EMI APRIL MUSIC INC. and EMI BLACKWOOD MUSIC INC. / Courtesy of Columbia Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"North American Scum" / Performed by LCD Soundsystem / Written by James Murphy / Published by Guy With Head And Arms Music; administered by Kobalt Music Publishing America, Inc. (ASCAP) / Courtesy of Capitol Records, Inc. / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Nothing Left" / Performed by As I Lay Dying / Written by Tim Lambesis, Jordan Mancino, Phil Sgrosso, Samuel Hipa / Published by Sleeveless Salmon (ASCAP) / Administered by Bug Music / (P) 2007 Metal Blade Records, Inc.</name>
+						</items>
+						<items>
+							<name>"Out of Touch" / Performed by Hall and Oates / Written by Daryl Hall and John Oates / (c) 1984 Unichappell Music Inc. (BMI) and Hot Cha Music Co. (BMI) / All rights administered by Unichappell Music Inc. / Courtesy of The RCA Records Label / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Over and Over" / Performed by Hot Chip / Written by Joseph Goddard, Alexis Benjamin Taylor and Felix Martin / (c) 2005 Goddard and Taylor Ltd. (NS) and Warner/Chappell Music Publishing Ltd. (PRS) All rights administered by Warner/Chappell Music Publishing Ltd. / All rights administered by WB Music Corp. (ASCAP) / Courtesy of Astralwerks / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Picture This" / Performed by Vybz Kartel / Written by A. Palmer, D. Lewis and A. Bradford / Greensleeves Publishing Ltd. / License arranged by Fine Gold Productions LLC / (P) and (c) 2004 Greensleeves Records Ltd.</name>
+						</items>
+						<items>
+							<name>"Pretty In Pink" / Performed by Psychedelic Furs / Written by Richard Butler, John Ashton, Timothy Butler, Roger Morris, Duncan Kilburn and Vincent Davey / Published by EMI BLACKWOOD MUSIC INC. / Courtesy of Epic Records/SBME (UK) Ltd. / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Put A Smile On Time" / Performed by The Rhythm Machine / Written by James Boone / Pebble Toss Music c/o Miserable Beast (ASCAP) / Now Again Records, LLC</name>
+						</items>
+						<items>
+							<name>"Put Your Money Where Your Mouth Is" / Performed by Jet / Written by Christopher Cester, Cameron Thane Muncey and Nicholas John Cester / Sony/ATV Harmony and Get Jet Music, Inc. (ASCAP) / (c) 2006 Sony/ATV Music Publishing LLC, Get Jet Music, Inc. / All rights administered by Sony/ATV Music Publishing LLC / Courtesy of Atlantic Recording Corp. / By arrangement with Warner Music Group Video Game Licensing / (P) 2006 Atlantic Recording Corp.</name>
+						</items>
+						<items>
+							<name>"Redneck" / Performed by Lamb of God / Written by David Randall Blythe, Mark Morton, Will Adler, John Campbell and Chris Adler / Sony/ATV Songs LLC / Subtle Arts of Publishing (BMI) / (c) 2006 Sony/ATV Music Publishing LLC, Subtle Arts of Publishing / All rights administered by Sony/ATV Music Publishing LLC / Courtesy of Prosthetic Records/Epic Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Resurrection" / Performed by Chimaira / Written by Mark Hunterm Robert Arnold, Jim Lamarca, Chris Spicuzza, Matt Devries and Andy Herrick / (c) 2007 Fritz McGaven Music, Izcoobro Music, Matt Fetzer Music, Talib Casio Music, MFA Music, Clevostyle Music / (c) 2007 Ferret Music LLC / All rights administered by Sony/ATV Music Publishing LLC</name>
+						</items>
+						<items>
+							<name>"Ridin' In That Black Joint" / Performed by Wale / Written by Olubowale Akintimehin and Timothy Matthews / Dead Stock Music/Who Would Believe Music (ASCAP) / Published by Dead Stock Music (ASCAP) / Courtesy of NY1334 d/b/a Allido Records</name>
+						</items>
+						<items>
+							<name>"Rock and Roll Queen" / Performed by The Subways / Written by Billy Lunn / (c) Stage Three Music Inc. o/b/o Stage Three Music Ltd. / Courtesy of Warner Music UK / By arrangement with Warner Music Group Video Game Licensing / (P) 2005 Infectious Records Ltd.</name>
+						</items>
+						<items>
+							<name>"Sexy Results" / Performed by Death From Above 1979 / Written by Jesse F. Keeler and Sebastien Grainger / Published by Iggy Softrock Publishing Inc., administered by Taylor Misopulos Burshtein Published by NehruSita Inc., administered by Undocumented Management / Courtesy of Last Gang Records Inc./Vice Recordings/Atlantic Recording Corp. / By arrangement with Warner Music Group Video Game Licensing / (P) 2004 Last Gang Records Inc.</name>
+						</items>
+						<items>
+							<name>"Shoot The Runner" / Performed by Kasabian / Written by Sergio Pizzorno / Courtesy of SMBE (UK) Ltd./The RCA Records Label / By arrangement with SONY BMG MUSIC ENTERTAINMENT / Published by EMI BLACKWOOD MUSIC INC.</name>
+						</items>
+						<items>
+							<name>"Sister Christian" / Performed by Night Ranger / Written by Kelly Keagy / Published by Figs D Music (BMI) o/b/o itself and Rough Play Music (BMI) c/o The Bicycle Music Company / Courtesy of Geffen Records under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"So Sick" / Performed by Ne Yo / Written by Mikkel Eriksen, Tor Erik Hermansen and Shaffer Smith / Universal Music - Zomba Songs o/b/o itself and Super Sayin Publishing (BMI) / Sony/ATV Tunes LLC (ASCAP) and Sony BMG Music Publishing / EMI APRIL MUSIC INC. / Courtesy of The Island Def Jam Music Group under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"Special Effect" / Performed by TRS-80 / Written and Recorded by Jay Rajeck</name>
+						</items>
+						<items>
+							<name>"Stars" / Performed by Hum / Written by Jeffrey Dimpsey, Tim Lash, Brian St Pere and Matt Talbot / Universal Music - Careers BMG Publishing o/b/o itself and Martians Go Home Music (BMI) / Courtesy of The RCA Records Label / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Street Justice" / Performed MSTRKRFT / Written by MSTRKRFT / Published by NehruSita Inc. and MSTRTRKS Music Inc., administered by Undocumented Management / Courtesy of Last Gang Records Inc.</name>
+						</items>
+						<items>
+							<name>"Street Scene" / Performed by Leon Mitchison / Written by Leon Mitchison / Admin for master and publishing by Now Again Records</name>
+						</items>
+						<items>
+							<name>"Sucker MCs" / Performed by Run DMC / Written by Joseph Warn Simmons, Darryl Matthews McDaniels and Larry Smith / (c) Rabasse Music, Ltd. (PRS) and Rush Groove Music (ASCAP) / All rights administered by WB Music Corp. / Courtesy of Arista Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Take On Me" / Performed by A-Ha / Written by Pal Waaktar, Magne Furuholmen, and Morten Harket / Sony/ATV Songs LLC (BMI) o/b/o Sony/ATV Music Publishing UK Ltd. (PRS) / (c) 1985 Sony/ATV Music Publishing UK Ltd. / All rights administered by Sony/ATV Music Publishing LLC / Courtesy of Warner Bros. Records Inc. / By arrangement wit h Warner Music Group Video Game Licensing / (P) 1985 Warner Bros. Records Inc.</name>
+						</items>
+						<items>
+							<name>"Teenagers" / Performed by My Chemical Romance / Written by B. Bryar, F. Iero, R. Toro, G. Way, and M. Way / Blow The Doors Off The Jersey Shore Inc, (BMI) / Courtesy of Reprise Records / By arrangement with Warner Music Group Vide Game Licensing / (P) 2006 Reprise Records</name>
+						</items>
+						<items>
+							<name>"Tell Me Bout It" / Performed by Joss Stone / Written by Robert C. Ozuna Jr., Raphael Saadiq, Joscelyn Eve Stoker, Joss Stone / Published by Universal - Polygram Int. Publishing, Inc. o/b/o Ugmoe Music / Courtesy of Virgin Records America, Inc. / Under license from EMI Film and Television Music / Published by Careers - BMG Music Publishing (BMI)</name>
+						</items>
+						<items>
+							<name>"Terror!" / Performed by The Rakes / Written by Alan Donohue, Matthew Swinnerton, James Horn-Smith and Lasse Peterson (c) 2004 Warner/Chappell Music Publishing Ltd. (PRS) / All rights administered by WB Music Corp. (ASCAP) / (c) 2005 V2 Records Ltd / Courtesy of Sheridan Square Entertainment</name>
+						</items>
+						<items>
+							<name>"The Cissy's Thing" / Performed by The Soul Seven / Written by Roger Boykin / Published by Boulder Heave Music / Courtesy of Now Again Records, LLC</name>
+						</items>
+						<items>
+							<name>"The Reflex" / Performed by Duran Duran / Written and Produced by Le Bon, Taylor, Taylor, Taylor ad Bates / (c) 1983 Boytongate Ltd./Flakelord Ltd./Hintgate Ltd./Vetchcrest Ltd./Poetlord Ltd./Gloucester Place Music Ltd. / Courtesy of EMI Records Ltd. / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Third Gear Scratch" / Performed by Shiner / Written by Allen Epley, Tim Dow and Paul Malinowski / Courtesy of DeSoto Records / Published by Donkeypig Music (ASCAP)</name>
+						</items>
+						<items>
+							<name>"Through The Hosiery" / Performed Crystal Castles / Written by Ethan Kath and Alice Glass / Courtesy of Last Gang Records, Inc.</name>
+						</items>
+						<items>
+							<name>"Trespasser" / Performed by Bad Medicine / Written by Arthur Lane / Boulder Heave Music c/o Miserable Beast (BMI) / Now Again Records, LLC</name>
+						</items>
+						<items>
+							<name>"Trick Me" / Performed by Kelis / Written by Dallas Austin / Published by EMI BLACKWOOD MUSIC INC. / Courtesy of Star Trak/LaFace Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT</name>
+						</items>
+						<items>
+							<name>"Twinz" / Performed by Big Punisher featuring Fat Joe / Written by Joseph Cartegena and Christopher Rio / Courtesy of LOUD Records/Columbia Records / By arrangement with SONY BMG MUSIC ENTERTAINMENT / Fat Joe appears courtesy of Relativity Records / This song contains a sample of "Deep Cover," writers and publishers of which are designated by Collin Wolfe (ASCAP), Andre Young (ASCAP) and Cordozar Broadus (ASCAP) / (c) 1998 Sony/ATV Music Publishing LLC / All rights on behalf of Sony/ATV Music Publishing LLC administered by Sony/ATV Music Publishing LLC / Courtesy of Jelly's Jams, L.L.C. o/b/o itself, Let Me Show you Music, Christopher Rios, Joseph Cartagena Music, and Joseph Cartagena (ASCAP)</name>
+						</items>
+						<items>
+							<name>"Unsung" / Performed by Helmet / Written by Page Nye-Hamilton / (c) 1992 Warner-Tamerlane Publishing Corp. (BMI), Ver Music (BMI) and Headlift Music (BMI) / All rights reserved on behalf of Ver Music (BMI) and Headlift Music (BMIU) administered by Warner-Tamerlane Publishing Corp. (BMI) / Courtesy of Interscope Records under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"Wake Up Pt. 1 and 2" / Performed by Pure Essence / Written by Steve Walters / Pure Essence Music c/o Miserable Beast (BMI) / Soul Cal Records, LLC (administered by Now Again Records)</name>
+						</items>
+						<items>
+							<name>"We Are Rockstars" / Performed by Does It Offend You, Yeah? / Written by Daniel Coop and James Rushent / (c) 2008 Chrysalis Songs (BMI) / Courtesy of Virgin Records Ltd / Under license from EMI Film and Television Music</name>
+						</items>
+						<items>
+							<name>"Western Biographic" / Performed by Bound Stems / Courtesy of Flameshovel Records / Rough Draughsman (ASCAP) / Hut Hut Hike (BMI) / Lab Cabin (BMI) / Grammar Camp (BMI) / Danimal Sounds (BMI)</name>
+						</items>
+						<items>
+							<name>"What A Horrible Night To Have A Curse" / Performed by The Black Dahlia Murder / Written by B. Eschbach, T. Strnad, J. Kempainen, S. Lucas, R. Williams / Published by Crushing Skulls Music (ASCAP) / Administered by Bug Music / (P) 2007 Metal Blade Records, Inc.</name>
+						</items>
+						<items>
+							<name>"What A Thug About" / Performed by Beanie Sigel / Written by Dwight Grant and Anthony Best / (c) 2000 by Music of Windswept (ASCAP) o/b/o Hitco South and Shakur Al Din Music / Universal Music - MGB Songs o/b/o BMG Songs, Inc. and STILL DIGGIN MUSIC (ASCAP) / Courtesy of The Island Def Jam Music Group under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"What You Need" / Performed by Galactic featuring Lyrics Born / Written by B. Ellman, R. Mercurio, S. Moore, J. Raines, T. Shimura and R. Vogel / (p) and (c) 2007 Anti, Inc. / Published by Bobksi Tunes (BMI), Number R Music (BMI), Stanton Emery Music (BMI), Heavy Raines Music (BMI), Number Vee Music (BMI) and Asia Born Music (BMI)</name>
+						</items>
+						<items>
+							<name>"Who Am I?" / Performed by Beanie Man / Written by Moses Anthony Davis, Jeremy Alexander Harding, Tarik L. Collins, Jimmy Gray, Malik Smart, Ahmir K. Thompson and Kenyatta Saunders / Published by Shocking Vibes Music, 2 Hard Music, EMI Music, STB Music Inc., Universal - Polygram International Publishing, Inc. o/b/o Gunsmoke Music Publishing, Universal Music - Careers o/b/o itself and Grand Negaz Music (ASCAP) and Loop Assassins Publishing / Courtesy of VP Music Group, Inc.</name>
+						</items>
+						<items>
+							<name>"Woman" / Performed by Wolfmother / Written by Andrew Stockdale, Chris Ross and Myles Heskett / Published by Cherry River Music Co. (BMI) / Wolfmother PTY Ltd. (BMI) administered by Cherry River Music Co. (BMI) / Courtesy of Universal Music Australia Pty. Ltd. [AU] under license from Universal Music Enterprises</name>
+						</items>
+						<items>
+							<name>"You Can Be A Star" / Performed by Luther Davis Group / Written by Luther Davis / Published by Boulder Heave Music c/o Miserable Beast (BMI) / Courtesy of Soul Cal Records, LLC administered by Now Again Records</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>The Following Appear Courtesy of APM Music, LLC:</heading>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Over The Moor To Maggie</name>
+							<desc>Greg Knowles and Mike Taylor</desc>
+						</items>
+						<items>
+							<name>El Viento En La Isla</name>
+							<desc>Liza Carbe and Jean Pierre Durand</desc>
+						</items>
+						<items>
+							<name>Bangara Dance</name>
+							<desc>Ravi Shani</desc>
+						</items>
+						<items>
+							<name>Zahrat El Sahra</name>
+							<desc>Roger Abaji</desc>
+						</items>
+						<items>
+							<name>The Drunkard's Song</name>
+							<desc>Viktor Mastoridis</desc>
+						</items>
+						<items>
+							<name>Schenkt's Ma Mal Was Boarisch</name>
+							<desc>Karl Barthel</desc>
+						</items>
+						<items>
+							<name>Mountain Hut Landler</name>
+							<desc>Martin Beeler</desc>
+						</items>
+						<items>
+							<name>Mandilatos</name>
+							<desc>Robin Jeffrey</desc>
+						</items>
+						<items>
+							<name>Mambo De Fito</name>
+							<desc>Liza Carbe and Jean Pierre Durand</desc>
+						</items>
+						<items>
+							<name>Hungarian Sundance</name>
+							<desc>Friedrich Sehl</desc>
+						</items>
+						<items>
+							<name>Humours of Glen Dart</name>
+							<desc>Greg Knowles and Mike Taylor</desc>
+						</items>
+						<items>
+							<name>Hot Nights</name>
+							<desc>John Leach</desc>
+						</items>
+						<items>
+							<name>Gypsy Dance</name>
+							<desc>Laszlo Borteri</desc>
+						</items>
+						<items>
+							<name>Good Morning Polka</name>
+							<desc>Jan Schneeberg</desc>
+						</items>
+						<items>
+							<name>Friss A Rozsa</name>
+							<desc>Niko Radic</desc>
+						</items>
+						<items>
+							<name>Emerald Jig</name>
+							<desc>Ian Clarke and Simon Painter</desc>
+						</items>
+						<items>
+							<name>Drumjig</name>
+							<desc>Greg Knowles and Mike Taylor</desc>
+						</items>
+						<items>
+							<name>Connaught Chase</name>
+							<desc>Greg Knowles and Mike Taylor</desc>
+						</items>
+						<items>
+							<name>Cigany</name>
+							<desc>Niko Radic</desc>
+						</items>
+						<items>
+							<name>Barasilian Fiesta</name>
+							<desc>Claudia Figueroa, Forbes Henderson, Tony Hinnigan, and Martin Taylor</desc>
+						</items>
+						<items>
+							<name>Baidoushka</name>
+							<desc>Robin Jeffrey</desc>
+						</items>
+						<items>
+							<name>Coppelia Ballet Suite, Act 1, No. 1</name>
+							<desc>Leo Delibes</desc>
+						</items>
+						<items>
+							<name>Water Music Suite No. 1 in F Major</name>
+							<desc>Handel</desc>
+						</items>
+						<items>
+							<name>Sleeping Beauty Waltz</name>
+							<desc>Tchaikovsky</desc>
+						</items>
+						<items>
+							<name>Nutcracker Suite</name>
+							<desc>Tchaikovsky</desc>
+						</items>
+						<items>
+							<name>Hungarian Dance No. 5</name>
+							<desc>Brahms</desc>
+						</items>
+						<items>
+							<name>Arrival Of The Queen Of Sheba</name>
+							<desc>Handel</desc>
+						</items>
+						<items>
+							<name>Brandenburg Concerto No. 3</name>
+							<desc>Bach</desc>
+						</items>
+						<items>
+							<name>Concerto No. 4 in A</name>
+							<desc>Bach</desc>
+						</items>
+						<items>
+							<name>Eine Cleine Nachtmusik</name>
+							<desc>Mozart</desc>
+						</items>
+						<items>
+							<name>Four Seasons No. 1 - The Spring</name>
+							<desc>Vivaldi</desc>
+						</items>
+						<items>
+							<name>Four Seasons No. 2 - The Summer</name>
+							<desc>Vivaldi</desc>
+						</items>
+						<items>
+							<name>Haffner Serenade No. 7 in D Major</name>
+							<desc>Mozart</desc>
+						</items>
+						<items>
+							<name>Moonlight Sonata (First Movement)</name>
+							<desc>Beethoven</desc>
+						</items>
+						<items>
+							<name>Music for the Royal Fireworks</name>
+							<desc>Handel</desc>
+						</items>
+						<items>
+							<name>Peer Gynt Suite No. 1 - Anitra's Dance</name>
+							<desc>Grieg</desc>
+						</items>
+						<items>
+							<name>Ride of the Valkyries</name>
+							<desc>Wagner</desc>
+						</items>
+						<items>
+							<name>String Quartet in G Major - 2nd Movement</name>
+							<desc>Mozart</desc>
+						</items>
+						<items>
+							<name>Symphony no. 40 - 1st Movement</name>
+							<desc>Mozart</desc>
+						</items>
+						<items>
+							<name>Symphony no. 5 in C Minor - Allegro Con Brio</name>
+							<desc>Beethoven</desc>
+						</items>
+						<items>
+							<name>Symphony no. 5 in C Minor - Allegro</name>
+							<desc>Beethoven</desc>
+						</items>
+						<items>
+							<name>Toccata and Fugue in D Minor</name>
+							<desc>Bach</desc>
+						</items>
+						<items>
+							<name>Water Music Suite No. 1 in F Major - Overture</name>
+							<desc>Handel</desc>
+						</items>
+						<items>
+							<name>Marriage of Figaro - Overture</name>
+							<desc>Mozart</desc>
+						</items>
+						<items>
+							<name>Peer Gynt Suite No. 1 - In The Hall of the Mountain King</name>
+							<desc>Grieg</desc>
+						</items>
+						<items>
+							<name>Naughty But Nice</name>
+							<desc>Walt Rockman</desc>
+						</items>
+						<items>
+							<name>Marvellous Singers Remix</name>
+							<desc>Marc Durst and Laurent Lombard</desc>
+						</items>
+						<items>
+							<name>Love For Life</name>
+							<desc>Sammy Burdson and John Charles Fiddy</desc>
+						</items>
+						<items>
+							<name>Kalamazoo Style</name>
+							<desc>Olivier Andres and Christian Seguret</desc>
+						</items>
+						<items>
+							<name>Just Strolling Along</name>
+							<desc>Sammy Burdson and John Charles Fiddy</desc>
+						</items>
+						<items>
+							<name>Coconuts</name>
+							<desc>Gerhard Narholz</desc>
+						</items>
+						<items>
+							<name>Dancing On The Avenue</name>
+							<desc>John Cacavas</desc>
+						</items>
+						<items>
+							<name>Dolce Vita</name>
+							<desc>Bruno Bertoli</desc>
+						</items>
+						<items>
+							<name>Face To Face</name>
+							<desc>Sammy Burdson</desc>
+						</items>
+						<items>
+							<name>A Girl Like You</name>
+							<desc>Norman Candler</desc>
+						</items>
+						<items>
+							<name>Jarabe Tapatio</name>
+							<desc>Carlos Periguez</desc>
+						</items>
+						<items>
+							<name>Tooba Boogie</name>
+							<desc>Otto Sieben</desc>
+						</items>
+						<items>
+							<name>Walkie Talkie</name>
+							<desc>Gerhard Narholz</desc>
+						</items>
+						<items>
+							<name>Whistle Happy</name>
+							<desc>Colin Baldry and Tom Kane</desc>
+						</items>
+						<items>
+							<name>Tchoupa Twist</name>
+							<desc>Nicolas Folmer</desc>
+						</items>
+						<items>
+							<name>A Sunny Day In Heidelberb</name>
+							<desc>Horst Jankowski</desc>
+						</items>
+						<items>
+							<name>Swing Paname</name>
+							<desc>Angel Debarre</desc>
+						</items>
+						<items>
+							<name>Stereo Cha Cha</name>
+							<desc>Umberto Pagnini</desc>
+						</items>
+						<items>
+							<name>Colonie Celeste</name>
+							<desc>Jean-Jacques Perrey</desc>
+						</items>
+						<items>
+							<name>A Cielito Lindo</name>
+							<desc>Carlos Periguez</desc>
+						</items>
+						<items>
+							<name>Chanson Pour Toi</name>
+							<desc>Alfred Jack</desc>
+						</items>
+						<items>
+							<name>Bossa Cubana</name>
+							<desc>Gerhard Narholz</desc>
+						</items>
+						<items>
+							<name>Berg Und Tal</name>
+							<desc>Gerhard Narholz</desc>
+						</items>
+						<items>
+							<name>Bachelor Samba</name>
+							<desc>Marc Durst</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Unless otherwise noted above, all other music featured in the game world courtesy of APM Music, LLC</name>
+						</items>
+						<items>
+							<name>ALL RIGHTS RESERVED. USED BY PERMISSION. INTERNATIONAL COPYRIGHT SECURED.</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>THQ</Name>
+			<section_title>THQ</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Brian J Farrell</name>
+							<desc>President and CEO</desc>
+						</items>
+						<items>
+							<name>Colin Slade</name>
+							<desc>EVP and CFO</desc>
+						</items>
+						<items>
+							<name>Bill Goodmen</name>
+							<desc>EVP of HR and Administration</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>THQ Product Development</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Jack Sorensen</name>
+							<desc>EVP, Worldwide Studios</desc>
+						</items>
+						<items>
+							<name>Roy Tessler</name>
+							<desc>SVP, Product Development</desc>
+						</items>
+						<items>
+							<name>Steve Dauterman</name>
+							<desc>SVP, Product Development</desc>
+						</items>
+						<items>
+							<name>Richard Browne</name>
+							<desc>VP, Product Development</desc>
+						</items>
+						<items>
+							<name>Danny Bilson</name>
+							<desc>VP, Creative Development</desc>
+						</items>
+						<items>
+							<name>Lenny Brown</name>
+							<desc>Creative Development Manager</desc>
+						</items>
+						<items>
+							<name>Jeff Brown</name>
+							<desc>Director, Project Management</desc>
+						</items>
+						<items>
+							<name>Philippe Juton</name>
+							<desc>Director of Localization</desc>
+						</items>
+						<items>
+							<name>Dan Kukucka</name>
+							<desc>Localization Project Manager</desc>
+						</items>
+						<items>
+							<name>Ian Sedensky</name>
+							<desc>Senior Manager, Global PD Operations</desc>
+						</items>
+						<items>
+							<name>Kevin Chu</name>
+							<desc>Director of Art Technology, XDG</desc>
+						</items>
+						<items>
+							<name>Daniel Sass</name>
+							<desc>Director of Engineering, XDG</desc>
+						</items>
+						<items>
+							<name>Sandy Zhen</name>
+							<desc>Project Manager, XDG</desc>
+						</items>
+						<items>
+							<name>Mike Kelleher</name>
+							<desc>Associate Art Production Manager, XDG</desc>
+						</items>
+						<items>
+							<name>Dilber Mann</name>
+							<desc>Associate Project Manager, XDG</desc>
+						</items>
+						<items>
+							<name>Susanne Dieck</name>
+							<desc>European Localization Director</desc>
+						</items>
+						<items>
+							<name>Bernd Kurtz</name>
+							<desc>European Localization Engineer</desc>
+						</items>
+						<items>
+							<name>Andreas Herbertz</name>
+							<desc>European Localization Technician</desc>
+						</items>
+						<items>
+							<name>Steve DeCosta</name>
+							<desc>VP, Finance and Administration</desc>
+						</items>
+						<items>
+							<name>Laura Lloyd</name>
+							<desc>Director, Finance</desc>
+						</items>
+						<items>
+							<name>Steffanie Bullis</name>
+							<desc>Manager, Finance</desc>
+						</items>
+						<items>
+							<name>Elena Gramont</name>
+							<desc>Senior Financial Analyst</desc>
+						</items>
+						<items>
+							<name>Jessica Peters</name>
+							<desc>Executive Assistant</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>THQ Quality Assurance</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Paul Sterngold</name>
+							<desc>Director, Worldwide QA</desc>
+						</items>
+						<items>
+							<name>Michael Motoda</name>
+							<desc>Senior QA Manager</desc>
+						</items>
+						<items>
+							<name>Jeff Braun</name>
+							<desc>Test Supervisors</desc>
+						</items>
+						<items>
+							<name>Chris Hughes</name>
+						</items>
+						<items>
+							<name>Sal Urena</name>
+							<desc>Senior Test Lead</desc>
+						</items>
+						<items>
+							<name>Joe Santa</name>
+							<desc>Test Lead</desc>
+						</items>
+						<items>
+							<name>Aaron Lopez</name>
+							<desc>Senior Testers</desc>
+						</items>
+						<items>
+							<name>Adam Schultz</name>
+							<desc>Testers</desc>
+						</items>
+						<items>
+							<name>Brad Munson</name>
+						</items>
+						<items>
+							<name>Brillmond Tan</name>
+						</items>
+						<items>
+							<name>Ian Lawrence</name>
+						</items>
+						<items>
+							<name>Irvin Diaz</name>
+						</items>
+						<items>
+							<name>Jennifer Evans</name>
+						</items>
+						<items>
+							<name>Jeremy Pryer</name>
+						</items>
+						<items>
+							<name>Joel Marcantel</name>
+						</items>
+						<items>
+							<name>John Noel</name>
+						</items>
+						<items>
+							<name>Justin Schwartz</name>
+						</items>
+						<items>
+							<name>Karl DeGuzman</name>
+						</items>
+						<items>
+							<name>Michael Manley</name>
+						</items>
+						<items>
+							<name>Paul Barfield</name>
+						</items>
+						<items>
+							<name>Ryan Myford</name>
+						</items>
+						<items>
+							<name>Tom Day</name>
+						</items>
+						<items>
+							<name>Mario Waibel</name>
+							<desc>Compliance QA Manager</desc>
+						</items>
+						<items>
+							<name>Jason Tani</name>
+							<desc>Compliance QA Supervisors</desc>
+						</items>
+						<items>
+							<name>Michael Booker</name>
+						</items>
+						<items>
+							<name>Andrew Dodson</name>
+							<desc>Compliance QA Specialists</desc>
+						</items>
+						<items>
+							<name>Brian Skidmore</name>
+						</items>
+						<items>
+							<name>Dave Lejeune</name>
+						</items>
+						<items>
+							<name>Dustin Wiemer</name>
+						</items>
+						<items>
+							<name>Edwin DeNicholas</name>
+						</items>
+						<items>
+							<name>Eric Dettman</name>
+						</items>
+						<items>
+							<name>Eugene Park</name>
+						</items>
+						<items>
+							<name>Jeffrey Kersten</name>
+						</items>
+						<items>
+							<name>Jennifer Henschel</name>
+						</items>
+						<items>
+							<name>Jennifer Osborn</name>
+						</items>
+						<items>
+							<name>John Wiesenfeld</name>
+						</items>
+						<items>
+							<name>Josh Geary</name>
+						</items>
+						<items>
+							<name>Malik Aziz</name>
+						</items>
+						<items>
+							<name>Mark Sagun</name>
+						</items>
+						<items>
+							<name>Matthew J. Cooper</name>
+						</items>
+						<items>
+							<name>Mellissa Moore</name>
+						</items>
+						<items>
+							<name>Patrick Thomson</name>
+						</items>
+						<items>
+							<name>Ralph Colantuono</name>
+						</items>
+						<items>
+							<name>Robert Razo</name>
+						</items>
+						<items>
+							<name>Roberto Candelario</name>
+						</items>
+						<items>
+							<name>Troy Hieda</name>
+						</items>
+						<items>
+							<name>Whitney Vandemerwe</name>
+						</items>
+						<items>
+							<name>Richard Jones</name>
+							<desc>QA Technicians Supervisor</desc>
+						</items>
+						<items>
+							<name>Luis Arevalo</name>
+							<desc>QA Technicians</desc>
+						</items>
+						<items>
+							<name>Ryan Cashman</name>
+						</items>
+						<items>
+							<name>Justin Drolet</name>
+						</items>
+						<items>
+							<name>Michael Zlotnicki</name>
+						</items>
+						<items>
+							<name>Anthony Dunnet</name>
+							<desc>Mastering Lab Supervisor</desc>
+						</items>
+						<items>
+							<name>Glen Peters</name>
+							<desc>Mastering Lab Technicians</desc>
+						</items>
+						<items>
+							<name>Heidi Salguero</name>
+						</items>
+						<items>
+							<name>Ryan Fell</name>
+						</items>
+						<items>
+							<name>Ian Clark</name>
+						</items>
+						<items>
+							<name>Robert LeBeau</name>
+						</items>
+						<items>
+							<name>Charles Batarse</name>
+							<desc>Remastering Project Manager</desc>
+						</items>
+						<items>
+							<name>Jonathan Gill</name>
+							<desc>Database Supervisor</desc>
+						</items>
+						<items>
+							<name>T. Ryan Arnold</name>
+							<desc>Database Administrator</desc>
+						</items>
+						<items>
+							<name>Steve Nelson</name>
+							<desc>QA Operations Coordinators</desc>
+						</items>
+						<items>
+							<name>Omar Flores</name>
+						</items>
+						<items>
+							<name>Lori Ceballos</name>
+							<desc>Sr. HR Generalist</desc>
+						</items>
+						<items>
+							<name>Colin Thompson</name>
+							<desc>Customer Service Supervisor</desc>
+						</items>
+						<items>
+							<name>Jodie Geiselman</name>
+							<desc>Customer Service</desc>
+						</items>
+						<items>
+							<name>Theo Guenther</name>
+						</items>
+						<items>
+							<name>Peter Svenkerud</name>
+						</items>
+						<items>
+							<name>Christopher Brown</name>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Babel Media Ltd.</name>
+							<desc>Localization Testing</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>THQ Publishing</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Scott Guthrie</name>
+							<desc>EVP, Publishing</desc>
+						</items>
+						<items>
+							<name>Bob Aniello</name>
+							<desc>SVP, Worldwide Marketing</desc>
+						</items>
+						<items>
+							<name>Kevin Kraff</name>
+							<desc>VP, Global Brand Management</desc>
+						</items>
+						<items>
+							<name>Liz Pieri</name>
+							<desc>VP, Marketing Communications</desc>
+						</items>
+						<items>
+							<name>Lin Leng</name>
+							<desc>Sr. Global Brand Manager</desc>
+						</items>
+						<items>
+							<name>Matthew Weissinger</name>
+							<desc>Global Brand Manager</desc>
+						</items>
+						<items>
+							<name>Rob Cassel</name>
+							<desc>Director, Marketing Communication</desc>
+						</items>
+						<items>
+							<name>Craig Mitchell</name>
+							<desc>Public Relations Manager</desc>
+						</items>
+						<items>
+							<name>Anthony Newall</name>
+							<desc>Associate European Marketing Manager</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>Creative Services</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Brian Balistreri</name>
+							<desc>Sr. Manager, Creative Services</desc>
+						</items>
+						<items>
+							<name>Kirk Somdal</name>
+							<desc>Creative Services Manager</desc>
+						</items>
+						<items>
+							<name>Shannon Donnelly</name>
+							<desc>Web Producer</desc>
+						</items>
+						<items>
+							<name>Christopher Folino</name>
+							<desc>Video Manager</desc>
+						</items>
+						<items>
+							<name>Fernando Velloso</name>
+							<desc>Video Editor</desc>
+						</items>
+						<items>
+							<name>Dave Colacioppo</name>
+							<desc>Video Animation</desc>
+						</items>
+						<items>
+							<name>Robert 'Tito' Blasini</name>
+							<desc>Video Production Coordinator</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+							<name>Instruction Manual</name>
+						</items>
+						<items>
+							<name>Off Base Productions</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>THQ Business and Legal Affairs</heading>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Jim Kennedy</name>
+							<desc>EVP, Business and Legal Affairs</desc>
+						</items>
+						<items>
+							<name>Brandy Carrillo</name>
+							<desc>VP, Business and Legal Affairs</desc>
+						</items>
+						<items>
+							<name>Debbie Fingerman</name>
+							<desc>Sr. Manager, Business and Legal Affairs</desc>
+						</items>
+						<items>
+							<name>Maryam Tashroudian</name>
+							<desc>Counsel, Business and Legal Affairs</desc>
+						</items>
+						<items>
+							<name>Jenni Carlson</name>
+							<desc>Manager, Legal Affairs</desc>
+						</items>
+						<items>
+							<name>Kathleen Lilly</name>
+							<desc>Contracts Specialist</desc>
+						</items>
+						<items>
+							<name>Marla Park</name>
+							<desc>Contract Administrator</desc>
+						</items>
+						<items>
+							<name>Janet D'Andrea</name>
+							<desc>Legal Assistants</desc>
+						</items>
+						<items>
+							<name>Jennifer Diello</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+				<headings>
+					<heading>Special Thanks</heading>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Bryan Chu</name>
+						</items>
+						<items>
+							<name>Morten Huagaard</name>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>THQ Europe</Name>
+			<section_title>THQ Europe</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Richard Williams</name>
+							<desc>European Marketing Director</desc>
+						</items>
+						<items>
+							<name>Huw Beynon</name>
+							<desc>Head of Digital Marketing Europe</desc>
+						</items>
+						<items>
+							<name>Mickey Torode</name>
+							<desc>European Group Marketing Manager</desc>
+						</items>
+						<items>
+							<name>Anthony Newall</name>
+							<desc>European Product Marketing Manager</desc>
+						</items>
+						<items>
+							<name>Sam "The Man" Forrest</name>
+							<desc>Head of European PR</desc>
+						</items>
+						<items>
+							<name>Simon Watts</name>
+							<desc>European PR Manager</desc>
+						</items>
+						<items>
+							<name>James Truter</name>
+							<desc>International Product Coordination Manager</desc>
+						</items>
+						<items>
+							<name>Laura Disney</name>
+							<desc>UK Product Manager</desc>
+						</items>
+						<items>
+							<name>Gregory Jones</name>
+							<desc>UK PR manager</desc>
+						</items>
+						<items>
+							<name>Benoit Bohet</name>
+							<desc>France Marketing Manager</desc>
+						</items>
+						<items>
+							<name>Simon Maflin</name>
+							<desc>France PR Manager</desc>
+						</items>
+						<items>
+							<name>Robin Wolff</name>
+							<desc>Benelux Marketing Manager</desc>
+						</items>
+						<items>
+							<name>Joey Smits</name>
+							<desc>Benelux PR Manager</desc>
+						</items>
+						<items>
+							<name>Simone Cazzaniga</name>
+							<desc>Italy Product Manager</desc>
+						</items>
+						<items>
+							<name>Angela Lippolis</name>
+							<desc>Italy PR Manager</desc>
+						</items>
+						<items>
+							<name>Kenni Christensen</name>
+							<desc>Nordic Product Manager</desc>
+						</items>
+						<items>
+							<name>Peter Jakobsen</name>
+							<desc>Nordic PR Manager</desc>
+						</items>
+						<items>
+							<name>Javier Manu</name>
+							<desc>Spain Product Manager</desc>
+						</items>
+						<items>
+							<name>Ana Calleja Vietes</name>
+							<desc>Spain PR Manager</desc>
+						</items>
+						<items>
+							<name>Claus Schmidt</name>
+							<desc>Head of Product Management</desc>
+						</items>
+						<items>
+							<name>Jochen Langenbach</name>
+							<desc>Germany PR Manager</desc>
+						</items>
+						<items>
+							<name>Miles Davies</name>
+							<desc>Localization Project Manager</desc>
+						</items>
+						<items>
+							<name>Luke Keighran</name>
+							<desc>UK Export Marketing Manager</desc>
+						</items>
+						<items>
+							<name>Alex Denega</name>
+							<desc>UK Export PR</desc>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>THQ Asia Pacific</Name>
+			<section_title>THQ Asia Pacific</section_title>
+			<headings>
+				<headings>
+					<type>Name - Role</type>
+					<items>
+						<items>
+							<name>Martin Good</name>
+							<desc>SVP Asia Pacific/Japan Publishing</desc>
+						</items>
+						<items>
+							<name>Travis Plane</name>
+							<desc>Marketing Director, Asia Pacific/Japan</desc>
+						</items>
+						<items>
+							<name>Chris Wright</name>
+							<desc>Marketing Manager, Australia/New Zealand</desc>
+						</items>
+						<items>
+							<name>Belinda Crowe</name>
+							<desc>Head Of Product Management, Australia/New Zealand</desc>
+						</items>
+						<items>
+							<name>Paul Houlihan</name>
+							<desc>PR Manager, Australia/New Zealand</desc>
+						</items>
+						<items>
+							<name>Paul Donovan</name>
+							<desc>Export Business Director</desc>
+						</items>
+						<items>
+							<name>Lyndall Dakic</name>
+							<desc>Export Sales and Marketing Coordinator</desc>
+						</items>
+						<items>
+							<name>Christopher Shioya</name>
+							<desc>Country Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Takahiro Morita</name>
+							<desc>Marketing Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Kumiko Mori</name>
+							<desc>Sales Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Manae Kobayashi</name>
+							<desc>Operations Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Medhi Camoin</name>
+							<desc>Associate Product and Licensing Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Atsumi Hirano</name>
+							<desc>Product Coordinator, Japan</desc>
+						</items>
+						<items>
+							<name>Masatoshi Higuchi</name>
+							<desc>Project Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Yuki Kokubo</name>
+							<desc>Associate Project Manager, Japan</desc>
+						</items>
+						<items>
+							<name>Masae Yamakura</name>
+							<desc>Localization Coordinator, Japan</desc>
+						</items>
+						<items>
+							<name>Rachel Lee</name>
+							<desc>Operations Manager, Korea</desc>
+						</items>
+						<items>
+							<name>Sam Park</name>
+							<desc>Country Manager, Korea</desc>
+						</items>
+						<items>
+							<name>Young Kwon</name>
+							<desc>Marketing Manager, Korea</desc>
+						</items>
+						<items>
+							<name>Musai</name>
+							<desc>Localization Agency, Korea</desc>
+						</items>
+						<items>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+		<Credits>
+			<Name>DEDICATION</Name>
+			<section_title>DEDICATION</section_title>
+			<headings>
+				<headings>
+					<type>Music</type>
+					<items>
+						<items>
+							<name>Dedicated to the Memory of Christopher "Topher" Allen</name>
+						</items>
+						<items>
+							<name>1972 - 2008</name>
+						</items>
+						<items>
+							<name>Team member and friend</name>
+						</items>
+						<items>
+							<name>You are missed</name>
+						</items>
+						<items>
+						</items>
+						<items>
+						</items>
+					</items>
+				</headings>
+			</headings>
+			<_Editor>
+				<Category>Entries</Category>
+			</_Editor>
+		</Credits>
+	</Table>
+	<TableDescription source="credit_desc.xml">
+	</TableDescription>
+</root>
