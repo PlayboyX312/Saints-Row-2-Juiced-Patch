@@ -23,6 +23,8 @@ double animBlend = 3.0;
 
 namespace Behavior
 {
+	typedef int __cdecl character_set_anim_setT(DWORD* hp, uint32_t unk, char* name_of_human);
+	character_set_anim_setT* character_set_anim_set = (character_set_anim_setT*)(0x0096F940);
 	int sticky_cam_timer_add = 0;
 	void BetterMovement()
 	{
@@ -242,8 +244,20 @@ CMultiPatch CMPatches_SR1Reloading = {
 	CPatch CAnimBlend = CPatch::SafeWrite32(0x006F1CA6 + 2, (uint32_t)&animBlend);
 	CPatch CAllowWeaponSwitchInAllCases_KBM = CPatch::PatchNop(0x004F7F1E, 0x23);
 #endif
+	SafetyHookInline player_data_loadT{};
+	unsigned int __cdecl player_data_load(int save_ptr, char arg4) {
+		unsigned int result = player_data_loadT.ccall<unsigned int>(save_ptr, arg4);
+		int gender = *(int*)(save_ptr + 0xE754);
+		if (gender == 1) // female
+			character_set_anim_set((DWORD*)UtilsGlobal::getplayer(false), 0, (char*)"GFL1");
+		else
+			character_set_anim_set((DWORD*)UtilsGlobal::getplayer(false), 0, (char*)"GML1");
+		return result;
+	}
 	void Init()
 	{
+		if (GameConfig::GetValue("Debug", "FixGFL1_for_female_playas", 1))
+			player_data_loadT = safetyhook::create_inline(0x00693EB0, &player_data_load);
 		/*patchDWord((void*)(0x00D96A50 + 2), (uint32_t)&bogusRagForce);
 		patchDWord((void*)(0x00D974B0 + 2), (uint32_t)&bogusRagForce);
 		patchDWord((void*)(0x00D97AE8 + 2), (uint32_t)&bogusRagForce);
