@@ -891,7 +891,6 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		patchCall((void*)0x00458646, (void*)IdleFix); // prevents you from being able to use the scroll wheel when idling
 		patchCall((void*)0x009A3D8E, (void*)IdleFix);
 		if (GameConfig::GetValue("Debug", "TervelTextureCrashWorkaround_be_as_pe", 1)) { // cause i want to disable it for reasons -- Clippy95, dont include in config?
-			if(!GameConfig::GetValue("Debug", "ClippyTextureCrashExceptionHandle", 1))
 			CMPatches_TervelTextureCrashWorkaround_be_as_pe.Apply(); // incorrect behaviour
 
 		}

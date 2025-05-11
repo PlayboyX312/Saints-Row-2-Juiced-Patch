@@ -170,7 +170,6 @@ namespace BlingMenuInstall
     const char* BM_ClippyTextureExceptionHandle(void* userdata, int action) {
         using namespace Render3D;
         if (action != -1) {
-            General::CMPatches_TervelTextureCrashWorkaround_be_as_pe.Restore();
             if (add_to_entry_test.enabled()) {
                 add_to_entry_test.disable();
             }
@@ -189,11 +188,7 @@ namespace BlingMenuInstall
 
     const char* BM_TervelCrashWorkAround(void* userdata, int action) {
         using namespace General;
-
-        if (Render3D::add_to_entry_test.enabled()) {
-            return "EXCEPTION-ish HANDLER HOOKED";
-        }
-        if (action != -1 && !Render3D::add_to_entry_test.enabled()) {
+        if (action != -1) {
             if (CMPatches_TervelTextureCrashWorkaround_be_as_pe.IsApplied()) {
                 CMPatches_TervelTextureCrashWorkaround_be_as_pe.Restore();
             }
