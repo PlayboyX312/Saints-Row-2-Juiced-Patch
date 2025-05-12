@@ -7,4 +7,5 @@ namespace Debug {
 	extern bool LoadLastSave;
 	extern bool fixFrametime;
 	extern CMultiPatch CMPatches_DisableCheatFlag;
+	void PrintMemoryUsage(int y);
 }

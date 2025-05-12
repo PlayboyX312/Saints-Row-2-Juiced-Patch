@@ -8,6 +8,7 @@
 #include "../SafeWrite.h"
 #include "../loose files.h"
 #include "Debug.h"
+#include "../Render/Render2D.h"
 
 namespace Debug
 {
@@ -36,7 +37,36 @@ namespace Debug
 		else
 			Logger::TypedLog(CHN_DLL, "Create loose file cache failed.\n");
 	}
+	constexpr auto MEGABYTE = 1048576.0;
 
+	void PrintMemoryUsage(int y) {
+		char buffer[200];
+		MEMORYSTATUSEX status;
+		status.dwLength = sizeof(MEMORYSTATUSEX);
+
+		if (GlobalMemoryStatusEx(&status)) {
+			double v_total = status.ullTotalVirtual / MEGABYTE;
+			double v_free = status.ullAvailVirtual / MEGABYTE;
+			double p_total = status.ullTotalPhys / MEGABYTE;
+			double p_free = status.ullAvailPhys / MEGABYTE;
+
+			snprintf(buffer, sizeof(buffer), "Physical Memory: %5.2f / %5.2f (%5.2f free)",
+				p_total - p_free, p_total, p_free);
+			Render2D::ChangeTextColor(255, 255, 255, 255);
+
+			__asm pushad
+			Render2D::InGamePrint(buffer, y, Render2D::processtextwidth(0), 6);
+			__asm popad
+
+			snprintf(buffer, sizeof(buffer), "Virtual Memory: %5.2f / %5.2f (%5.2f free)",
+				v_total - v_free, v_total, v_free);
+			Render2D::ChangeTextColor(255, 255, 255, 255);
+
+			__asm pushad
+			Render2D::InGamePrint(buffer, y + 20, Render2D::processtextwidth(0), 6);
+			__asm popad
+		}
+	}
 	void Init() {
 #if !JLITE
 		if (GameConfig::GetValue("Gameplay", "SkipIntros", 0)) // can't stop Tervel won't stop Tervel

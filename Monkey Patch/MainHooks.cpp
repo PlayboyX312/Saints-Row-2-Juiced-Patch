@@ -1238,14 +1238,8 @@ inline void ModpackWarning(const wchar_t* Warning) {
 
 typedef int __cdecl RenderLoopStuff_Native();
 RenderLoopStuff_Native* UpdateRenderLoopStuff = (RenderLoopStuff_Native*)(0x00C063D0); //0x00BD4A80
-
-#if !RELOADED
-static bool modpackread = 0;
-#endif
-int RenderLoopStuff_Hacked()
-{
-	
 #if !JLITE
+int early_render_hook() {
 	if (useJuicedOSD) {
 		PrintFrametime();
 		PrintGameFrametime();
@@ -1258,6 +1252,16 @@ int RenderLoopStuff_Hacked()
 			PrintDBGGarble();
 		}
 	}
+	return ((int(*)(void))0xD14770)();
+}
+#endif
+#if !RELOADED
+static bool modpackread = 0;
+#endif
+int RenderLoopStuff_Hacked()
+{
+	
+#if !JLITE
 
 	Game::InLoop::FrameChecks();
 
@@ -1437,6 +1441,8 @@ void PrintDBGGarble() {
 	__asm pushad
 	Render2D::InGamePrint(buffer, 100, Render2D::processtextwidth(0), 6);
 	__asm popad
+
+	Debug::PrintMemoryUsage(100 + 20);
 }
 
 std::string wstring_to_string(const std::wstring& wstr) {
@@ -1512,8 +1518,11 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 	{
 		Logger::TypedLog(CHN_DEBUG, "Patching GameRenderLoop...\n");
 		patchCall((void*)0x0052050C, (void*)RenderLoopStuff_Hacked); // Patch stuff into Render loop, we could do game loop but this was easier to find, and works i guess.
+#if !JLITE
+		patchCall((void*)0x00521A69, (void*)early_render_hook);
+#endif
 	}
-
+	
 	// Instead of data being in %LOCALAPPDATA%\\THQ\\Saints Row 2, move it to current direcetory\\userdata
 	if (GameConfig::GetValue("Misc", "portable", 0) && PathAppendA(NameBuffer, "userdata")) {
 		CreateDirectoryA(NameBuffer, NULL);
