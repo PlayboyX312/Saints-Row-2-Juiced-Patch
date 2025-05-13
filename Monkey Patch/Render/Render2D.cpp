@@ -387,8 +387,9 @@ char SR2Ultrawide_HUDScale() {
 
 	float aspectRatio = currentX / currentY;
 	Render3D::AspectRatioFix(true);
-
 	if (aspectRatio >= 1.77) {
+		// Fix reflections being broken at ultrawide.
+		*(float*)(0x0E86388) = aspectRatio;
 #if !JLITE
 		if (GameConfig::GetValue("Graphics", "IVRadarScaling", 0)) {
 			IVRadarScaling = true;
