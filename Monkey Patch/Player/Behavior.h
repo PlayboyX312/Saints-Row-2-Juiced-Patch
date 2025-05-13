@@ -10,6 +10,7 @@ namespace Behavior
 	extern CPatch CBetterDBC;
 	extern CPatch CBetterHBC;
 	extern CPatch CAnimBlend;
+	extern CPatch CSR1CrouchCam;
 	extern CMultiPatch CMPatches_DisableLockedClimbCam;
 	extern CMultiPatch CMPatches_SR1QuickSwitch;
 	extern CMultiPatch CMPatches_SR1Reloading;

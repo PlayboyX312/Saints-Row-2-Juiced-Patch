@@ -48,6 +48,7 @@ namespace InGameConfig {
     {"DisableTutorials",nullptr,&Game::CDisable_Tutorials,"Gameplay","DisableTutorials"},
     {"AllowWeaponSwitchInAllCases",nullptr,&Behavior::CAllowWeaponSwitchInAllCases_KBM,"Gameplay","AllowWeaponSwitchInAllCases"}
 #endif
+    ,{"SR1CrouchCam",nullptr,&Behavior::CSR1CrouchCam,"Gameplay","SR1CrouchCam"}
     };
     void AddOptions() {
         InGameConfig::RegisterSlider("SleepHack", "Sleep Hack", { "CONTROL_NO","QUALITY_LOW_TEXT","QUALITY_MEDIUM_TEXT","QUALITY_HIGH_TEXT" });
@@ -88,6 +89,7 @@ namespace InGameConfig {
         InGameConfig::RegisterBoolSlider("BetterHandbrakeCam", "Better Handbrake Cam", InGameConfig::MenuType::CONTROLS);
         InGameConfig::RegisterBoolSlider("SR1Reloading", "SR1Reloading", InGameConfig::MenuType::CONTROLS);
         InGameConfig::RegisterBoolSlider("SR1QuickSwitch", "SR1QuickSwitch", InGameConfig::MenuType::CONTROLS);
+        InGameConfig::RegisterBoolSlider("SR1CrouchCam", "SR1CrouchCam", InGameConfig::MenuType::CONTROLS);
         InGameConfig::RegisterBoolSlider("AllowWeaponSwitchInAllCases", "AllowWeaponSwitchInAllCases", InGameConfig::MenuType::CONTROLS);
         //InGameConfig::RegisterSlider("BetterAO", "Better Ambient Occlusion", {"FUCK OFF ", "fucked off"}, 50);
 #endif

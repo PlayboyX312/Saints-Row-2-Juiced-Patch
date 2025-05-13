@@ -82,6 +82,7 @@ CMultiPatch CMPatches_SR1Reloading = {
 				mp.AddPatchNop(0x00797003, 5);
 			},
 	};
+	CPatch CSR1CrouchCam = CPatch::PatchNop(0x0049B718, 2);
 	void SR1QuickSwitch()
 	{
 		// Fixes broken weapon wheel implementation and brings back quick switching.
@@ -306,7 +307,10 @@ CMultiPatch CMPatches_SR1Reloading = {
 		{
 			SR1Reloading();
 		}
-
+		if (GameConfig::GetValue("Gameplay", "SR1CrouchCam",1)) {
+			Logger::TypedLog(CHN_DEBUG, "Patching SR1CrouchCam...\n");
+			CSR1CrouchCam.Apply();
+		}
 		if (GameConfig::GetValue("Gameplay", "SR1QuickSwitch", 1))
 		{
 			SR1QuickSwitch();
