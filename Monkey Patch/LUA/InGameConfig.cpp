@@ -55,6 +55,7 @@ namespace InGameConfig {
         InGameConfig::RegisterSlider("SleepHack", "Sleep Hack", { "CONTROL_NO","QUALITY_LOW_TEXT","QUALITY_MEDIUM_TEXT","QUALITY_HIGH_TEXT" });
         InGameConfig::RegisterBoolSlider("UncapFPS", "UncapFPS");
         InGameConfig::RegisterBoolSlider("X360Gamma", "Xbox 360 Gamma");
+        InGameConfig::RegisterBoolSlider("DynamicRenderDistance", "DynamicRenderDistance");
         InGameConfig::RegisterSlider("ShaderOverride", "ShaderOverride", { "CONTROL_NO","Force Highest LOD","Increased distance" });
 #if !JLITE
         InGameConfig::RegisterBoolSlider("VFXPlus", "VanillaFXPlus");

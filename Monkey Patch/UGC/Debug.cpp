@@ -10,6 +10,8 @@
 #include "Debug.h"
 #include "../Render/Render2D.h"
 
+import OptionsManager;
+
 namespace Debug
 {
 	bool addBindToggles = 0;
@@ -38,7 +40,7 @@ namespace Debug
 			Logger::TypedLog(CHN_DLL, "Create loose file cache failed.\n");
 	}
 	constexpr auto MEGABYTE = 1048576.0;
-	bool UseDynamicRenderDistance = true;
+	int UseDynamicRenderDistance = false;
 	float MAX_RENDER = 5.f;
 	float TRANSITION_SPEED = 2.f;
 	int SIZE_MIN = 200;
@@ -111,6 +113,7 @@ namespace Debug
 		}
 	}
 	void Init() {
+		OptionsManager::registerOption("Graphics", "DynamicRenderDistance", (int*)&UseDynamicRenderDistance, 0);
 #if !JLITE
 		if (GameConfig::GetValue("Gameplay", "SkipIntros", 0)) // can't stop Tervel won't stop Tervel
 		{

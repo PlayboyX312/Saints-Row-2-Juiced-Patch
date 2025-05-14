@@ -6,7 +6,7 @@ namespace Debug {
 	extern bool addBindToggles;
 	extern bool LoadLastSave;
 	extern bool fixFrametime;
-	extern bool UseDynamicRenderDistance;
+	extern int UseDynamicRenderDistance;
 	extern float MAX_RENDER;
 	extern float TRANSITION_SPEED;
 	extern int SIZE_MIN;

@@ -346,11 +346,11 @@ namespace BlingMenuInstall
        //BlingMenuAddBool("Juiced Debug", "simulate a add_to_entry crash(only works when below handler is hooked)", &Render3D::crash, NULL);
        BlingMenuAddFuncCustom("Juiced Debug", "Hook a (eh) exception-ish handler to stop add_to_entry crash", NULL, &BM_ClippyTextureExceptionHandle, NULL);
        BlingMenuAddFuncCustom("Juiced Debug", "Hook / make add_to_entry(bitmap_entry *be,peg_entry *pe) to just use pe as both args", NULL, &BM_TervelCrashWorkAround, NULL);
-       /*BlingMenuAddBool("Juiced Debug", "UseDynamicRenderDistance", &Debug::UseDynamicRenderDistance, NULL);
+       BlingMenuAddBool("Juiced Debug", "UseDynamicRenderDistance", (bool*)&Debug::UseDynamicRenderDistance, NULL);
        BlingMenuAddFloat("Juiced Debug", "MAX_RENDER", &Debug::MAX_RENDER, NULL, 0.1f, 1.f, 50.f);
        BlingMenuAddFloat("Juiced Debug", "TRANSITION_SPEED", &Debug::TRANSITION_SPEED, NULL, 0.1f, 1.f, 50.f);
        BlingMenuAddInt("Juiced Debug", "SIZE_MIN", &Debug::SIZE_MIN, NULL,5,1,1536);
-       BlingMenuAddInt("Juiced Debug", "MAX", &Debug::MAX, NULL, 5, 1, 1536);*/
+       BlingMenuAddInt("Juiced Debug", "MAX", &Debug::MAX, NULL, 5, 1, 1536);
        BlingMenuAddInt("Juiced Debug", "ShaderOverride",&Render3D::OVERRIDE_SHADER_LOD, NULL, 1, 0, 2);
        BlingMenuAddInt("Juiced Debug", "SHADER_LOD", (int*)&Render3D::SHADER_LOD, NULL, 1, -2, 10);
        BlingMenuAddFloat("Juiced Debug", "SHADER_DISTANCE_SQUARED_MULT", &Render3D::SHADER_DISTANCE_SQUARED_MULT, NULL, 0.1f, 1.f, 250.f);
