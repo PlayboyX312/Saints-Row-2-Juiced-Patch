@@ -732,6 +732,9 @@ namespace Render3D
 		//printf("num_lods %d \n", num_lods);
 
 	}*/
+
+	volatile float VehicleDespawnDistance = 140.f;
+	CPatch CIncreaseVehicleDespawnDistance = CPatch::SafeWrite32(0x0093BDF9,(uint32_t)&VehicleDespawnDistance);
 	void Init()
 	{
 		OptionsManager::registerOption("Graphics", "ShaderOverride", &OVERRIDE_SHADER_LOD,1);
@@ -750,8 +753,8 @@ namespace Render3D
 			add_to_entry_test.enable();
 		}
 
-		if (GameConfig::GetValue("Gameplay", "VehicleFadeFix", 1)) {
-			patchFloat((void*)0x0093BDF9, (float)140.0);
+		if (GameConfig::GetValue("Gameplay", "IncreaseVehicleFadeDistance", 1)) {
+			CIncreaseVehicleDespawnDistance.Apply();
 		}
 
 #if !JLITE

@@ -49,6 +49,12 @@ public:
     static CPatch WriteRelJle(std::uintptr_t jumpSrc, std::uintptr_t jumpTgt);
 
     static CPatch PatchNop(std::uintptr_t addr, size_t size);
+    template <typename T>
+    static CPatch SafeWrite(std::uintptr_t addr, const T& data) {
+        const uint8_t* bytePtr = reinterpret_cast<const uint8_t*>(&data);
+        return CPatch(addr, std::vector<uint8_t>(bytePtr, bytePtr + sizeof(T)));
+    }
+
 
 private:
     std::uintptr_t         m_address;

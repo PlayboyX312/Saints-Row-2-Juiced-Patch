@@ -26,7 +26,6 @@ namespace InGameConfig {
     { "Graphics", "RemoveVignette" },
 #endif
     { "Audio", "UseFixedXACT" },
-    { "Gameplay", "VehicleFadeFix" },
     };
     static PatchEntry patch_registry[] = {
 #if !JLITE
@@ -50,13 +49,15 @@ namespace InGameConfig {
     {"DisableTutorials",nullptr,&Game::CDisable_Tutorials,"Gameplay","DisableTutorials"},
     {"AllowWeaponSwitchInAllCases",nullptr,&Behavior::CAllowWeaponSwitchInAllCases_KBM,"Gameplay","AllowWeaponSwitchInAllCases"}
 #endif
-    ,{"SR1CrouchCam",nullptr,&Behavior::CSR1CrouchCam,"Gameplay","SR1CrouchCam"}
+    ,{"SR1CrouchCam",nullptr,&Behavior::CSR1CrouchCam,"Gameplay","SR1CrouchCam"},
+     { "IncreaseVehicleFadeDistance",nullptr ,&Render3D::CIncreaseVehicleDespawnDistance,"Gameplay","IncreaseVehicleFadeDistance"},
     };
     void AddOptions() {
         InGameConfig::RegisterSlider("SleepHack", "Sleep Hack", { "CONTROL_NO","QUALITY_LOW_TEXT","QUALITY_MEDIUM_TEXT","QUALITY_HIGH_TEXT" });
         InGameConfig::RegisterBoolSlider("UncapFPS", "UncapFPS");
         InGameConfig::RegisterBoolSlider("X360Gamma", "Xbox 360 Gamma");
         InGameConfig::RegisterBoolSlider("DynamicRenderDistance", "DynamicRenderDistance");
+        InGameConfig::RegisterBoolSlider("IncreaseVehicleFadeDistance", "IncreaseVehicleFadeDistance");
         InGameConfig::RegisterSlider("ShaderOverride", "ShaderOverride", { "CONTROL_NO","Force Highest LOD","Increased distance" });
 #if !JLITE
         InGameConfig::RegisterBoolSlider("VFXPlus", "VanillaFXPlus");
