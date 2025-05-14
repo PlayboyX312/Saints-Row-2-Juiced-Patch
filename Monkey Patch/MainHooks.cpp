@@ -1240,6 +1240,7 @@ typedef int __cdecl RenderLoopStuff_Native();
 RenderLoopStuff_Native* UpdateRenderLoopStuff = (RenderLoopStuff_Native*)(0x00C063D0); //0x00BD4A80
 #if !JLITE
 int early_render_hook() {
+	Debug::DynamicRenderDistance();
 	if (useJuicedOSD) {
 		PrintFrametime();
 		PrintGameFrametime();

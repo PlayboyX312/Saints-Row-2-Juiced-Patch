@@ -38,7 +38,45 @@ namespace Debug
 			Logger::TypedLog(CHN_DLL, "Create loose file cache failed.\n");
 	}
 	constexpr auto MEGABYTE = 1048576.0;
+	bool UseDynamicRenderDistance = true;
+	float MAX_RENDER = 5.f;
+	float TRANSITION_SPEED = 2.f;
+	int SIZE_MIN = 200;
+	int MAX = 1400;
+	void DynamicRenderDistance() {
+		int size = *(int*)0x02784990;
+		float* render_distance = (float*)0x00E996B4;
+		float* frametime = (float*)0xE8437C;
 
+		if (UseDynamicRenderDistance) {
+			// Only make changes when size is at least 1
+			if (size < 1) {
+				return;
+			}
+			const float MIN_RENDER = 1.0f;
+
+			int clamped_size = size;
+			if (clamped_size < SIZE_MIN) clamped_size = SIZE_MIN;
+			if (clamped_size > MAX) clamped_size = MAX;
+
+			float normalized = 1.0f - (float)(clamped_size - SIZE_MIN) / (float)(MAX - SIZE_MIN);
+			float target_render = MIN_RENDER + normalized * (MAX_RENDER - MIN_RENDER);
+			float current_render = *render_distance;
+			float delta = (*frametime) * TRANSITION_SPEED;
+
+			if (target_render > current_render) {
+				// Increasing render distance
+				*render_distance = current_render + fminf(delta, target_render - current_render);
+			}
+			else {
+				// Decreasing render distance
+				*render_distance = current_render - fminf(delta, current_render - target_render);
+			}
+		}
+		else {
+			*render_distance = 1.0f;
+		}
+	}
 	void PrintMemoryUsage(int y) {
 		char buffer[200];
 		MEMORYSTATUSEX status;
@@ -64,6 +102,11 @@ namespace Debug
 
 			__asm pushad
 			Render2D::InGamePrint(buffer, y + 20, Render2D::processtextwidth(0), 6);
+			__asm popad
+
+			snprintf(buffer, sizeof(buffer), "render distance %2.4f render size %d", *(float*)0x00E996B4,*(int*)0x02784990);
+			__asm pushad
+			Render2D::InGamePrint(buffer, y + 40, Render2D::processtextwidth(0), 6);
 			__asm popad
 		}
 	}
