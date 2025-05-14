@@ -16,7 +16,7 @@
 #include "DFEngine.h"
 #include "Mem/Memory.h"
 #if RELOADED
-#include "UGC/Reloaded.h"
+#include "UGC/thaRow/Reloaded.h"
 #endif
 #include "UGC/InternalPrint.h"
 
