@@ -184,6 +184,11 @@ namespace InGameConfig {
                 }
                 GameConfig::SetValue(require_restart->appname, require_restart->keyname, *value);
             }
+            if (!write) {
+                *value = ClampSliderValue(var, *value);
+            }
+            if (require_restart)
+                return;
         }
 
         if (write) {
