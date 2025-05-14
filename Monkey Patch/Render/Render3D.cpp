@@ -749,7 +749,11 @@ namespace Render3D
 		if (GameConfig::GetValue("Debug", "ClippyTextureCrashExceptionHandle", 1)) {
 			add_to_entry_test.enable();
 		}
-		
+
+		if (GameConfig::GetValue("Gameplay", "VehicleFadeFix", 1)) {
+			patchFloat((void*)0x0093BDF9, (float)140.0);
+		}
+
 #if !JLITE
 		if (GameConfig::GetValue("Graphics", "RemoveVignette", 0))
 		{

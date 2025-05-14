@@ -26,6 +26,7 @@ namespace InGameConfig {
     { "Graphics", "RemoveVignette" },
 #endif
     { "Audio", "UseFixedXACT" },
+    { "Gameplay", "VehicleFadeFix" },
     };
     static PatchEntry patch_registry[] = {
 #if !JLITE
