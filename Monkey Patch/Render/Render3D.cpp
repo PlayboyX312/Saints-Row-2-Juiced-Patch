@@ -21,8 +21,15 @@
 
 #include "Render2D.h"
 #include "../Game/CrashFixes.h"
+#include "../LUA/InGameConfig.h"
+
+import OptionsManager; 
+
 namespace Render3D
 {
+	int SHADER_LOD = 0;
+	int OVERRIDE_SHADER_LOD = 1;
+	float SHADER_DISTANCE_SQUARED_MULT = 1.6f;
 	const char FPSCam[] = "camera_fpss.xtbl";
 	bool useFPSCam = 0;
 	bool VFXP_fixFog = 0;
@@ -700,9 +707,38 @@ namespace Render3D
 		if(pDevice)
 		pDevice->SetPixelShaderConstantF(187, &arr4[0], 1);
 	}
+	void SETLOD(SafetyHookContext& ctx) {
+		if (OVERRIDE_SHADER_LOD == 1) {
+			ctx.eax = SHADER_LOD;
+			ctx.eip = 0x00D19D24;
+		}
+		else if (OVERRIDE_SHADER_LOD == 2) {
+			float* distance_squared = (float*)(ctx.esp + 0xC);
+			*distance_squared /= SHADER_DISTANCE_SQUARED_MULT;
+		}
+	}
+/*	void LODtest(SafetyHookContext& ctx) {
+		uintptr_t& LOD = ctx.esi;
+		if(OVERRIDE_SHADER_LOD == 2)
+		LOD = SHADER_LOD;
+		BYTE num_lods = *(BYTE*)(ctx.ecx + 9);
+
+
+		if (num_lods - 1 >= LOD)
+			LOD = LOD;
+		else
+			LOD = num_lods - 1;
+		ctx.eip = 0x00D1A891;
+		//printf("num_lods %d \n", num_lods);
+
+	}*/
 	void Init()
 	{
-		//static auto unload_tex = safetyhook::create_mid(0x00BD865D, &possible_unload_entry_func);
+		OptionsManager::registerOption("Graphics", "ShaderOverride", &OVERRIDE_SHADER_LOD,1);
+		static auto GiveLOD = safetyhook::create_mid(0x00D19D1B,&SETLOD);
+		//static auto RenderLOD1 = safetyhook::create_mid(0x00D0681D, &LODtest);
+		//static auto RenderLOD2 = safetyhook::create_mid(0x00D0582C, &LODtest);
+		//static auto gr_effect_set = safetyhook::create_mid(0x00D1A884, &LODtest);
 		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
 			ShaderOptions |= SHADER_X360_GAMMA;
 		}

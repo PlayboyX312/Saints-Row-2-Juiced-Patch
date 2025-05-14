@@ -9,6 +9,7 @@
 #include "../Game/Game.h"
 #include <iomanip>
 #include <sstream>
+import OptionsManager; 
 int AddMessage(const wchar_t* Title, const wchar_t* Desc);
 int AddMessageCustomized(const wchar_t* Title, const wchar_t* Desc, const wchar_t* Options[], int OptionCount);
 namespace InGameConfig {
@@ -54,6 +55,7 @@ namespace InGameConfig {
         InGameConfig::RegisterSlider("SleepHack", "Sleep Hack", { "CONTROL_NO","QUALITY_LOW_TEXT","QUALITY_MEDIUM_TEXT","QUALITY_HIGH_TEXT" });
         InGameConfig::RegisterBoolSlider("UncapFPS", "UncapFPS");
         InGameConfig::RegisterBoolSlider("X360Gamma", "Xbox 360 Gamma");
+        InGameConfig::RegisterSlider("ShaderOverride", "ShaderOverride", { "CONTROL_NO","Force Highest LOD","Increased distance" });
 #if !JLITE
         InGameConfig::RegisterBoolSlider("VFXPlus", "VanillaFXPlus");
 #endif
@@ -181,6 +183,14 @@ namespace InGameConfig {
                 GameConfig::SetValue(require_restart->appname, require_restart->keyname, *value);
             }
         }
+
+        if (write) {
+            OptionsManager::setOptionValue(var, *value);
+        }
+        else if (!write) {
+            *value = OptionsManager::getOptionValue(var);
+        }
+
         if (!write) {
             *value = ClampSliderValue(var, *value);
         }

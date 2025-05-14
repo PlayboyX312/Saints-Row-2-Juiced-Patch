@@ -33,4 +33,9 @@ namespace Render3D
     extern int ShaderOptions;
     extern void ChangeShaderOptions();
     extern void VFXBrightnesstoggle();
+
+    extern int OVERRIDE_SHADER_LOD;
+    extern int SHADER_LOD;
+    extern float SHADER_DISTANCE_SQUARED_MULT;
+
 }
