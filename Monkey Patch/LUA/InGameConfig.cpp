@@ -191,14 +191,14 @@ namespace InGameConfig {
             if (require_restart)
                 return;
         }
-
-        if (write) {
-            OptionsManager::setOptionValue(var, *value);
+        if (OptionsManager::getOption(var) != nullptr) {
+            if (write) {
+                OptionsManager::setOptionValue(var, *value);
+            }
+            else if (!write) {
+                *value = OptionsManager::getOptionValue(var);
+            }
         }
-        else if (!write) {
-            *value = OptionsManager::getOptionValue(var);
-        }
-
         if (!write) {
             *value = ClampSliderValue(var, *value);
         }
