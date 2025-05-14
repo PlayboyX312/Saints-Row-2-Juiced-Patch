@@ -152,12 +152,20 @@
     <ClCompile Include="BlingMenuInstall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ext\Zydis.c">
+    <ClCompile Include="Ext\safetyhook\safetyhook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ext\safetyhook.cpp">
+    <ClCompile Include="Ext\safetyhook\Zydis.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game\CrashFixes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\timestamp.ixx" />
+    <ClCompile Include="LUA\InGameConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsManager.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFEngine.h">
@@ -292,13 +300,19 @@
     <ClInclude Include="InternalNameLists.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ext\safetyhook.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ext\Zydis.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="exception.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ext\safetyhook\safetyhook.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ext\safetyhook\Zydis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\CrashFixes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LUA\InGameConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

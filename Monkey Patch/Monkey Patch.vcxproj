@@ -267,6 +267,7 @@ copy /Y "$(TargetDir)DFEngine.dll" "E:\Steam\steamapps\common\Saints Row 2\DFEng
     <ClCompile Include="Game\CrashFixes.cpp" />
     <ClCompile Include="Game\timestamp.ixx" />
     <ClCompile Include="LUA\InGameConfig.cpp" />
+    <ClCompile Include="OptionsManager.ixx" />
     <ClCompile Include="Patcher\CMultiPatch.cpp" />
     <ClCompile Include="Patcher\CPatch.cpp" />
     <ClCompile Include="Ext\Hooking.Patterns.cpp" />
