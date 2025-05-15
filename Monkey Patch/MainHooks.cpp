@@ -1045,6 +1045,7 @@ void Noclip() {
 #endif
 typedef void(*LoadLevelT)();
 LoadLevelT LoadLevel = (LoadLevelT)0x73C000;
+char LUA_Key = VK_INSERT;
 #if !RELOADED
 void LuaExecutor() {
 	BYTE CurrentGamemode = *(BYTE*)0x00E8B210; 
@@ -1061,7 +1062,7 @@ void LuaExecutor() {
 
 	if (AreWeLoaded == 0x1 && !LobbyCheck == 0x0 && CurrentGamemode == 0xFF) { // If SP/CO-OP allow executor... hopefully.
 
-		if (IsKeyPressed(GameConfig::GetValue("Debug", "ExecutorBind", VK_INSERT), false)) {
+		if (IsKeyPressed(LUA_Key, false)) {
 			if (hasCheatMessageBeenSeen2 == 1 || Debug::CMPatches_DisableCheatFlag.IsApplied()) {
 				if (*IsOpen && OpenedByExecutor) {
 					*(BYTE*)(0x2349849) = 1;
@@ -1478,6 +1479,7 @@ bool FileExists(const char* fileName) {
 }
 int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+	LUA_Key = GameConfig::GetValue("Debug", "ExecutorBind", VK_INSERT);
 	InGameConfig::AddOptions();
 	General::TopWinMain();
 	CrashFixes::Init();
