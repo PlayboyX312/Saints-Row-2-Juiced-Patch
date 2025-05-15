@@ -719,7 +719,7 @@ int __declspec(naked) AddMessageCustomized(const wchar_t* Title, const wchar_t* 
 
 bool hasCheatMessageBeenSeen = 0;
 
-typedef int(__cdecl* ShowPauseDialogT)(bool a1, bool a2, bool a3, bool a4);
+typedef void(__cdecl* ShowPauseDialogT)(bool a1, bool a2, bool a3, bool a4);
 ShowPauseDialogT ShowPauseDialog = (ShowPauseDialogT)0x7540D0;
 
 typedef void(*RemovePauseDialogT)();
@@ -858,8 +858,7 @@ void cus_FrameToggles() {
 
 	if (IsKeyPressed(VK_TAB, false) && InCutscene && !isCoop()) {
 		CutscenePaused = !CutscenePaused;
-		CutscenePaused ? ShowPauseDialog(true, false, false, false) : 1;
-		RemovePauseDialog();
+		CutscenePaused ? ShowPauseDialog(true, false, false, false) : RemovePauseDialog();
 	}
 
 	if (IsKeyPressed(VK_F5, false)) { // F5
