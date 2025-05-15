@@ -451,6 +451,17 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 						customCode += "\n";
 						customCode += buffer;
 					}
+					else if (cached_str == "mp_hud") {
+						snprintf(buffer, sizeof(buffer), lua_command, "perk_grp", cached_str.c_str(), "scale",
+							Render2D::RadarScale, Render2D::RadarScale);
+						customCode += "\n";
+						customCode += buffer;
+
+						snprintf(buffer, sizeof(buffer), lua_command, "perk_grp", cached_str.c_str(), "anchor",
+							50.f, 710.f);
+						customCode += "\n";
+						customCode += buffer;
+					}
 					if (!customCode.empty()) {
 						finalContent += customCode;
 						modified = true;
