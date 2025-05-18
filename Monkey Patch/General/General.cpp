@@ -864,6 +864,8 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		Render3D::ChangeShaderOptions();
 	}
 	void TopWinMain() {
+		if(GameConfig::GetValue("Debug","AllowMultipleSR2Windows",1)) // in case this fucks up or something
+		SafeWrite8(0x00BFA6B6, 0xEB);
 		static SafetyHookMid D3D9Create = safetyhook::create_mid(0x00D1F7B0, &CreateD3D9DeviceFunction);
 #if !JLITE
 		WriteRelJump(0x007F46EB, (UInt32)&AddStrings); // add custom string loading - the game automatically appends the string so it will load the right string file based on your language, eg - juiced_us.le_strings
