@@ -41,6 +41,7 @@ namespace Debug
 	}
 	constexpr auto MEGABYTE = 1048576.0;
 	int UseDynamicRenderDistance = false;
+	bool DynamicRenderSetThisFrame = false;
 	float MAX_RENDER = 5.f;
 	float TRANSITION_SPEED = 2.f;
 	int SIZE_MIN = 200;
@@ -74,9 +75,13 @@ namespace Debug
 				// Decreasing render distance
 				*render_distance = current_render - fminf(delta, current_render - target_render);
 			}
+			DynamicRenderSetThisFrame = true;
 		}
 		else {
-			*render_distance = 1.0f;
+			if (DynamicRenderSetThisFrame) {
+				*render_distance = 1.0f;
+				DynamicRenderSetThisFrame = false;
+			}
 		}
 	}
 	void PrintMemoryUsage(int y) {
