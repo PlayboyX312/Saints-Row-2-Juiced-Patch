@@ -47,9 +47,9 @@ namespace InGameConfig {
     {"UseWeaponAfterEmpty",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","Keep Weapon After Empty"},
     {"TauntCancelling",&Behavior::CMPatches_UseWeaponAfterEmpty,nullptr,"Gameplay","TauntCancelling"},
     {"DisableTutorials",nullptr,&Game::CDisable_Tutorials,"Gameplay","DisableTutorials"},
-    {"AllowWeaponSwitchInAllCases",nullptr,&Behavior::CAllowWeaponSwitchInAllCases_KBM,"Gameplay","AllowWeaponSwitchInAllCases"}
+    {"AllowWeaponSwitchInAllCases",nullptr,&Behavior::CAllowWeaponSwitchInAllCases_KBM,"Gameplay","AllowWeaponSwitchInAllCases"},
 #endif
-    ,{"SR1CrouchCam",nullptr,&Behavior::CSR1CrouchCam,"Gameplay","SR1CrouchCam"},
+    {"SR1CrouchCam",nullptr,&Behavior::CSR1CrouchCam,"Gameplay","SR1CrouchCam"},
      { "IncreaseVehicleFadeDistance",nullptr ,&Render3D::CIncreaseVehicleDespawnDistance,"Gameplay","IncreaseVehicleFadeDistance"},
     };
     void AddOptions() {
