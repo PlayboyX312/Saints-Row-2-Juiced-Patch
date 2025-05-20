@@ -15,6 +15,7 @@
 #include "UGC/Debug.h"
 #include "General/General.h"
 #include "MainHooks.h"
+#include "Math/Math.h"
 const char* ERROR_MESSAGE = "ERROR";
 // MainHooks.cpp
 void ToggleNoclip();
@@ -211,6 +212,7 @@ namespace BlingMenuInstall
         BM_MakeCPatchFunction(SR1Reloading, CMPatches_SR1Reloading, Behavior)
         BM_MakeCPatchFunction(SR1QuickSwitch, CMPatches_SR1QuickSwitch, Behavior)
         BM_MakeCPatchFunctionSaveConfig(DisableCutSceneBlackBars, CRemoveBlackBars, Render3D, "Graphics", "RemoveBlackBars")
+        BM_MakeSafetyHookFunction(Math_multiplication_NAN_fix, matrix_operator_multiplication_midhook,Math::Fixes)
 
     void BM_restoreHavok() {
         if(!Debug::fixFrametime)
@@ -354,6 +356,7 @@ namespace BlingMenuInstall
        BlingMenuAddInt("Juiced Debug", "ShaderOverride",&Render3D::OVERRIDE_SHADER_LOD, NULL, 1, 0, 2);
        BlingMenuAddInt("Juiced Debug", "SHADER_LOD", (int*)&Render3D::SHADER_LOD, NULL, 1, -2, 10);
        BlingMenuAddFloat("Juiced Debug", "SHADER_DISTANCE_SQUARED_MULT", &Render3D::SHADER_DISTANCE_SQUARED_MULT, NULL, 0.1f, 1.f, 250.f);
+       BlingMenuAddFuncCustom("Juiced Debug", "Math_multiplication_NAN_fix", NULL, &BM_Math_multiplication_NAN_fix, NULL);
        }
     }
 }

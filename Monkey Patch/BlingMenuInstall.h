@@ -40,4 +40,23 @@ const char* BM_##funcName(void* userdata, int action) { \
     } \
     return ERROR_MESSAGE; \
 }
+
+#define BM_MakeSafetyHookFunction(funcName, safetyhookVar, nameSpace) \
+const char* BM_##funcName(void* userdata, int action) { \
+    using namespace nameSpace; \
+    if (action != -1) { \
+        if (safetyhookVar.enabled()) \
+            safetyhookVar.disable(); \
+        else \
+            safetyhookVar.enable(); \
+    } \
+    switch (safetyhookVar.enabled()) { \
+    case false: return "OFF"; \
+        break; \
+    case true: return "ON "; \
+        break; \
+    } \
+    return ERROR_MESSAGE; \
+}
+
 #endif

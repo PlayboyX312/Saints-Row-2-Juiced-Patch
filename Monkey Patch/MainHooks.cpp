@@ -1482,7 +1482,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 	InGameConfig::AddOptions();
 	General::TopWinMain();
 	CrashFixes::Init();
-
+	Math::Init();
 	char NameBuffer[260];
 	PIMAGE_DOS_HEADER dos_header;
 	PIMAGE_NT_HEADERS nt_header;

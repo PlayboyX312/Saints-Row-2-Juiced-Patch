@@ -6,45 +6,71 @@
 #include "../Patcher/patch.h"
 #include "../GameConfig.h"
 #include "Math.h"
-/*
 namespace Math
 {
-	Velocity CalculateVelocity(uintptr_t CoordsPointer) {
-		if (!CoordsPointer)
-			return { 0.f, 0.f, 0.f, 0.f };
+	void matrix_multiply_safe(matrix* result, const matrix* lhs, const matrix* rhs) {
+		auto safe_dot = [](float a1, float a2, float a3) -> float {
+			return (std::isnan(a1) || std::isnan(a2) || std::isnan(a3)) ? 0.0f : a1 + a2 + a3;
+			};
 
-		static float previousX = 0.0f;
-		static float previousY = 0.0f;
-		static float previousZ = 0.0f;
-		static auto lastTime = std::chrono::high_resolution_clock::now();
+		auto safe_mul = [](float a, float b) -> float {
+			return (std::isnan(a) || std::isnan(b)) ? 0.0f : a * b;
+			};
 
-		// read current position, maybe we should just pass in x,y,z so it can be applied to anything rather than what was player pointer?
+		result->rvec.x = safe_dot(safe_mul(lhs->rvec.x, rhs->rvec.x),
+			safe_mul(lhs->rvec.y, rhs->uvec.x),
+			safe_mul(lhs->rvec.z, rhs->fvec.x));
 
-		float* x = (float*)(*(int*)CoordsPointer + 0x30);
-		float* y = (float*)(*(int*)CoordsPointer + 0x34);
-		float* z = (float*)(*(int*)CoordsPointer + 0x38);
+		result->rvec.y = safe_dot(safe_mul(lhs->rvec.x, rhs->rvec.y),
+			safe_mul(lhs->rvec.y, rhs->uvec.y),
+			safe_mul(lhs->rvec.z, rhs->fvec.y));
 
-		// Maybe should take game's deltatime as an arg instead.
-		auto currentTime = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<float> elapsedTime = currentTime - lastTime;
+		result->rvec.z = safe_dot(safe_mul(lhs->rvec.x, rhs->rvec.z),
+			safe_mul(lhs->rvec.y, rhs->uvec.z),
+			safe_mul(lhs->rvec.z, rhs->fvec.z));
 
+		result->uvec.x = safe_dot(safe_mul(lhs->uvec.x, rhs->rvec.x),
+			safe_mul(lhs->uvec.y, rhs->uvec.x),
+			safe_mul(lhs->uvec.z, rhs->fvec.x));
 
-		float deltaTime = elapsedTime.count();
-		if (deltaTime <= 0.0f) deltaTime = 1.0f; // dont divide by 0 lol
+		result->uvec.y = safe_dot(safe_mul(lhs->uvec.x, rhs->rvec.y),
+			safe_mul(lhs->uvec.y, rhs->uvec.y),
+			safe_mul(lhs->uvec.z, rhs->fvec.y));
 
-		float vx = (*x - previousX) / deltaTime;
-		float vy = (*y - previousY) / deltaTime;
-		float vz = (*z - previousZ) / deltaTime;
+		result->uvec.z = safe_dot(safe_mul(lhs->uvec.x, rhs->rvec.z),
+			safe_mul(lhs->uvec.y, rhs->uvec.z),
+			safe_mul(lhs->uvec.z, rhs->fvec.z));
 
+		result->fvec.x = safe_dot(safe_mul(lhs->fvec.x, rhs->rvec.x),
+			safe_mul(lhs->fvec.y, rhs->uvec.x),
+			safe_mul(lhs->fvec.z, rhs->fvec.x));
 
-		float magnitude = std::sqrt(vx * vx + vy * vy + vz * vz);
+		result->fvec.y = safe_dot(safe_mul(lhs->fvec.x, rhs->rvec.y),
+			safe_mul(lhs->fvec.y, rhs->uvec.y),
+			safe_mul(lhs->fvec.z, rhs->fvec.y));
 
-		previousX = *x;
-		previousY = *y;
-		previousZ = *z;
-		lastTime = currentTime;
+		result->fvec.z = safe_dot(safe_mul(lhs->fvec.x, rhs->rvec.z),
+			safe_mul(lhs->fvec.y, rhs->uvec.z),
+			safe_mul(lhs->fvec.z, rhs->fvec.z));
+	}
 
-		return { vx, vy, vz, magnitude };
+	namespace Fixes {
+		SafetyHookMid matrix_operator_multiplication_midhook{};
+		void Init() {
+			// Idea to fix issue #14 IK/Foot issue getting messed up, the actual call cause is at 0x0x00CE9600, but rn im doing this globally as it makes the most sense - Clippy95
+			matrix_operator_multiplication_midhook = safetyhook::create_mid(0x00BE2F57, [](SafetyHookContext& ctx) {
+				matrix* result = (matrix*)ctx.eax;
+				matrix* thisa = (matrix*)ctx.edx;
+				const matrix* m = (matrix*)ctx.ecx;
+
+				matrix_multiply_safe(result, thisa, m);
+
+				ctx.eip = 0x00BE313F;
+				});
+		}
+	}
+	void Init() {
+		if(GameConfig::GetValue("Debug","MathFixes",1))
+		Math::Fixes::Init();
 	}
 }
-*/
