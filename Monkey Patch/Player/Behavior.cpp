@@ -182,7 +182,7 @@ CMultiPatch CMPatches_SR1Reloading = {
 		CBetterDBC.Apply();
 
 	}
-	CPatch CBetterHBC = CPatch::SafeWrite32(0x004992a2 + 2, reinterpret_cast<uint32_t>(&garbagedata));
+	CPatch CBetterHBC = CPatch::SafeWrite8(0xE99886, 0);
 	void BetterHBC()
 	{
 		Logger::TypedLog(CHN_DEBUG, "Patching Better Handbrake Cam...\n");
