@@ -174,53 +174,6 @@ namespace Input {
 
 	typedef int __cdecl PlayerSpin(float a1);
 	PlayerSpin* UpdatePlayerSpin = (PlayerSpin*)(0x0073FB20); //0x00BD4A80
-
-	int NativeMouse_clothing_store(float a1) {
-		if (UtilsGlobal::isPaused)
-			return UpdatePlayerSpin(a1);
-		// Same implementation as Saints Row 1 Mousehook 
-		// expect for vehicle spinning as it's already implemented.
-
-		// Only current issue as of now is that the tickrate of the function we're replacing is quite low so it doesn't detect small mouse movements, 
-		// not an issue of the mouse struct as if we move this to the main game loop it's actually quite smooth! also it's pretty slow that it can't even detect scroll wheel :(
-
-
-		int8_t& busy = *(int8_t*)(0x00E8D57F);
-		UtilsGlobal::mouse mouse;
-		//float wheeldelta = mouse.getWheeldelta() * 7.5f;
-		float deltax = mouse.getXdelta() / 7.5f;
-		// Unlike SR1, SR2 doesn't like it when you play with the players rotation directly so clamp the delta otherwise the player gets squished, it still does but not as bad.
-		deltax = UtilsGlobal::clamp(deltax, -40.f, 40.f);
-		int baseplayer = UtilsGlobal::getplayer();
-		if (deltax != 0.f && !busy) {
-			float* x_player_cos = (float*)(baseplayer + 0x38);
-			float* x_player_sin = (float*)(baseplayer + 0x40);
-			float x = atan2(*x_player_sin, *x_player_cos);
-			x = UtilsGlobal::RadianstoDegree(x);
-			if (UtilsGlobal::invert)
-				x += deltax;
-			else
-				x -= deltax;
-			x = fmod(x + 180.0f, 360.0f);
-			if (x < 0) x += 360.0f;
-			x -= 180.0f;
-			x = UtilsGlobal::DegreetoRadians(x);
-			*x_player_cos = cos(x);
-			*x_player_sin = sin(x);
-			/*
-			float* zoom_level = (float*)0x00E997E0;
-			float zoom = *zoom_level;
-			zoom += wheeldelta;
-			zoom = clamp(zoom, 0.75f, 3.f);
-			*zoom_level = zoom;
-			*/
-			return 1;
-		}
-		else
-			return UpdatePlayerSpin(a1);
-
-
-	}
 	// If we need an empty global buffer we could use that, but it has to be 0.
 	volatile float aim_assist_empty_buffer[18]{};
 	SafetyHookMid player_autoaim_do_assisted_aiming_midhook;
@@ -316,15 +269,11 @@ namespace Input {
 			Logger::TypedLog(CHN_DEBUG, "Replaced Tags controls with BetterTags\n");
 		}
 
-		if (uint8_t direction = GameConfig::GetValue("Gameplay", "NativeMousetoPlayerWardrobe", 0))
+		if (GameConfig::GetValue("Gameplay", "BetterPlayerWardrobeRotate", 1))
 		{
-			if (direction >= 2) { // invert player rotation in wardrobe if 2 or above.
-				UtilsGlobal::invert = true;
-			}
-			patchCall((int*)0x007CE170, (int*)NativeMouse_clothing_store);
-			Logger::TypedLog(CHN_DEBUG,
-				"Native mouse to player rotation in clothing store menus: %s.\n",
-				UtilsGlobal::invert ? "inverted direction" : "normal rotation");
+			Logger::TypedLog(CHN_MOD, "Patching better player rotation for wardrobes.\n");
+			patchCall((int*)0x007CE170, (int*)0x0073FA80);
+			patchNop((int*)0x7CE168, 2);
 		}
 
 		if (GameConfig::GetValue("Gameplay", "SwapScrollWheel", 0))
