@@ -116,11 +116,14 @@ namespace Render3D
 
 		__asm pushad
 
-			if (_stricmp(ShaderName, "distortion_tint_desat") == 0) {
-				SafeWriteBuf((UInt32)ShaderPointer, X360GammaShader, sizeof(X360GammaShader));
-			}
-		
+		if (_stricmp(ShaderName, "distortion_tint_desat") == 0) {
+			SafeWriteBuf((UInt32)ShaderPointer, X360GammaShader, sizeof(X360GammaShader));
+		}
 
+		if (_stricmp(ShaderName, "bb-glass3_s") == 0) {
+			SafeWriteBuf((UInt32)ShaderPointer, Glass3Shader, sizeof(Glass3Shader));
+		}
+		
 		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 0)) {
 			if (_stricmp(ShaderName, "shadow_combiner_xxxx") == 0) {
 				SafeWriteBuf((UInt32)ShaderPointer, ShadowMapShader, sizeof(ShadowMapShader));
