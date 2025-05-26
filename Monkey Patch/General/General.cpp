@@ -821,11 +821,15 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		static int Continue = 0x007F46F0;
 		static int StringsLoad = 0x7F4780;
 
+		// loading our strings first which lets not only add new ones but "overwrite" original ones too
+
 		__asm {
+			push 0
+			mov ecx, JStr
 			call StringsLoad
 			add esp, 4
 			push 0
-			mov ecx, JStr
+			mov ecx, dword ptr[0x00E26090]
 			call StringsLoad
 			jmp Continue
 		}
@@ -867,8 +871,8 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		if(GameConfig::GetValue("Debug","AllowMultipleSR2Windows",1)) // in case this fucks up or something
 		SafeWrite8(0x00BFA6B6, 0xEB);
 		static SafetyHookMid D3D9Create = safetyhook::create_mid(0x00D1F7B0, &CreateD3D9DeviceFunction);
+		WriteRelJump(0x007F46E4, (UInt32)&AddStrings); // add custom string loading - the game automatically appends the string so it will load the right string file based on your language, eg - juiced_us.le_strings
 #if !JLITE
-		WriteRelJump(0x007F46EB, (UInt32)&AddStrings); // add custom string loading - the game automatically appends the string so it will load the right string file based on your language, eg - juiced_us.le_strings
 		WriteRelJump(0x00B91541, (UInt32)&AddVintLib); // allows us to add our own side lib for vint to add new global variables without messing up mod support
 		WriteRelJump(0x007787D0, (UInt32)&ChangeSOCallback); // replace the save overwrite callback with ours to avoid various warnings
 		WriteRelJump(0x0077952F, (UInt32)&DeletionModeCheck); // avoid being able to "delete" when hovering over save new game
