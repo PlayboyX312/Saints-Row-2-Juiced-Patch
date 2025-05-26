@@ -18,7 +18,6 @@ namespace InGameConfig {
     static non_live_options restart_option[] = {
     { "Debug", "DisableXInput",MenuType::CONTROLS },
     { "Debug", "ForceDisableVibration",MenuType::CONTROLS },
-    { "Graphics", "ShadowMapFiltering" },
     { "Graphics", "UHQScreenEffects" },
     { "Graphics", "UHQTreeShadows" },
     { "Graphics", "Borderless" },
@@ -56,6 +55,7 @@ namespace InGameConfig {
         InGameConfig::RegisterSlider("SleepHack", "Sleep Hack", { "CONTROL_NO","QUALITY_LOW_TEXT","QUALITY_MEDIUM_TEXT","QUALITY_HIGH_TEXT" });
         InGameConfig::RegisterBoolSlider("UncapFPS", "UncapFPS");
         InGameConfig::RegisterBoolSlider("X360Gamma", "Xbox 360 Gamma");
+        InGameConfig::RegisterBoolSlider("ShadowMapFiltering", "Shadow Map Filtering");
         InGameConfig::RegisterBoolSlider("DynamicRenderDistance", "DynamicRenderDistance");
         InGameConfig::RegisterBoolSlider("IncreaseVehicleFadeDistance", "IncreaseVehicleFadeDistance");
         InGameConfig::RegisterSlider("ShaderOverride", "ShaderOverride", { "CONTROL_NO","Force Highest LOD","Increased distance" });
@@ -167,6 +167,17 @@ namespace InGameConfig {
                 if (Behavior::sticky_cam_timer_add != 0)
                     Behavior::cf_do_control_mode_sticky_MIDASMHOOK.enable();
                 else Behavior::cf_do_control_mode_sticky_MIDASMHOOK.disable();
+            }
+        }
+        if (strcmp(var, "ShadowMapFiltering") == 0) {
+            if (!write) {
+                *value = (Render3D::ShaderOptions & (1 << 1)) ? 1 : 0;
+            }
+            else {
+                Render3D::ShaderOptions = (*value) ? (Render3D::ShaderOptions | SHADER_SHADOW_FILTER) : (Render3D::ShaderOptions & ~SHADER_SHADOW_FILTER);
+                Render3D::ChangeShaderOptions();
+                GameConfig::SetValue("Graphics", "ShadowMapFiltering", *value);
+
             }
         }
         else {

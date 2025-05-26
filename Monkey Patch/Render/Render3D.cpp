@@ -119,10 +119,6 @@ namespace Render3D
 		if (_stricmp(ShaderName, "distortion_tint_desat") == 0) {
 			SafeWriteBuf((UInt32)ShaderPointer, X360GammaShader, sizeof(X360GammaShader));
 		}
-
-		if (_stricmp(ShaderName, "bb-glass3_s") == 0) {
-			SafeWriteBuf((UInt32)ShaderPointer, Glass3Shader, sizeof(Glass3Shader));
-		}
 		
 		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 0)) {
 			if (_stricmp(ShaderName, "shadow_combiner_xxxx") == 0) {
@@ -703,7 +699,7 @@ namespace Render3D
 		IDirect3DDevice9* pDevice = *reinterpret_cast<IDirect3DDevice9**>(0x0252A2D0);
 		float arr4[4];
 		arr4[0] = (ShaderOptions & SHADER_X360_GAMMA) != 0 ? 0.0f : 1.0f;
-		arr4[1] = 0.f;
+		arr4[1] = (ShaderOptions & SHADER_SHADOW_FILTER) != 0 ? 0.0f : 1.0f;
 		arr4[2] = 0.f;
 		arr4[3] = 0.f;
 		// distortion_juicedsettings for Gamma.
