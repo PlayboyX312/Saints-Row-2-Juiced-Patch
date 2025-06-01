@@ -40,6 +40,12 @@ namespace Behavior
 		patchNop((BYTE*)0x00E92394, 3); // WalkToStand
 		patchNop((BYTE*)0x00E92388, 3); // StandToWalk
 	}
+	
+	void MovingAttacks() {
+		patchBytesM((BYTE*)0x00981EE5, (BYTE*)"\xEB\x10", 2);
+		patchJmp((void*)0x981F40, UtilsGlobal::RetZero);
+		patchJmp((void*)0x982380, UtilsGlobal::RetZero);
+	}
 
 	void AllowToggleCrouchWhileWalk() {
 		Logger::TypedLog(CHN_DEBUG, "Allow Toggle Crouch to work while walking...\n");
@@ -351,6 +357,10 @@ CMultiPatch CMPatches_SR1Reloading = {
 		if (GameConfig::GetValue("Gameplay", "BetterMovementBehaviour", 0))
 		{
 			BetterMovement();
+		}
+		if (GameConfig::GetValue("Gameplay", "SR1MovingAttacks", 0)) // requires XTBL modding to fully use
+		{
+			MovingAttacks();
 		}
 		if (GameConfig::GetValue("Gameplay", "HigherMaxSpeed", 0))
 		{

@@ -339,7 +339,6 @@ namespace Game
 		}
 
 		bool IsCoopOrSP = false;
-		bool ShouldFixStereo = false;
 
 		bool AlreadyAddedClanTag = 0;
 		int isDefaultSNameChecked = 0;
@@ -442,20 +441,6 @@ namespace Game
 				if (!LobbyCheck == 0x0 && CurrentGamemode == 0xFF) // This should be CO-OP / Singleplayer
 				{
 					IsCoopOrSP = true;
-					if (IsInCutscene == 1)
-					{
-						if (ShouldFixStereo == true) {
-							patchNop((BYTE*)0x00482658, 5); // nop mono aud
-							patchNop((BYTE*)0x0046CAC8, 5); // nop ambient aud
-						}
-					}
-					else
-					{
-						if (ShouldFixStereo == true) {
-							patchBytesM((BYTE*)0x00482658, (BYTE*)"\xE8\x43\xFD\xFF\xFF", 5); // patch mono aud back in
-							patchBytesM((BYTE*)0x0046CAC8, (BYTE*)"\xE8\x83\xA7\x00\x00", 5); // patch ambient aud back in
-						}
-					}
 				}
 				else
 				{

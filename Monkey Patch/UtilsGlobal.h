@@ -14,6 +14,10 @@ inline uintptr_t getplayer(bool provideaddress = false) {
 
 }
 
+inline int RetZero() {
+    return 0;
+}
+
 inline void GetPlayerXYZ(vector3* Dest) {
     memcpy(Dest, (void*)(0x25F5BB4), sizeof(vector3));
 }

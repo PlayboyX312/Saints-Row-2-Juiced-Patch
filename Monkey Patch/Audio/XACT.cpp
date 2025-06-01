@@ -8,18 +8,25 @@
 #include "../SafeWrite.h"
 #include "../RPCHandler.h"
 #include "../Game/Game.h"
+#include "../General/General.h"
 #include <safetyhook.hpp>
 namespace XACT
 {
+
+	void Cutscene3DAudio(SafetyHookContext& ctx) {
+		if (General::InCutscene) {
+			char* Flag = (char*)(ctx.esi + 0x196);
+			*Flag &= ~0x0001; // disabling this flag makes directional audio work at the cost of the volume sliders not doing anything (hence the cutscene check)
+		}
+	}
+
 	void FixAudioHack()
 	{
 #if !JLITE
-		if (GameConfig::GetValue("Debug", "FixAudio", 0)) // Hacky half fix for 3D Audio in cutscenes.
+		if (GameConfig::GetValue("Debug", "FixAudio", 0)) // solid workaround for making cutscenes play with directional/3D audio (breaks the volume sliders)
+														  // keep the name unchanged as we could use this in the future for fixing music or other audio issues?
 		{
-			Logger::TypedLog(CHN_DEBUG, "Patching Stereo Cutscenes (EXPERIMENTAL)...\n");
-			Game::InLoop::ShouldFixStereo = true; 
-			/* Hack is located in the rich presence code, kind of lazy yesand might be moved in the future
-			 but it was only a temporary patch anyway until we find something nicer. */
+			static SafetyHookMid XACT3DAudioHack = safetyhook::create_mid(0x0047EA5E, &Cutscene3DAudio);
 		}
 #endif
 	}

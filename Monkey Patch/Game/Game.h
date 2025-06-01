@@ -50,7 +50,6 @@ namespace Game
 	};
 	namespace InLoop {
 		extern bool IsCoopOrSP;
-		extern bool ShouldFixStereo;
 		extern char* ClanTag[3];
 		extern bool UsingClanTag;
 #if RELOADED
