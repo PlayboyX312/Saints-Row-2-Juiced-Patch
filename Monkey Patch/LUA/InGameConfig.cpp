@@ -660,7 +660,7 @@ namespace InGameConfig {
             }
         }
         int MP_game_mode = *(int*)0x00E8B210;
-        if (isCoop() || MP_game_mode == -1) {
+        if (isCoop() == false && MP_game_mode == -1) {
             // Find a good insertion point - look for Pause_display_menu_PC
             std::string displayMenuStr = "Pause_display_menu_PC = {";
             size_t displayMenuPos = buffer.find(displayMenuStr);
