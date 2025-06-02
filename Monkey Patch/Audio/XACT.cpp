@@ -14,7 +14,7 @@ namespace XACT
 {
 
 	void Cutscene3DAudio(SafetyHookContext& ctx) {
-		if (General::InCutscene) {
+		if (*General::InCutscene) {
 			char* Flag = (char*)(ctx.esi + 0x196);
 			*Flag &= ~0x0001; // disabling this flag makes directional audio work at the cost of the volume sliders not doing anything (hence the cutscene check)
 		}
