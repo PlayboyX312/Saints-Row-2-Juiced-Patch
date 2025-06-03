@@ -1056,8 +1056,28 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			}
 		}
 	}
+	// Fixes the Low Gravity cheat ignoring if you have the no fall damage unlockable, stripping it away due to the float being saved in the save file.
+// Here we check if the reward is unlocked and thus setting it to 0.f, using ASM isn't required I just wanted a singular function handler for both apply/restore
+	void __declspec(naked) LowGravity_cheat_fix_basejumping() {
+		__asm {
+			fstp dword ptr[eax + 0x18B4]
+		}
+		int player;
+		__asm
+		mov player, eax
+			if (*(bool*)0x027DD27C)
+				*(float*)(player + 0x18B4) = 0.f; // This is the damage multiplier or something.
+		__asm {
+			mov esp, ebp
+			pop ebp
+			ret
+		}
 
+	}
 	void TopWinMain() {
+		WriteRelJump(0x00685858, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Apply()
+		WriteRelJump(0x00685EE0, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Restore()
+		patchNop((BYTE*)0x004D6795, 5); // Fix for the sun flare disappearing upon reloading a save. Prevents the game from deallocating the flare.
 		if(GameConfig::GetValue("Debug","AllowMultipleSR2Windows",1)) // in case this fucks up or something
 		SafeWrite8(0x00BFA6B6, 0xEB);
 		static SafetyHookMid LoadPosHook = safetyhook::create_mid(0x006938EB, &LoadSaveSetPos);
@@ -1160,30 +1180,8 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			Logger::TypedLog(CHN_DLL, "Not patching 2x Filtering.\n");
 		}
 	}
-	// Fixes the Low Gravity cheat ignoring if you have the no fall damage unlockable, stripping it away due to the float being saved in the save file.
-	// Here we check if the reward is unlocked and thus setting it to 0.f, using ASM isn't required I just wanted a singular function handler for both apply/restore
-	void __declspec(naked) LowGravity_cheat_fix_basejumping() {
-		__asm {
-			fstp dword ptr[eax + 0x18B4]
-		}
-		int player;
-		__asm
-		mov player, eax
-		if (*(bool*)0x027DD27C) // unlockable_item.is_unlocked for no_fall_damage
-			*(float*)(player + 0x18B4) = 0.f; // This is the damage multiplier or something.
-		__asm {
-			mov esp,ebp
-			pop ebp
-			ret
-		}
-
-	}
 	void BottomWinMain()
 	{
-		WriteRelJump(0x00685858, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Apply()
-		WriteRelJump(0x00685EE0, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Restore()
-		patchNop((BYTE*)0x004D6795, 5); // Fix for the sun flare disappearing upon reloading a save. Prevents the game from deallocating the flare.
-
 		patchBytesM((BYTE*)0x009D3C70, (BYTE*)"\xD9\x05\x5A\x30\x7B\x02", 6); // TP X
 		patchBytesM((BYTE*)0x009D3C83, (BYTE*)"\xD9\x05\x5E\x30\x7B\x02", 6); // TP Y
 		patchBytesM((BYTE*)0x009D3CAE, (BYTE*)"\xD9\x05\x62\x30\x7B\x02", 6); // TP Z
