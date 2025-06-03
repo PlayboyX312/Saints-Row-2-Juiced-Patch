@@ -57,6 +57,7 @@ namespace InGameConfig {
         InGameConfig::RegisterSlider("SleepHack", "Sleep Hack", { "CONTROL_NO","QUALITY_LOW_TEXT","QUALITY_MEDIUM_TEXT","QUALITY_HIGH_TEXT" });
         InGameConfig::RegisterBoolSlider("UncapFPS", "UncapFPS");
         InGameConfig::RegisterBoolSlider("X360Gamma", "Xbox 360 Gamma");
+        InGameConfig::RegisterBoolSlider("X360GammaUI", "Xbox 360 Gamma on UI");
         InGameConfig::RegisterBoolSlider("ShadowMapFiltering", "Shadow Map Filtering");
         InGameConfig::RegisterBoolSlider("DynamicRenderDistance", "DynamicRenderDistance");
         InGameConfig::RegisterBoolSlider("IncreaseVehicleFadeDistance", "IncreaseVehicleFadeDistance");
@@ -164,7 +165,8 @@ namespace InGameConfig {
                 Render3D::ChangeShaderOptions();
                 GameConfig::SetValue("Graphics", "X360Gamma", *value);
 
-            }
+            } 
+
         } else if (strcmp(var, "VehicleAutoCenterModifer") == 0) {
             if(!write)
             *value = std::clamp(Behavior::sticky_cam_timer_add / 500, 0, 20);
@@ -174,6 +176,16 @@ namespace InGameConfig {
                 if (Behavior::sticky_cam_timer_add != 0)
                     Behavior::cf_do_control_mode_sticky_MIDASMHOOK.enable();
                 else Behavior::cf_do_control_mode_sticky_MIDASMHOOK.disable();
+            }
+        }
+        if (strcmp(var, "X360GammaUI") == 0) {
+            if (!write) {
+                *value = Render2D::final_2d_render.enabled();
+            }
+            else {
+                *value ? Render2D::final_2d_render.enable() : Render2D::final_2d_render.disable();
+                GameConfig::SetValue("Graphics", "X360GammaUI", *value);
+
             }
         }
         if (strcmp(var, "ShadowMapFiltering") == 0) {

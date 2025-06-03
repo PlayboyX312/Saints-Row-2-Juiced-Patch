@@ -456,7 +456,47 @@ char SR2Ultrawide_HUDScale() {
 	Logger::TypedLog(CHN_MOD, "SR2Ultrawide patched HUD scale X: %f Y: %f bool: %d \n", adjustedX, currentY / 720.0f, UltrawideFix);
 	return result;
 }
+float saturate(float x) {
+	return std::clamp(x, 0.0f, 1.0f);
+}
+
+
+float X360GammaApprox(float x) {
+	const float A = 0.541901f;
+	const float B = 1.13465f;
+	const float C = 13.53054f;
+	const float D = 6.56649f;
+	const float E = 0.311465f;
+	float f1 = A * x;
+	float f2 = std::pow(x, B) * (1.0f - std::exp2(-C * x));
+	float f3 = saturate(x * D + E);
+
+	return std::lerp(f1, f2, f3);
+}
+
+
+void ApplyX360Gamma(color& col) {
+	float r = col.r / 255.0f;
+	float g = col.g / 255.0f;
+	float b = col.b / 255.0f;
+
+	r = X360GammaApprox(r);
+	g = X360GammaApprox(g);
+	b = X360GammaApprox(b);
+
+	col.r = static_cast<unsigned __int8>(saturate(r) * 255.0f);
+	col.g = static_cast<unsigned __int8>(saturate(g) * 255.0f);
+	col.b = static_cast<unsigned __int8>(saturate(b) * 255.0f);
+}
+
+SafetyHookMid final_2d_render{};
 	void Init() {
+		final_2d_render = safetyhook::create_mid(0xD1DFAA, [](SafetyHookContext& ctx) {
+			texture_2d* pass = (texture_2d*)ctx.eax;
+			ApplyX360Gamma(pass->color_info);
+			},safetyhook::MidHook::StartDisabled);
+		if (GameConfig::GetValue("Graphics", "X360GammaUI", 0))
+			final_2d_render.enable();
 		if (GameConfig::GetValue("Graphics", "Borderless", 0))
 		{
 			SetupBorderless();

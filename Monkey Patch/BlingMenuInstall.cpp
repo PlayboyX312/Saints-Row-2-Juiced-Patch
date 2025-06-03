@@ -11,6 +11,7 @@
 
 
 #include "Render/Render3D.h"
+#include "Render/Render2D.h"
 #include "Player/Behavior.h"
 #include "UGC/Debug.h"
 #include "General/General.h"
@@ -214,7 +215,7 @@ namespace BlingMenuInstall
         BM_MakeCPatchFunction(SR1QuickSwitch, CMPatches_SR1QuickSwitch, Behavior)
         BM_MakeCPatchFunctionSaveConfig(DisableCutSceneBlackBars, CRemoveBlackBars, Render3D, "Graphics", "RemoveBlackBars")
         BM_MakeSafetyHookFunction(Math_multiplication_NAN_fix, matrix_operator_multiplication_midhook,Math::Fixes)
-
+        BM_MakeSafetyHookFunction(UI_hook, final_2d_render, Render2D)
     void BM_restoreHavok() {
         if(!Debug::fixFrametime)
             *(float*)(0x02527DA4) = 0.01666666666f;
@@ -359,6 +360,7 @@ namespace BlingMenuInstall
        BlingMenuAddInt("Juiced Debug", "SHADER_LOD", (int*)&Render3D::SHADER_LOD, NULL, 1, -2, 10);
        BlingMenuAddFloat("Juiced Debug", "SHADER_DISTANCE_SQUARED_MULT", &Render3D::SHADER_DISTANCE_SQUARED_MULT, NULL, 0.1f, 1.f, 250.f);
        BlingMenuAddFuncCustom("Juiced Debug", "Math_multiplication_NAN_fix", NULL, &BM_Math_multiplication_NAN_fix, NULL);
+       BlingMenuAddFuncCustom("Juiced Debug", "final 2d render hook", NULL, &BM_UI_hook, NULL);
        BlingMenuAddBool("Juiced Debug", "useTextPrompts", &Input::useTextPrompts, NULL);
        BlingMenuAddInt("Juiced Debug", "Use PS3 Prompts", &Input::usePS3Prompts, NULL, 1, 0, 1);
        }

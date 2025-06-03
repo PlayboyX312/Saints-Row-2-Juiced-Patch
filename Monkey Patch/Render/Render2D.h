@@ -53,4 +53,23 @@ namespace Render2D
 	extern void create_process_hook(safetyhook::Context32& ctx);
 	extern void RadarScaling();
 	extern void VintScaleIV();
+	struct color
+	{
+		unsigned __int8 b;
+		unsigned __int8 g;
+		unsigned __int8 r;
+		unsigned __int8 a;
+		int unk11;
+	};
+
+	struct texture_2d
+	{
+		float x;
+		float y;
+		float z;
+		color color_info;
+		float unk1;
+		float unk2;
+	};
+	extern SafetyHookMid final_2d_render;
 }
