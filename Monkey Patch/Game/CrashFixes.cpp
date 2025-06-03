@@ -10,12 +10,13 @@
 namespace AssertHandler {
 	static std::unordered_set<std::string> ignored_asserts;
 	static std::mutex assert_mutex;
-
+	static std::unordered_set<std::string> active_asserts;
 	inline void AssertOnce(const char* id, const char* message) {
 		{
 			std::lock_guard<std::mutex> lock(assert_mutex);
-			if (ignored_asserts.count(id))
+			if (ignored_asserts.count(id) || active_asserts.count(id))
 				return;
+			active_asserts.insert(id);
 		}
 
 		std::string id_copy(id);
@@ -29,14 +30,15 @@ namespace AssertHandler {
 
 		std::thread([id_copy, full_message]() {
 			int result = MessageBoxA(nullptr, full_message.c_str(), "Error Occurred", MB_ICONWARNING | MB_YESNO);
+
+			std::lock_guard<std::mutex> lock(assert_mutex);
+			active_asserts.erase(id_copy);
 			if (result == IDYES) {
-				std::lock_guard<std::mutex> lock(assert_mutex);
 				ignored_asserts.insert(id_copy);
 			}
 			}).detach();
 	}
 }
-
 namespace CrashFixes {
 	// sidokuthps had a crash while playing The Ronin - Rest In Peace, this section of code seems to only execute in missions? need to confirm, either ways they jump to an else if v0 is null but not if *v0 is null
 // thus it crashes, here I check for that as well - Clippy95
@@ -114,6 +116,20 @@ namespace CrashFixes {
 			static auto Fix_0x0055B681_hook = safetyhook::create_mid(0x0055B681, &Fix_0x0055B681_crash);
 			static auto Fix_0x007B1D7E_hook = safetyhook::create_mid(0x007B1D7E, &Fix_0x007B1D7E_crash_weaponstore);
 			static auto Fix_0x007B510D_hook = safetyhook::create_mid(0x007B510D, &Fix_0x007B510D_crash);
+			static auto Fix_0x004B58B2_hook = safetyhook::create_mid(0x004B58B2, [](SafetyHookContext& ctx) {
+				if (ctx.ecx == NULL) {
+					ctx.eip = 0x4B58E9;
+					AssertHandler::AssertOnce("Fix_0x004B58B2_hook", "Crash prevented but still unsafe? (most likely cause is a modded install) ecx\n");
+					return;
+				}
+				uintptr_t ptr = *(uintptr_t*)ctx.ecx;
+				uintptr_t ptr1 = *(uintptr_t*)(ptr + 0x20);
+				if (ptr1 == NULL) {
+					ctx.eip = 0x4B58E9;
+					AssertHandler::AssertOnce("Fix_0x004B58B2_hook1", "Crash prevented but still unsafe? (most likely cause is a modded install) ecx\n");
+					return;
+				}
+				});
 		}
 		// I kind of want these seperated, idk why but let's say 2+ is confirmed by mods or modded setups?
 		if (GameConfig::GetValue("Debug", "FixCrashes", 1) >= 2) {
