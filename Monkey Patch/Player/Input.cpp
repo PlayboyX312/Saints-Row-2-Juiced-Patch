@@ -415,7 +415,7 @@ namespace Input {
 			prompt_image_buffer_index += wcslen(&prompt_image_buffer[start_index]) + 1;
 			return &prompt_image_buffer[start_index];
 		}
-		else {
+		else if(action_index) {
 			int keyboard_key = PC_port_key_for_controler_assignments[*action_index + 2].keyboard_button;
 			if (keyboard_key == 0x103 || keyboard_key == 0x104) {
 				if (prompt_image_buffer_index > 9500) {
@@ -428,9 +428,9 @@ namespace Input {
 				wsprintf(&prompt_image_buffer[prompt_image_buffer_index], L"[format][color:purple]%s[/format]", L"Mouse 4");
 				prompt_image_buffer_index += wcslen(&prompt_image_buffer[start_index]) + 1;
 				return &prompt_image_buffer[start_index];
-			} else
-			return getpckeyboardimage_T.ccall<wchar_t*>(action_index, mouse);
+			}
 		}
+		return getpckeyboardimage_T.ccall<wchar_t*>(action_index, mouse);
 	}
 	SafetyHookInline pc_get_action_pad_pure_text_T{};
 	// This is wrapped around by the "pc_get_action_pad_pure_text" lua function the game has, vanilla returns Pad Button: %d and the index for it, there's a pc_get_action_key_pure_text to return keyboards.
