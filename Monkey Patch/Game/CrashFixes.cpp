@@ -11,6 +11,7 @@ namespace AssertHandler {
 	static std::unordered_set<std::string> ignored_asserts;
 	static std::mutex assert_mutex;
 	static std::unordered_set<std::string> active_asserts;
+	static uint8_t CvarFixCrashes;
 	inline void AssertOnce(const char* id, const char* message) {
 		{
 			std::lock_guard<std::mutex> lock(assert_mutex);
@@ -18,7 +19,9 @@ namespace AssertHandler {
 				return;
 			active_asserts.insert(id);
 		}
-
+		Logger::TypedLog(CHN_DEBUG, "[Assert ID: %s] %s", id, message);
+		if (CvarFixCrashes >= 200)
+			return;
 		std::string id_copy(id);
 		std::string msg_copy(message);
 		std::string full_message =
@@ -26,7 +29,7 @@ namespace AssertHandler {
 			msg_copy +
 			"\n\nPress 'Yes' to ignore this warning for the session.";
 
-		Logger::TypedLog(CHN_DEBUG, "[Assert ID: %s] %s", id, message);
+		
 
 		std::thread([id_copy, full_message]() {
 			int result = MessageBoxA(nullptr, full_message.c_str(), "Error Occurred", MB_ICONWARNING | MB_YESNO);
@@ -110,6 +113,7 @@ namespace CrashFixes {
 		AssertHandler::AssertOnce("cs_start_characters_for_shot_009AEE86", "Crash prevented due to bad preload breaking cutscene objects, please fix your preload, game might still crash \n");
 	}
 	void Init() {
+		AssertHandler::CvarFixCrashes = GameConfig::GetValue("Debug", "FixCrashes", 2);
 		static auto FixAudioLoop_null_crash1_hook = safetyhook::create_mid(0x0046EE64, &FixAudioLoop_null_crash1);
 		// The one above should work always..
 		if (GameConfig::GetValue("Debug", "FixCrashes", 2)) {	
