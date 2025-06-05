@@ -14,6 +14,7 @@ import OptionsManager;
 #include "Input.h"
 #include "../UtilsGlobal.h"
 #include <safetyhook.hpp>
+#include "../Game/Game.h"
 bool IsKeyPressed(unsigned char Key, bool Hold);
 namespace Input {
 	// DO NOT CHANGE WHILE GAME IS RUNNING, only meant to disable on runtime. if it causes any issues (hopefully none) 
@@ -57,14 +58,20 @@ namespace Input {
 		}
 		float LeftStickX = *(float*)0x23485F4;
 		float LeftStickY = *(float*)0x23485F8;
-		if (LeftStickX != 0.f || LeftStickY != 0.f)
+		float RightStickX = *(float*)0x023485B4;
+		float RightStickY = *(float*)0x023485B8;
+
+		const float deadzone = 0.01f;
+
+		if (abs(LeftStickX) > deadzone || abs(LeftStickY) > deadzone ||
+			abs(RightStickX) > deadzone || abs(RightStickY) > deadzone)
 			g_lastInput = CONTROLLER;
 
 		if (mouse().getXdelta() || mouse().getYdelta())
 			g_lastInput = MOUSE;
 
 		if (g_lastInputPrevFrame != g_lastInput)
-			refreshVintStrings();
+			//refreshVintStrings();
 		if (EnableDynamicPrompts >= 2) {
 			for (int i = 0; i < 103; i++) {
 				if (key_held(i)) {
@@ -598,6 +605,12 @@ namespace Input {
 
 			patchBytesM((BYTE*)0x00C1F0F7, (BYTE*)"\x29", 1); // opcode for sub, add previously.
 		}
-
+		static auto map_zoom_fps_controller_fix = safetyhook::create_mid(0x770D5A, [](SafetyHookContext& ctx) {
+			using namespace Game::Timer;
+			if (Input::LastInput() != Input::CONTROLLER)
+				return;
+			float* zoom_delta = (float*)(ctx.esp + 0x10);
+			*zoom_delta = *zoom_delta * GetFrameTimeOver33ms_Fix();
+			});
 	}
 }
