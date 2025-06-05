@@ -7,56 +7,25 @@ namespace BlingMenuInstall {
 #define BM_MakeCPatchFunction(funcName, patchVar, nameSpace) \
 const char* BM_##funcName(void* userdata, int action) { \
     using namespace nameSpace; \
-    if (action != -1) { \
-        if (patchVar.IsApplied()) \
-            patchVar.Restore(); \
-        else \
-            patchVar.Apply(); \
-    } \
-    switch (patchVar.IsApplied()) { \
-    case false: return "OFF"; \
-        break; \
-    case true: return "ON "; \
-        break; \
-    } \
-    return ERROR_MESSAGE; \
+    return BM_GenericPatchFunction(patchVar, action); \
 }
 
 #define BM_MakeCPatchFunctionSaveConfig(funcName, patchVar, nameSpace, appName, keyName) \
 const char* BM_##funcName(void* userdata, int action) { \
     using namespace nameSpace; \
-    if (action != -1) { \
-        if (patchVar.IsApplied()) \
-            patchVar.Restore(); \
-        else \
-            patchVar.Apply(); \
-        GameConfig::SetValue(appName, keyName, (uint32_t)patchVar.IsApplied()); \
-    } \
-    switch (patchVar.IsApplied()) { \
-    case false: return "OFF"; \
-        break; \
-    case true: return "ON "; \
-        break; \
-    } \
-    return ERROR_MESSAGE; \
+    return BM_GenericPatchFunction(patchVar, action, appName, keyName); \
 }
+
 
 #define BM_MakeSafetyHookFunction(funcName, safetyhookVar, nameSpace) \
 const char* BM_##funcName(void* userdata, int action) { \
     using namespace nameSpace; \
-    if (action != -1) { \
-        if (safetyhookVar.enabled()) \
-            safetyhookVar.disable(); \
-        else \
-            safetyhookVar.enable(); \
-    } \
-    switch (safetyhookVar.enabled()) { \
-    case false: return "OFF"; \
-        break; \
-    case true: return "ON "; \
-        break; \
-    } \
-    return ERROR_MESSAGE; \
+    return BM_GenericSafetyHookFunction(safetyhookVar, action); \
 }
 
+#define BM_MakeSafetyHookFunctionSaveConfig(funcName, safetyhookVar, nameSpace, appName, keyName) \
+const char* BM_##funcName(void* userdata, int action) { \
+    using namespace nameSpace; \
+    return BM_GenericSafetyHookFunction(safetyhookVar, action, appName, keyName); \
+}
 #endif

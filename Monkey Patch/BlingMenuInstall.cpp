@@ -18,6 +18,7 @@
 #include "MainHooks.h"
 #include "Math/Math.h"
 #include "Player/Input.h"
+#include "Game/Game.h"
 const char* ERROR_MESSAGE = "ERROR";
 // MainHooks.cpp
 void ToggleNoclip();
@@ -202,6 +203,40 @@ namespace BlingMenuInstall
         return CMPatches_TervelTextureCrashWorkaround_be_as_pe.IsApplied() ? "ON " : "OFF";
     }
 
+    template<typename PatchType>
+    const char* BM_GenericPatchFunction(PatchType& patch, int action, const char* appName = nullptr, const char* keyName = nullptr) {
+        if (action != -1) {
+            if (patch.IsApplied()) {
+                patch.Restore();
+            }
+            else {
+                patch.Apply();
+            }
+
+            if (appName && keyName) {
+                GameConfig::SetValue(appName, keyName, (uint32_t)patch.IsApplied());
+            }
+        }
+
+        return patch.IsApplied() ? "ON " : "OFF";
+    }
+    template<typename SafetyHookType>
+    const char* BM_GenericSafetyHookFunction(SafetyHookType& hook, int action, const char* appName = nullptr, const char* keyName = nullptr) {
+        if (action != -1) {
+            if (hook.enabled()) {
+                hook.disable();
+            }
+            else {
+                hook.enable();
+            }
+
+            if (appName && keyName) {
+                GameConfig::SetValue(appName, keyName, (uint32_t)hook.enabled());
+            }
+        }
+
+        return hook.enabled() ? "ON " : "OFF";
+    }
         BM_MakeCPatchFunction(ClassicGTAIdleCam, CMPatches_ClassicGTAIdleCam, Render3D)
         BM_MakeCPatchFunction(UncapFPS, CUncapFPS, Render3D)
         BM_MakeCPatchFunction(BetterAO, CBetterAO, Render3D)
