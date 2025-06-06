@@ -249,11 +249,11 @@ namespace Input {
 	typedef int __cdecl PlayerSpin(float a1);
 	PlayerSpin* UpdatePlayerSpin = (PlayerSpin*)(0x0073FB20); //0x00BD4A80
 	// If we need an empty global buffer we could use that, but it has to be 0.
-	volatile float aim_assist_empty_buffer[18]{};
+	volatile float aim_assist_empty_buffer[19]{};
 	SafetyHookMid player_autoaim_do_assisted_aiming_midhook;
 	BYTE disable_aim_assist_noMatterInput;
 	SAFETYHOOK_NOINLINE void player_autoaim_do_assisted_aiming_midhookfunc_disableaimassistmouse(safetyhook::Context32& ctx) {
-		if(disable_aim_assist_noMatterInput == 2 ||LastInput() == GAME_LAST_INPUT::MOUSE)
+		if((disable_aim_assist_noMatterInput >= 1 && g_lastInput == GAME_LAST_INPUT::MOUSE) || disable_aim_assist_noMatterInput >= 2)
 		ctx.esi = (uintptr_t)&aim_assist_empty_buffer;
 	}
 
@@ -568,16 +568,12 @@ namespace Input {
 			patchDWord((void*)(0xC119CD + 3), (uint32_t)&specialKeys[0].localization_name);
 		}
 		LoadXInputDLL();
-		if (GameConfig::GetValue("Gameplay", "DisableAimAssist", 1) == 1)
-		{
+
 			player_autoaim_do_assisted_aiming_midhook = safetyhook::create_mid(0x009E28B3, &player_autoaim_do_assisted_aiming_midhookfunc_disableaimassistmouse);
 			Logger::TypedLog(CHN_MOD, "Disabling Aim Assist while using mouse...\n");
-		}
-		else if (GameConfig::GetValue("Gameplay", "DisableAimAssist", 1) >= 2) {
-			disable_aim_assist_noMatterInput = 3; // can't use hook.
-			Logger::TypedLog(CHN_MOD, "Disabling Aim Assist completely...\n");
-			patchNop((BYTE*)0x00E3CC80, 16); // nop aim_assist.xtbl
-		}
+			disable_aim_assist_noMatterInput = (BYTE)std::clamp((int)GameConfig::GetValue("Gameplay", "DisableAimAssist", 1), 0, 2);
+		
+
 		
 		betterTags = 0;
 		allow_hacked_inventory_KBM = GameConfig::GetValue("Gameplay", "allow_hacked_inventory_KBM", 1);

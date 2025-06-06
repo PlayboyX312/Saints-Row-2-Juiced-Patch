@@ -151,15 +151,9 @@ namespace GLua
             }
 
             if (strcmp(varName, "DisableAimAssist") == 0) {
-                if (Input::disable_aim_assist_noMatterInput == 3) {
-                    lua_pushboolean(L, 0); // Success
-                    return 1;
-                }
-                else {
-                    value ? Input::player_autoaim_do_assisted_aiming_midhook.enable() : Input::player_autoaim_do_assisted_aiming_midhook.disable();
                     Input::disable_aim_assist_noMatterInput = value;
-                }
-                printf("bool %d hook %d \n", Input::disable_aim_assist_noMatterInput, Input::player_autoaim_do_assisted_aiming_midhook.enabled());
+                    GameConfig::SetValue("Gameplay", "DisableAimAssist", std::clamp(
+                        (int)Input::disable_aim_assist_noMatterInput, 0, 2));
             }
 
             if (strcmp(varName, "SleepHack") == 0) {
