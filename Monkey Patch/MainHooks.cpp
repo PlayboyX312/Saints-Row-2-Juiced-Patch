@@ -307,8 +307,10 @@ void RawTags() {
 	mouse mouseread;
 	int32_t x = mouseread.getXdelta();
 	int32_t y = mouseread.getYdelta();*/
-	float XDelta = *(float*)0x2348534;
-	float yDelta = *(float*)0x2348538;
+	float xsensmod = 0.7742329836f / *(float*)0x25F5C98;
+	float ysensmod = 0.7742329836f / *(float*)0x25F5C9C;
+	float XDelta = *(float*)0x2348534 * xsensmod;
+	float yDelta = *(float*)0x2348538 * ysensmod;
 	float LeftStickX = *(float*)0x23485F4;
 	float LeftStickY = *(float*)0x23485F8;
 	float RightStickX = *(float*)0x023485B4;
@@ -329,7 +331,7 @@ void RawTags() {
 	}
 	newYTag -= static_cast<int16_t>(((yDelta / divisor) + (LeftStickY / 29.f)) * 128.0f);
 
-	newXTag += static_cast<int16_t>(((XDelta / divisor) + (LeftStickX / 29.f)) * 76.8f);
+	newXTag += static_cast<int16_t>(((XDelta / (divisor / 1.2f)) + (LeftStickX / 29.f)) * 76.8f);
 
 
 	// Ensure yTag stays within the range otherwise it'll break
@@ -350,6 +352,11 @@ void RawTags() {
 
 	*(uint16_t*)0x027A3F6C = static_cast<uint16_t>(newYTag);
 	*(uint16_t*)0x027A3F68 = static_cast<uint16_t>(newXTag);
+}
+
+int __fastcall subT_6218F0(DWORD* a1) {
+	RawTags();
+	return ((int(__fastcall*)(DWORD*))0x6218F0)((a1));
 }
 
 void getDeltaTime() {
@@ -1352,9 +1359,6 @@ int RenderLoopStuff_Hacked()
 
 	if (Debug::fixFrametime)
 	    havokFrameTicker();
-
-	if (*(uint8_t*)(0x00E87B4F) == 0 && Input::betterTags)
-		RawTags();
 
 	if (Render2D::BetterChatTest) {
 		LessRetardedChat();

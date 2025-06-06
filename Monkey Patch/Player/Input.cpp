@@ -16,6 +16,7 @@ import OptionsManager;
 #include <safetyhook.hpp>
 #include "../Game/Game.h"
 bool IsKeyPressed(unsigned char Key, bool Hold);
+int __fastcall subT_6218F0(DWORD* a1);
 namespace Input {
 	// DO NOT CHANGE WHILE GAME IS RUNNING, only meant to disable on runtime. if it causes any issues (hopefully none) 
 	BYTE EnableDynamicPrompts = 2;
@@ -575,17 +576,16 @@ namespace Input {
 		
 
 		
-		betterTags = 0;
 		allow_hacked_inventory_KBM = GameConfig::GetValue("Gameplay", "allow_hacked_inventory_KBM", 1);
 		DisableXInput();
 		ForceNoVibration();
 
-		if (GameConfig::GetValue("Gameplay", "TagsHook", 1))
+		if (GameConfig::GetValue("Gameplay", "TagHook", 1))
 		{
-			betterTags = 1;
+			patchDWord((void*)0xDF77FC, (uint32_t)&subT_6218F0);
 			patchNop((BYTE*)0x006221AA, 6); // Original stores for Tags, X and Y.
 			patchNop((BYTE*)0x00622189, 6);
-			Logger::TypedLog(CHN_DEBUG, "Replaced Tags controls with BetterTags\n");
+			Logger::TypedLog(CHN_DEBUG, "Replaced Tags controls with TagHook\n");
 		}
 
 		if (GameConfig::GetValue("Gameplay", "BetterPlayerWardrobeRotate", 1))
