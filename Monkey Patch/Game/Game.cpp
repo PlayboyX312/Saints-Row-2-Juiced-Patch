@@ -210,20 +210,14 @@ namespace Game
 	SafetyHookMid xtbl_read_and_parse_file_hook{};
 	SafetyHookMid FixFrametimeVehicleSkids{};
 	void Init() { 
-		FixFrametimeVehicleSkids = safetyhook::create_mid(0x484A9C, [](SafetyHookContext& ctx) {
+		FixFrametimeVehicleSkids = safetyhook::create_mid(0xA9DDB3, [](SafetyHookContext& ctx) {
 			using namespace Timer;
-			float* wheel_force_local = (float*)(ctx.esp + 0x1C);
+			float* wheel_force_local = (float*)(ctx.esp + 0xC);
 			if (*wheel_force_local == 0.f)
 				return;
-
 				*wheel_force_local *= Get16msOverHavokFrameTime_Fix();
-				if (*wheel_force_local > 1.f)
-					*wheel_force_local = 1.f;
 
-			},safetyhook::MidHook::StartDisabled);
-
-		if (GameConfig::GetValue("Debug", "FixFrametimeVehicleSkids", 1))
-			(void)FixFrametimeVehicleSkids.enable();
+			});
 
 		static bool unhook_after_patching_xtbl_read_and_parse_file = GameConfig::GetValue("Debug", "unhook_after_patching_xtbl_read_and_parse_file", 1);
 		if(Input::EnableDynamicPrompts)

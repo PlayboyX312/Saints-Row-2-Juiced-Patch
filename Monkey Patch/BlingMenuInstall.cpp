@@ -251,7 +251,7 @@ namespace BlingMenuInstall
         BM_MakeCPatchFunctionSaveConfig(DisableCutSceneBlackBars, CRemoveBlackBars, Render3D, "Graphics", "RemoveBlackBars")
         BM_MakeSafetyHookFunction(Math_multiplication_NAN_fix, matrix_operator_multiplication_midhook,Math::Fixes)
         BM_MakeSafetyHookFunction(UI_hook, final_2d_render, Render2D)
-        BM_MakeSafetyHookFunctionSaveConfig(FixFrametimeVehicleSkids, FixFrametimeVehicleSkids, Game,"Debug","FixFrametimeVehicleSkids")
+        BM_MakeSafetyHookFunction(FixFrametimeVehicleSkids, FixFrametimeVehicleSkids, Game)
     void BM_restoreHavok() {
         if(!Debug::fixFrametime)
             *(float*)(0x02527DA4) = 0.01666666666f;
