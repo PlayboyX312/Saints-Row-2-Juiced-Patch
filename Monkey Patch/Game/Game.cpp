@@ -6,6 +6,7 @@
 #include <safetyhook.hpp>
 #include "../Patcher/CPatch.h"
 #include "../Player/Input.h"
+#include "../UGC/Debug.h"
 namespace Game
 {
 	namespace Timer {
@@ -31,6 +32,14 @@ namespace Game
 		// use this to fix calculations that are calculated FASTER than they should when game is running at a higher HAVOK FPS.
 		float GetHavokFrameTimeOver16ms_Fix() {
 			return GetHavokFrameTime() / (1.f / 60.f);
+		}
+
+		float Get16msOverHavokFrameTime_Fix() {
+			return  (1.f / 60.f) / GetHavokFrameTime();
+		}
+
+		bool isHavokFrameTimeTicked() {
+			return Debug::fixFrametime;
 		}
 		havok_get_time_this_frameT havok_get_time_this_frame = (havok_get_time_this_frameT)0x6FF860;
 	}
@@ -199,7 +208,23 @@ namespace Game
 		}
 	}
 	SafetyHookMid xtbl_read_and_parse_file_hook{};
-	void Init() {
+	SafetyHookMid FixFrametimeVehicleSkids{};
+	void Init() { 
+		FixFrametimeVehicleSkids = safetyhook::create_mid(0x484A9C, [](SafetyHookContext& ctx) {
+			using namespace Timer;
+			float* wheel_force_local = (float*)(ctx.esp + 0x1C);
+			if (*wheel_force_local == 0.f)
+				return;
+
+				*wheel_force_local *= Get16msOverHavokFrameTime_Fix();
+				if (*wheel_force_local > 1.f)
+					*wheel_force_local = 1.f;
+
+			},safetyhook::MidHook::StartDisabled);
+
+		if (GameConfig::GetValue("Debug", "FixFrametimeVehicleSkids", 1))
+			(void)FixFrametimeVehicleSkids.enable();
+
 		static bool unhook_after_patching_xtbl_read_and_parse_file = GameConfig::GetValue("Debug", "unhook_after_patching_xtbl_read_and_parse_file", 1);
 		if(Input::EnableDynamicPrompts)
 			xtbl_read_and_parse_file_hook = safetyhook::create_mid(0xBFBA44, [](SafetyHookContext& ctx) {

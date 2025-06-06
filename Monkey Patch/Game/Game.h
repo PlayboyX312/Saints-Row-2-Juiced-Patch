@@ -1,5 +1,6 @@
 #pragma once
 #include "../Patcher/CPatch.h"
+#include <safetyhook.hpp>
 enum vint_message_type {
 	top_of_screen = 0,
 	middle_of_screen = 1,
@@ -67,5 +68,6 @@ namespace Game
 		typedef uint32_t(__thiscall* crc_strT)(char* text);
 		extern crc_strT str_to_hash;
 	}
+	extern SafetyHookMid FixFrametimeVehicleSkids;
 };
 

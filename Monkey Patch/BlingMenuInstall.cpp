@@ -251,6 +251,7 @@ namespace BlingMenuInstall
         BM_MakeCPatchFunctionSaveConfig(DisableCutSceneBlackBars, CRemoveBlackBars, Render3D, "Graphics", "RemoveBlackBars")
         BM_MakeSafetyHookFunction(Math_multiplication_NAN_fix, matrix_operator_multiplication_midhook,Math::Fixes)
         BM_MakeSafetyHookFunction(UI_hook, final_2d_render, Render2D)
+        BM_MakeSafetyHookFunctionSaveConfig(FixFrametimeVehicleSkids, FixFrametimeVehicleSkids, Game,"Debug","FixFrametimeVehicleSkids")
     void BM_restoreHavok() {
         if(!Debug::fixFrametime)
             *(float*)(0x02527DA4) = 0.01666666666f;
@@ -288,6 +289,7 @@ namespace BlingMenuInstall
        if (BlingMenuLoad()) {
        BlingMenuAddFuncCustom("Juiced", "SleepHack", NULL, &BM_SleepHacks, NULL);
        BlingMenuAddBool("Juiced", "Fix Havok Frametime",&Debug::fixFrametime, BM_restoreHavok);
+       BlingMenuAddFuncCustom("Juiced", "FixFrametimeVehicleSkids",NULL ,&BM_FixFrametimeVehicleSkids, NULL);
        BlingMenuAddFuncCustom("Juiced", "Uncap FPS", NULL, &BM_UncapFPS, NULL);
        BlingMenuAddInt8("Juiced", "OSD", (signed char*)&useJuicedOSD, NULL, 1, 0, 3);
        BlingMenuAddFuncCustom("Juiced", "VanillaFXPlus", NULL, &BM_VFXPlus, NULL);
