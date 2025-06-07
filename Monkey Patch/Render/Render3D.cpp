@@ -120,10 +120,8 @@ namespace Render3D
 			SafeWriteBuf((UInt32)ShaderPointer, X360GammaShader, sizeof(X360GammaShader));
 		}
 		
-		if (GameConfig::GetValue("Graphics", "ShadowFiltering", 0)) {
-			if (_stricmp(ShaderName, "shadow_combiner_xxxx") == 0) {
+		if (_stricmp(ShaderName, "shadow_combiner_xxxx") == 0) {
 				SafeWriteBuf((UInt32)ShaderPointer, ShadowShader, sizeof(ShadowShader));
-			}
 		}
 		__asm popad
 

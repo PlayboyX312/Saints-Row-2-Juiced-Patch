@@ -381,6 +381,7 @@ void RefreshHUD_loop() {
 
 char SR2Ultrawide_HUDScale() {
 	Logger::TypedLog(CHN_DEBUG, "SR2Ultrawide Refreshing HUD %d\n", 1);
+	Render3D::ChangeShaderOptions();
 	float currentX = (float)(*(unsigned int*)0x022f63f8);
 	float currentY = (float)(*(unsigned int*)0x022f63fc);
 	char result;
