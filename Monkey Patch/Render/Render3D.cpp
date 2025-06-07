@@ -120,9 +120,9 @@ namespace Render3D
 			SafeWriteBuf((UInt32)ShaderPointer, X360GammaShader, sizeof(X360GammaShader));
 		}
 		
-		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 0)) {
+		if (GameConfig::GetValue("Graphics", "ShadowFiltering", 0)) {
 			if (_stricmp(ShaderName, "shadow_combiner_xxxx") == 0) {
-				SafeWriteBuf((UInt32)ShaderPointer, ShadowMapShader, sizeof(ShadowMapShader));
+				SafeWriteBuf((UInt32)ShaderPointer, ShadowShader, sizeof(ShadowShader));
 			}
 		}
 		__asm popad
@@ -702,9 +702,11 @@ namespace Render3D
 		arr4[1] = (ShaderOptions.ShadowFilter) != 0 ? 0.0f : 1.0f;
 		arr4[2] = 0.f;
 		arr4[3] = 0.f;
+		float Res[4] = { (float)*General::GameResX, (float)*General::GameResY, GameConfig::GetValue("Graphics", "UHQTreeShadows", 0) ? 960 : 2048, 0.f};
 		// distortion_juicedsettings for Gamma.
 		if(pDevice)
 		pDevice->SetPixelShaderConstantF(187, &arr4[0], 1);
+		pDevice->SetPixelShaderConstantF(188, &Res[0], 1);
 	}
 	void SETLOD(SafetyHookContext& ctx) {
 		if (OVERRIDE_SHADER_LOD == 1) {
@@ -744,7 +746,7 @@ namespace Render3D
 		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
 			ShaderOptions.X360Gamma = 1;
 		}
-		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 1)) {
+		if (GameConfig::GetValue("Graphics", "ShadowFiltering", 1)) {
 			ShaderOptions.ShadowFilter = 1;
 		}
 		add_to_entry_test = safetyhook::create_mid(0x00C080EC, &add_to_entry_crashaddr_hook,safetyhook::MidHook::StartDisabled);

@@ -58,7 +58,7 @@ namespace InGameConfig {
         InGameConfig::RegisterBoolSlider("UncapFPS", "UncapFPS");
         InGameConfig::RegisterBoolSlider("X360Gamma", "Xbox 360 Gamma");
         InGameConfig::RegisterBoolSlider("X360GammaUI", "Xbox 360 Gamma on UI");
-        InGameConfig::RegisterBoolSlider("ShadowMapFiltering", "Shadow Map Filtering");
+        InGameConfig::RegisterBoolSlider("ShadowFiltering", "Shadow Filtering");
         InGameConfig::RegisterBoolSlider("DynamicRenderDistance", "DynamicRenderDistance");
         InGameConfig::RegisterBoolSlider("IncreaseVehicleFadeDistance", "IncreaseVehicleFadeDistance");
         InGameConfig::RegisterSlider("ShaderOverride", "ShaderOverride", { "CONTROL_NO","Force Highest LOD","Increased distance" });
@@ -189,14 +189,14 @@ namespace InGameConfig {
 
             }
         }
-        if (strcmp(var, "ShadowMapFiltering") == 0) {
+        if (strcmp(var, "ShadowFiltering") == 0) {
             if (!write) {
                 *value = Render3D::ShaderOptions.ShadowFilter ? 1 : 0;
             }
             else {
                 Render3D::ShaderOptions.ShadowFilter = *value != 0;
                 Render3D::ChangeShaderOptions();
-                GameConfig::SetValue("Graphics", "ShadowMapFiltering", *value);
+                GameConfig::SetValue("Graphics", "ShadowFiltering", *value);
 
             }
         }

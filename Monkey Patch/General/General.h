@@ -44,4 +44,6 @@ namespace General {
 	extern SafetyHookMid cleanupBufferHook;
 	extern SafetyHookMid luaLoadBuffHook;
 	extern std::function<void()> D3D9_create;
+	extern UINT16* GameResX;
+	extern UINT16* GameResY;
 }
