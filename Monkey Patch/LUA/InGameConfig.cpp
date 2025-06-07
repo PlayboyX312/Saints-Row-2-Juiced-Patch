@@ -158,10 +158,10 @@ namespace InGameConfig {
 #endif
             if (strcmp(var, "X360Gamma") == 0) {
             if (!write) {
-                *value = (Render3D::ShaderOptions & (1 << 0)) ? 1 : 0;
+                *value = Render3D::ShaderOptions.X360Gamma ? 1 : 0;
             }
             else {
-                Render3D::ShaderOptions = (*value) ? (Render3D::ShaderOptions | SHADER_X360_GAMMA) : (Render3D::ShaderOptions & ~SHADER_X360_GAMMA);
+                Render3D::ShaderOptions.X360Gamma = *value != 0;
                 Render3D::VFXBrightnesstoggle();
                 Render3D::ChangeShaderOptions();
                 GameConfig::SetValue("Graphics", "X360Gamma", *value);
@@ -191,10 +191,10 @@ namespace InGameConfig {
         }
         if (strcmp(var, "ShadowMapFiltering") == 0) {
             if (!write) {
-                *value = (Render3D::ShaderOptions & (1 << 1)) ? 1 : 0;
+                *value = Render3D::ShaderOptions.ShadowFilter ? 1 : 0;
             }
             else {
-                Render3D::ShaderOptions = (*value) ? (Render3D::ShaderOptions | SHADER_SHADOW_FILTER) : (Render3D::ShaderOptions & ~SHADER_SHADOW_FILTER);
+                Render3D::ShaderOptions.ShadowFilter = *value != 0;
                 Render3D::ChangeShaderOptions();
                 GameConfig::SetValue("Graphics", "ShadowMapFiltering", *value);
 

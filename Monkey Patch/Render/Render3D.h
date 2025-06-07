@@ -3,8 +3,12 @@
 #include "../Patcher/CPatch.h"
 
 #include <safetyhook.hpp>
-#define SHADER_X360_GAMMA            (1 << 0)        // 0x0001
-#define SHADER_SHADOW_FILTER           (1 << 1)        // 0x0002
+
+struct shaderOptions {
+    char X360Gamma;
+    char ShadowFilter;
+};
+
 namespace Render3D
 {
     extern void Init();
@@ -31,7 +35,7 @@ namespace Render3D
     extern bool crash;
     extern SafetyHookMid add_to_entry_test;
     extern void AspectRatioFix(bool update_aspect_ratio = false);
-    extern int ShaderOptions;
+    extern shaderOptions ShaderOptions;
     extern void ChangeShaderOptions();
     extern void VFXBrightnesstoggle();
 

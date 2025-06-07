@@ -265,7 +265,7 @@ namespace Render3D
 	volatile float Saturation = 0.8f;
 	volatile float Contrast = 1.58f;
 	inline void VFXBrightnesstoggle() {
-		if ((ShaderOptions & SHADER_X360_GAMMA)) {
+		if ((ShaderOptions.X360Gamma != 0)) {
 			  Brightness = 1.32f;
 			  Saturation = 0.8f;
 			  Contrast = 1.58f;
@@ -693,13 +693,13 @@ namespace Render3D
 	};
 #endif
 	// This whole thing might have a performance hit.
-	int ShaderOptions;
+	shaderOptions ShaderOptions;
 	 
 	void ChangeShaderOptions() {
 		IDirect3DDevice9* pDevice = *reinterpret_cast<IDirect3DDevice9**>(0x0252A2D0);
 		float arr4[4];
-		arr4[0] = (ShaderOptions & SHADER_X360_GAMMA) != 0 ? 0.0f : 1.0f;
-		arr4[1] = (ShaderOptions & SHADER_SHADOW_FILTER) != 0 ? 0.0f : 1.0f;
+		arr4[0] = (ShaderOptions.X360Gamma) != 0 ? 0.0f : 1.0f;
+		arr4[1] = (ShaderOptions.ShadowFilter) != 0 ? 0.0f : 1.0f;
 		arr4[2] = 0.f;
 		arr4[3] = 0.f;
 		// distortion_juicedsettings for Gamma.
@@ -742,10 +742,10 @@ namespace Render3D
 		//static auto RenderLOD2 = safetyhook::create_mid(0x00D0582C, &LODtest);
 		//static auto gr_effect_set = safetyhook::create_mid(0x00D1A884, &LODtest);
 		if (GameConfig::GetValue("Graphics", "X360Gamma", 1)) {
-			ShaderOptions |= SHADER_X360_GAMMA;
+			ShaderOptions.X360Gamma = 1;
 		}
 		if (GameConfig::GetValue("Graphics", "ShadowMapFiltering", 1)) {
-			ShaderOptions |= SHADER_SHADOW_FILTER;
+			ShaderOptions.ShadowFilter = 1;
 		}
 		add_to_entry_test = safetyhook::create_mid(0x00C080EC, &add_to_entry_crashaddr_hook,safetyhook::MidHook::StartDisabled);
 		if (GameConfig::GetValue("Debug", "ClippyTextureCrashExceptionHandle", 1)) {
