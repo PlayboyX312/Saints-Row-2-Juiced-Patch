@@ -721,7 +721,11 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
     _time64(&time);
     _localtime64_s(&ltime, &time);
     wcsftime(timestamp, _countof(timestamp), L"%Y%m%d%H%M%S", &ltime);
+#if !RELOADED
     swprintf_s(filename, L"%s\\Juiced\\CrashDumps\\%s.%s.dmp", modulename, modulenameptr, timestamp);
+#else
+    swprintf_s(filename, L"%s\\thaRow\\CrashDumps\\%s.%s.dmp", modulename, modulenameptr, timestamp);
+#endif
 
     hFile = CreateFileW(filename, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -742,7 +746,11 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
 
     // step 2: write log
     // Logs exception into buffer and writes to file
+#  if !RELOADED
     swprintf_s(filename, L"%s\\Juiced\\CrashDumps\\%s.%s.log", modulename, modulenameptr, timestamp);
+#else
+    swprintf_s(filename, L"%s\\thaRow\\CrashDumps\\%s.%s.log", modulename, modulenameptr, timestamp);
+#endif
 
     hFile = CreateFileW(filename, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -815,7 +823,11 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
 
         CloseHandle(hFile);
     }
+#if !RELOADED
     swprintf_s(filename, L"%s\\Juiced\\logs\\%s.%s.log", modulename, L"debug", timestamp);
+#else
+    swprintf_s(filename, L"%s\\thaRow\\logs\\%s.%s.log", modulename, L"debug", timestamp);
+#endif
     Logger::SaveDebugLogCopy(filename);
     // step 3: exit the application
     ShowCursor(TRUE);

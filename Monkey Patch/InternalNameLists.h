@@ -1,4 +1,4 @@
-#if !RELOADED
+
 #include <vector>
 #include <map>
 #include <string>
@@ -580,5 +580,3 @@ const std::vector<std::pair<std::string, const char*>> AllVehicles = {
     {"Komodo", "wagon_4dr_01"},
     {"Keystone", "wagon_4dr_sprt01"}
 };
-
-#endif

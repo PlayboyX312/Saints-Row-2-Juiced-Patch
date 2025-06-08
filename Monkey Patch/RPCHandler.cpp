@@ -435,7 +435,7 @@ namespace RPCHandler {
 		memset(&relationships_events, 0, sizeof(relationships_events));
 
 		DiscordCreateParamsSetDefault(&params);
-		params.client_id = 1257751836375519332;
+		params.client_id = 1381232715705221244;
 		params.flags = DiscordCreateFlags_NoRequireDiscord;
 		params.event_data = &app;
 		params.activity_events = &activities_events;
@@ -465,7 +465,7 @@ namespace RPCHandler {
 				std::time_t CurrentTime = std::time(0);
 				//Initialize a basic Rich Presence.
 				pres.timestamps.start = CurrentTime;
-				strcpy_s(pres.assets.large_image, "sr2mprr");
+				strcpy_s(pres.assets.large_image, "tharow");
 				app.activities->update_activity(app.activities, &pres, 0, 0);
 				// ---------------------------------
 			}

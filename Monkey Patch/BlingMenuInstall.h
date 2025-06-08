@@ -1,4 +1,4 @@
-#if !RELOADED
+
 #pragma once
 namespace BlingMenuInstall {
 
@@ -28,4 +28,4 @@ const char* BM_##funcName(void* userdata, int action) { \
     using namespace nameSpace; \
     return BM_GenericSafetyHookFunction(safetyhookVar, action, appName, keyName); \
 }
-#endif
+

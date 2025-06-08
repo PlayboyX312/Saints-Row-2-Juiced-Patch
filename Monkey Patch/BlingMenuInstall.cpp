@@ -1,4 +1,4 @@
-#if !RELOADED && !JLITE
+#if !JLITE
 #pragma warning( disable : 4834)
 #pragma warning( disable : 4309)
 #include "GameConfig.h"
@@ -21,7 +21,9 @@
 #include "Game/Game.h"
 const char* ERROR_MESSAGE = "ERROR";
 // MainHooks.cpp
+#if !RELOADED
 void ToggleNoclip();
+#endif
 void SlewModeToggle();
 void TeleportToWaypoint();
 void VehicleSpawner(const char* Name, const char* Var);
@@ -138,6 +140,7 @@ namespace BlingMenuInstall
     }
 
     const char* BM_ToggleNoclip(void* userdata, int action) {
+#if !RELOADED
         if (action != -1) {
             ToggleNoclip();
         }
@@ -147,6 +150,7 @@ namespace BlingMenuInstall
         case true: return "ON ";
             break;
         }
+#endif
         return ERROR_MESSAGE;
     }
 

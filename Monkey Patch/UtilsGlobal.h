@@ -36,6 +36,7 @@ inline const char* juicedversion = "1.3.0";
 inline const char* juicedversion = "7.6.0";
 #endif
 
+inline const char* thaRowmenuversion = "0.0.1";
 inline const char* thaRowversion = "%s - thaRow 0\.1beta";
 
 inline char* lobby_list[2] = {

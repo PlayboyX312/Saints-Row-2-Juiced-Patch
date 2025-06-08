@@ -212,7 +212,7 @@ BOOL __stdcall Hook_GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
 		") ---\n").c_str());
     #endif
 #else
-	Logger::TypedLog(CHN_DLL, " --- Welcome to Saints Row 2 RELOADED ---\n");
+	Logger::TypedLog(CHN_DLL, " --- Welcome to thaRow ---\n");
 #endif
 	Logger::TypedLog(CHN_DLL, "RUNNING DIRECTORY: %s\n", &executableDirectory);
 	Logger::TypedLog(CHN_DLL, "LOG FILE CREATED: %s\n", &timeString);
@@ -808,11 +808,11 @@ void cus_FrameToggles() {
 		*(uint8_t*)(0x25273B4) = uglyMode ? 1 : 0;
 		*(float*)(0xE98988) = uglyMode ? 400.0f : 20000.0f;
 	}
-
+#if !RELOADED
 	if (IsKeyPressed(VK_F11, false)) { // F1
 		NewSave();
 	}
-
+#endif
 	if (IsKeyPressed(VK_F4, false)) { // F4
 		SlewModeToggle();
 	}
@@ -883,7 +883,7 @@ void cus_FrameToggles() {
 		addsubtitles(subtitles.c_str(), delay, duration, whateverthefuck);
 		Logger::TypedLog(CHN_DEBUG, "Player Pos + Orient: <%0.6f %0.6f %0.6f> [%0.6f]\n", hkg_playerPosition[0], hkg_playerPosition[1], hkg_playerPosition[2], hkg_camOrient);
 	}
-
+#if !RELOADED // change this up later when thaRow gets 3+ player co-op?
 	if (IsKeyPressed(VK_F7, false)) {
 
 		if (hasCheatMessageBeenSeen == 1 || Debug::CMPatches_DisableCheatFlag.IsApplied())
@@ -904,7 +904,7 @@ void cus_FrameToggles() {
 			}
 		}
 	}
-
+#endif
 	if (IsKeyPressed(VK_DELETE, false) && IsInSaveMenu()) {
 		DeletionMode = true;
 		*EnterPressed = true;
@@ -1574,7 +1574,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 		patchNop((void*)0x520F65, 6);
 	}
 #else
-	if (PathRemoveFileSpecA(NameBuffer) && PathAppendA(NameBuffer, "thaRow_userData")) {
+	if (PathRemoveFileSpecA(NameBuffer) && PathAppendA(NameBuffer, "\\thaRow\\userData")) {
 		CreateDirectoryA(NameBuffer, NULL);
 		Logger::TypedLog(CHN_DLL, "Final Path: %s \n", NameBuffer);
 		SafeWriteBuf(0x0144E650, NameBuffer, MAX_PATH);
@@ -1586,9 +1586,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 	InternalPrint::Init();
 	RPCHandler::Init();
 
-#if !RELOADED
-	BlingMenuInstall::AddOptions();
-#endif
+	//BlingMenuInstall::AddOptions();
 
 #endif
 	Gamespy::Init();
@@ -1601,13 +1599,13 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 	Audio::Init();
 	XACT::Init();
 	Debug::Init();
+	Render2D::InitMenVerNum();
 
 #if RELOADED
 	Reloaded::Init();
 	Behavior::BetterMovement();
 	packfile::PatchThaRowPackfiles();
 #else
-	Render2D::InitMenVerNum();
 	Debug::PatchDatafiles();
 #endif
 

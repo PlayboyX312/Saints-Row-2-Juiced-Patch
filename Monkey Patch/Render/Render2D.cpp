@@ -272,6 +272,7 @@ namespace Render2D
 			__asm popad
 		}
 #else
+#if !RELOADED
 		if (*(BYTE*)0x02527B75 == 1 && *(BYTE*)0xE8D56B == 1) {
 			Sleep(1);
 			ChangeTextColor(160, 160, 160, 128);
@@ -279,6 +280,15 @@ namespace Render2D
 			InGamePrint(("JUICED " + std::string(UtilsGlobal::juicedversion)).c_str(), 680, processtextwidth(1120), 2);
 			__asm popad
 		}
+#else
+		if (*(BYTE*)0xE8D56B == 1) {
+			Sleep(1);
+			ChangeTextColor(160, 160, 160, 128);
+			__asm pushad
+			InGamePrint(("THAROW " + std::string(UtilsGlobal::thaRowmenuversion)).c_str(), 680, processtextwidth(1120), 2);
+			__asm popad
+		}
+#endif
 #endif
 
 		// Call original func
