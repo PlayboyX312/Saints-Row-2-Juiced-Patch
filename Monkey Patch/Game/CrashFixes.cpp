@@ -134,6 +134,14 @@ namespace CrashFixes {
 					return;
 				}
 				});
+
+			static auto Fix_0x0x943711_hook = safetyhook::create_mid(0x943711, [](SafetyHookContext& ctx) {
+				if (!ctx.ebp) {
+					ctx.eip = 0x9436CA;
+					Logger::TypedLog(CHN_DEBUG, "Avoided 0x943711 crash?\n");
+					}
+				});
+
 		}
 		// I kind of want these seperated, idk why but let's say 2+ is confirmed by mods or modded setups?
 		if (GameConfig::GetValue("Debug", "FixCrashes", 1) >= 2) {
