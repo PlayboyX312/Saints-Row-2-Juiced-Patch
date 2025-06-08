@@ -166,6 +166,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsManager.ixx" />
+    <ClCompile Include="PatchNotifier.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFEngine.h">

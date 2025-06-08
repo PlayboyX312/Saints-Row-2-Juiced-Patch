@@ -1487,7 +1487,48 @@ bool FileExists(const char* fileName) {
 	return found;
 }
 const wchar_t* Options[] = { L"OK", L"Join the [format][color:#5864F6]Discord[/format]\n\n" };
+#if !JLITE && !RELOADED
+import PatchNotifier;
+void __cdecl UpdateCallback(int Unk, int SelectedOption, int Action) {
+	if (Action == 2) {
+		switch (SelectedOption) {
+		case 0:
+			ShellExecute(0, 0, L"https://github.com/kobraworksmodding/Saints-Row-2-Juiced-Patch/releases", 0, 0, SW_SHOW);
+			break;
+		case 1:
+			break;
+		case 2:
+			GameConfig::SetValue("Misc", "UpdateChecks", 0);
+			break;
+		}
+	}
+}
+#endif
 int* sub_73D900() {
+#if !JLITE && !RELOADED
+	if(GameConfig::GetValue("Misc", "UpdateChecks", 1)){
+	auto result = PatchNotifier::checkForPatchUpdate();
+	if (result.checkSuccessful) {
+		Logger::TypedLog("UPDATE_CHECK", result.latestVersion.c_str());
+
+		if (result.updateAvailable) {
+			std::string updateMessage =
+				"A new version of [format][color:#B200FF]Juiced[/format] is available!\n\n"
+				"Current Version: " + result.currentVersion + "\n"
+				"Latest Version: [format][color:#00FF00]" + result.latestVersion + "[/format]\n\n"
+				"Download the latest version to get bug fixes and new features.\n"
+				"- [format][color:#B200FF]Juiced Team[/format]";
+
+			std::wstring wideMessage(updateMessage.begin(), updateMessage.end());
+
+			const wchar_t* updateTitle = L"Update Available - Juiced";
+			const wchar_t* UpdateOptions[] = { L"Open Github Downloads", L"OK", L"Disable UpdateChecks" };
+			int updateResult = AddMessageCustomized(updateTitle, wideMessage.c_str(), UpdateOptions, _countof(UpdateOptions));
+			*(void**)(updateResult + 0x930) = &UpdateCallback;
+		}
+	}
+	}
+#endif
 	if (FirstBootCheck()) {
 		const wchar_t* JuicedWelcome =
 			L"Welcome to [format][color:#B200FF]Juiced[/format]! Thank you for installing the patch.\n"
