@@ -8,6 +8,8 @@
 #include "../Player/Input.h"
 #include "../UGC/Debug.h"
 #include "../UtilsGlobal.h"
+#pragma warning( disable : 4806)
+#pragma warning( disable : 28159)
 namespace Game
 {
 	namespace Timer {
@@ -360,7 +362,7 @@ namespace Game
 				xtbl_scan_status.cheats_scanned) {
 				Logger::TypedLog(CHN_XTBL, "All XTBL files processed. GOTR status: %s. Disabling hook.\n",
 					xtbl_scan_status.gotr_detected ? "DETECTED" : "NOT DETECTED");
-				xtbl_read_and_parse_file_hook.disable();
+				(void)xtbl_read_and_parse_file_hook.disable();
 			}
 			});
 		if (GameConfig::GetValue("Gameplay", "DisableTutorials", 0))

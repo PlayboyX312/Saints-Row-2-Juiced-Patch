@@ -21,7 +21,7 @@ and / or run completely on startup or after we check everything else.*/
 #include "../Game/Game.h"
 
 using namespace Math;
-
+#pragma warning( disable : 4409)
 namespace General {
 	bool DeletionMode;
 	const wchar_t* SaveMessage = L"Are you sure you want to delete this save?"; // ultimately, if we get extra strings to load, we should use a string label and request the string instead of hardcoding it
@@ -1159,7 +1159,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			patchDouble((void*)0x00E5C080, 1.55f);
 			WriteRelCall(0x00D1EF2F, (UInt32)&SR2Ultrawide_HUDScale);
 			WriteRelCall(0x00D1F944, (UInt32)&SR2Ultrawide_HUDScale);
-			vint_create_process_hook.enable();
+			(void)vint_create_process_hook.enable();
 		}
 		// LUA EXECUTE
 		patchBytesM((BYTE*)0x0075D5D6, (BYTE*)"\x68\x3A\x30\x7B\x02", 5);

@@ -266,9 +266,9 @@ CMultiPatch CMPatches_SR1Reloading = {
 	SafetyHookMid LessCameraVehicleFollow{};
 	void LessCameraVehicleFollow_hook_enable_disable() {
 		if (vehicle_camera_follow_modifier != 1.f)
-			LessCameraVehicleFollow.enable();
+			(void)LessCameraVehicleFollow.enable();
 		else
-			LessCameraVehicleFollow.disable();
+			(void)LessCameraVehicleFollow.disable();
 		GameConfig::SetDoubleValue("Gameplay", "vehicle_camera_follow_modifier", vehicle_camera_follow_modifier);
 	}
 	void Init()
@@ -285,7 +285,7 @@ CMultiPatch CMPatches_SR1Reloading = {
 			}
 			},safetyhook::MidHook::StartDisabled);
 		// Lower values = camera slower panning around car
-		vehicle_camera_follow_modifier = GameConfig::GetDoubleValue("Gameplay", "vehicle_camera_follow_modifier", 1.f);
+		vehicle_camera_follow_modifier = (float)GameConfig::GetDoubleValue("Gameplay", "vehicle_camera_follow_modifier", 1.f);
 		LessCameraVehicleFollow_hook_enable_disable();
 		if (GameConfig::GetValue("Debug", "FixGFL1_for_female_playas", 1))
 			player_data_loadT = safetyhook::create_inline(0x00693EB0, &player_data_load);
@@ -379,7 +379,7 @@ CMultiPatch CMPatches_SR1Reloading = {
 			cf_do_control_mode_sticky_MIDASMHOOK = safetyhook::create_mid(0x0049C102, &sticky_cam_modifier,safetyhook::MidHook::StartDisabled);
 			// it's expecting time in ms, so 1000 = 1 second
 			if (int user_cam_modifier = GameConfig::GetValue("Gameplay", "VehicleAutoCenterModifer", 0); user_cam_modifier > 0) {
-				cf_do_control_mode_sticky_MIDASMHOOK.enable();
+				(void)cf_do_control_mode_sticky_MIDASMHOOK.enable();
 				sticky_cam_timer_add = user_cam_modifier;
 			}
 

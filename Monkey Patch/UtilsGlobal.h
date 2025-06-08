@@ -2,7 +2,7 @@
 #include <corecrt_math_defines.h>
 #include "..\Generated\BuildInfo.h"
 #include "Math\Math.h"
-
+#pragma warning( disable : 4219)
 using namespace Math;
 
 namespace UtilsGlobal {
@@ -37,7 +37,7 @@ inline const char* juicedversion = "7.6.0";
 #endif
 
 inline const char* thaRowmenuversion = "0.0.1";
-inline const char* thaRowversion = "%s - thaRow 0\.1beta";
+inline const char* thaRowversion = "%s - thaRow 0.1beta";
 
 inline char* lobby_list[2] = {
         const_cast<char*>("sr2_mp_lobby02"),

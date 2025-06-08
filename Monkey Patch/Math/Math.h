@@ -327,12 +327,6 @@ struct matrix
 namespace Math
 {
 	extern void Init();
-	extern struct Velocity {
-		float vx;
-		float vy;
-		float vz;
-		float magnitude;
-	};
 	namespace Fixes {
 		extern SafetyHookMid matrix_operator_multiplication_midhook;
 	}

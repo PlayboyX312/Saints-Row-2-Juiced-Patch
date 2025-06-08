@@ -848,7 +848,7 @@ void cus_FrameToggles() {
 		subtitles += *(BYTE*)(0x0252737C) ? L" ON" : L" OFF";
 		subtitles += L"[/format]";
 		addsubtitles(subtitles.c_str(), delay, duration, whateverthefuck);
-		*(BYTE*)(0x0252737C) = !(*(BYTE*)(0x0252737C));
+		*(bool*)(0x0252737C) = !(*(bool*)(0x0252737C));
 
 	}
 
@@ -1508,8 +1508,11 @@ int* sub_73D900() {
 #if !JLITE && !RELOADED
 	if(GameConfig::GetValue("Misc", "UpdateChecks", 1)){
 	auto result = PatchNotifier::checkForPatchUpdate();
+	if (!result.errorMessage.empty()) {
+		Logger::TypedLog(CHN_DEBUG, "Updater error %s\n", result.errorMessage.c_str());
+	}
 	if (result.checkSuccessful) {
-		Logger::TypedLog("UPDATE_CHECK", result.latestVersion.c_str());
+		Logger::TypedLog(CHN_DEBUG, result.latestVersion.c_str());
 
 		if (result.updateAvailable) {
 			std::string updateMessage =
