@@ -210,6 +210,7 @@ namespace Game
 	}
 	SafetyHookMid xtbl_read_and_parse_file_hook{};
 	SafetyHookMid FixFrametimeVehicleSkids{};
+	XTBLScanStatus xtbl_scan_status = {};
 	void Init() { 
 		FixFrametimeVehicleSkids = safetyhook::create_mid(0xA9DDB3, [](SafetyHookContext& ctx) {
 			using namespace Timer;
@@ -221,8 +222,8 @@ namespace Game
 			});
 
 		static bool unhook_after_patching_xtbl_read_and_parse_file = GameConfig::GetValue("Debug", "unhook_after_patching_xtbl_read_and_parse_file", 1);
-		if(Input::EnableDynamicPrompts)
-			xtbl_read_and_parse_file_hook = safetyhook::create_mid(0xBFBA44, [](SafetyHookContext& ctx) {
+
+		xtbl_read_and_parse_file_hook = safetyhook::create_mid(0xBFBA44, [](SafetyHookContext& ctx) {
 			char* xtbl_filename = (char*)ctx.edi;
 			char* buffer = (char*)ctx.esi;
 
@@ -235,85 +236,130 @@ namespace Game
 				strcmp(xtbl_filename, "bitmap_sheetsnl.xtbl") == 0 ||
 				strcmp(xtbl_filename, "bitmap_sheetspl.xtbl") == 0 ||
 				strcmp(xtbl_filename, "bitmap_sheetsru.xtbl") == 0) {
-				std::string xml_content(buffer);
 
-				std::vector<UIElementProperties> elementsToMove = {
-					{
-						"ui_ctrl_360_btn_a",
-						450, 289, 34, 34,
-						"D:\\projects\\sr2art\\Interface\\bms\\controls\\ui_ctrl_360_btn_a.tga"
-					},
-					{
-						"ui_ctrl_360_btn_x",
-						346, 989, 34, 34,
-						"path\\to\\file.tga"
-					},
-					{
-						"ui_ctrl_ps3_btn_cross",
-						450, 359, 34, 34,
-						"path\\to\\file.tga"
+				// Only process if not already scanned
+				if (!xtbl_scan_status.bitmap_sheets_scanned) {
+					std::string xml_content(buffer);
+
+					std::vector<UIElementProperties> elementsToMove = {
+						{
+							"ui_ctrl_360_btn_a",
+							450, 289, 34, 34,
+							"D:\\projects\\sr2art\\Interface\\bms\\controls\\ui_ctrl_360_btn_a.tga"
+						},
+						{
+							"ui_ctrl_360_btn_x",
+							346, 989, 34, 34,
+							"path\\to\\file.tga"
+						},
+						{
+							"ui_ctrl_ps3_btn_cross",
+							450, 359, 34, 34,
+							"path\\to\\file.tga"
+						}
+					};
+
+					std::vector<UIElementProperties> elementsToMove_00 = {
+						{
+							"ui_ctrl_360_dpad_lr",
+							391, 892, 42, 42,
+							"path\\to\\file.tga"
+						},
+						{
+							"ui_ctrl_360_dpad_ud",
+							391, 849, 42, 42,
+							"path\\to\\file.tga"
+						}
+					};
+
+					for (const auto& element : elementsToMove) {
+						moveUIElement(xml_content, "ui_bms_10", "ui_bms_01", element);
 					}
-				};
-
-				std::vector<UIElementProperties> elementsToMove_00 = {
-					{
-						"ui_ctrl_360_dpad_lr",
-						391, 892, 42, 42,
-						"path\\to\\file.tga"
-					},
-					{
-						"ui_ctrl_360_dpad_ud",
-						391, 849, 42, 42,
-						"path\\to\\file.tga"
+					for (const auto& element : elementsToMove_00) {
+						moveUIElement(xml_content, "ui_bms_10", "ui_bms_00", element);
 					}
-				};
 
-				for (const auto& element : elementsToMove) {
-					moveUIElement(xml_content, "ui_bms_10", "ui_bms_01", element);
+					std::vector<std::pair<std::string, UIElementProperties>> elementsToCreate = {
+						{
+							"ui_bms_10",
+							UIElementProperties(
+								"ui_ctrl_pc_dpad_lr_juiced",
+								400, 269, 73, 44, 0.7f, 0,
+								"D:\\projects\\sr2art\\Interface\\bms\\new\\ui_brand_new_element.tga"
+							)
+						},
+						{
+							"ui_bms_10",
+							UIElementProperties(
+								"ui_ctrl_pc_dpad_up_juiced",
+								322, 269, 73, 44, 0.7f, 0,
+								"D:\\projects\\sr2art\\Interface\\bms\\new\\ui_brand_new_element.tga"
+							)
+						}
+					};
+
+					for (const auto& [targetSheet, element] : elementsToCreate) {
+						if (!elementExistsInXML(xml_content, element.name)) {
+							createUIElement(xml_content, targetSheet, element);
+						}
+						else {
+							Logger::TypedLog(CHN_XTBL, (element.name + " already exists, skipping creation" + "\n").c_str());
+						}
+					}
+
+					size_t new_size = xml_content.length() + 1;
+					char* new_buffer = new char[new_size];
+					strcpy_s(new_buffer, new_size, xml_content.c_str());
+					ctx.esi = (uintptr_t)new_buffer;
+
+					Logger::TypedLog(CHN_XTBL, "XML modification completed for bitmap sheets\n");
+
+					// Mark bitmap sheets as scanned
+					xtbl_scan_status.bitmap_sheets_scanned = 1;
 				}
-				for (const auto& element : elementsToMove_00) {
-					moveUIElement(xml_content, "ui_bms_10", "ui_bms_00", element);
-				}
+			}
+			// Check for customization_outfits.xtbl
+			else if (strcmp(xtbl_filename, "customization_outfits.xtbl") == 0) {
+				// Only process if not already scanned
+				if (!xtbl_scan_status.outfits_scanned) {
+					std::string xml_content(buffer);
 
-				std::vector<std::pair<std::string, UIElementProperties>> elementsToCreate = {
-					{
-						"ui_bms_10",
-						UIElementProperties(
-							"ui_ctrl_pc_dpad_lr_juiced",
-							400, 269, 73, 44, 0.7f, 0,
-							"D:\\projects\\sr2art\\Interface\\bms\\new\\ui_brand_new_element.tga"
-						)
-					},
-					{
-						"ui_bms_10",
-						UIElementProperties(
-							"ui_ctrl_pc_dpad_up_juiced",
-							322, 269, 73, 44, 0.7f, 0,
-							"D:\\projects\\sr2art\\Interface\\bms\\new\\ui_brand_new_element.tga"
-						)
-					}
-				};
-
-				for (const auto& [targetSheet, element] : elementsToCreate) {
-					if (!elementExistsInXML(xml_content, element.name)) {
-						createUIElement(xml_content, targetSheet, element);
+					// Check for GOTR signature
+					if (xml_content.find("IdolNinja's Funk") != std::string::npos) {
+						xtbl_scan_status.gotr_detected = 1;
+						Logger::TypedLog("OUTFITS", "GOTR detected - IdolNinja's Funk found\n");
 					}
 					else {
-						Logger::TypedLog(CHN_XTBL, (element.name + " already exists, skipping creation" + "\n").c_str());
+						Logger::TypedLog("OUTFITS", "GOTR not detected - IdolNinja's Funk not found\n");
 					}
+
+					xtbl_scan_status.outfits_scanned = 1;
 				}
+			}
+			else if (strcmp(xtbl_filename, "cheats.xtbl") == 0) {
+				if (!xtbl_scan_status.cheats_scanned) {
+					std::string xml_content(buffer);
 
-				size_t new_size = xml_content.length() + 1;
-				char* new_buffer = new char[new_size];
-				strcpy_s(new_buffer, new_size, xml_content.c_str());
+					// Check for GOTR signature
+					if (xml_content.find("Chainsaw Launcher") != std::string::npos) {
+						xtbl_scan_status.gotr_detected = 1;
+						Logger::TypedLog("CHEATS", "GOTR detected - Chainsaw Launcher found\n");
+					}
+					else {
+						Logger::TypedLog("CHEATS", "GOTR not detected - Chainsaw Launcher not found\n");
+					}
 
-				ctx.esi = (uintptr_t)new_buffer;
+					xtbl_scan_status.cheats_scanned = 1;
+				}
+			}
 
-				Logger::TypedLog(CHN_XTBL, "XML modification completed \n");\
-				// We'll unhook because it seems like bitmaps_sheets{lang}.xtbl is only parsed once, 
-				// as it doesn't make sense to keep on strcmp xtbl after patching the xtbl, 
-				// if this statement is incorrect, we'll have to remove this unhook. 
-				if(unhook_after_patching_xtbl_read_and_parse_file)
+			// Check if all files have been scanned and unhook if configured to do so
+			if (unhook_after_patching_xtbl_read_and_parse_file &&
+				xtbl_scan_status.bitmap_sheets_scanned &&
+				xtbl_scan_status.outfits_scanned &&
+				xtbl_scan_status.cheats_scanned) {
+				Logger::TypedLog(CHN_XTBL, "All XTBL files processed. GOTR status: %s. Disabling hook.\n",
+					xtbl_scan_status.gotr_detected ? "DETECTED" : "NOT DETECTED");
 				xtbl_read_and_parse_file_hook.disable();
 			}
 			});

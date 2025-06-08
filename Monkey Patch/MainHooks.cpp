@@ -1330,31 +1330,6 @@ int RenderLoopStuff_Hacked()
 	}
 	if(Input::allow_hacked_inventory_KBM)
 	Input::Process_Inventory_Hack_KBM();
-	if (FirstBootCheck()) {
-		const wchar_t* JuicedWelcome =
-			L"Welcome to [format][color:#B200FF]Juiced[/format]! Thank you for installing the patch.\n"
-			L"If you're in need of support, head over to our [format][color:#5864F6]Discord[/format].\n"
-			L"- [format][color:#B200FF]Juiced Team[/format]"
-			L"[format][scale:1.0][image:ui_hud_inv_d_ginjuice][/format]";
-		const wchar_t* Options[] = { L"OK", L"Join the [format][color:#5864F6]Discord[/format]\n\n" };
-		const wchar_t* Title = L"Juiced";
-		int Result = AddMessageCustomized(Title, JuicedWelcome, Options, _countof(Options));
-		*(void**)(Result + 0x930) = &WelcomeCallback;
-		FirstBootFlag();
-	}
-#else // what the fuck is the point of this someone needs to explain it to me because I'm confused??
-	if (FirstBootCheck()) {
-		const wchar_t* JuicedWelcome =
-			L"Welcome to [format][color:#B200FF]Juiced[/format]! Thank you for installing the patch.\n"
-			L"If you're in need of support, head over to our [format][color:#5864F6]Discord[/format].\n"
-			L"- [format][color:#B200FF]Juiced Team[/format]"
-			L"[format][scale:1.0][image:ui_hud_inv_d_ginjuice][/format]";
-		const wchar_t* Options[] = { L"OK", L"Join the [format][color:#5864F6]Discord[/format]\n\n" };
-		const wchar_t* Title = L"Juiced";
-		int Result = AddMessageCustomized(Title, JuicedWelcome, Options, _countof(Options));
-		*(void**)(Result + 0x930) = &WelcomeCallback;
-		FirstBootFlag();
-	}
 #endif
 
 
@@ -1511,10 +1486,36 @@ bool FileExists(const char* fileName) {
 	}
 	return found;
 }
+const wchar_t* Options[] = { L"OK", L"Join the [format][color:#5864F6]Discord[/format]\n\n" };
+int* sub_73D900() {
+	if (FirstBootCheck()) {
+		const wchar_t* JuicedWelcome =
+			L"Welcome to [format][color:#B200FF]Juiced[/format]! Thank you for installing the patch.\n"
+			L"If you're in need of support, head over to our [format][color:#5864F6]Discord[/format].\n"
+			L"- [format][color:#B200FF]Juiced Team[/format]"
+			L"[format][scale:1.0][image:ui_hud_inv_d_ginjuice][/format]";
+		const wchar_t* Title = L"Juiced";
+		int Result = AddMessageCustomized(Title, JuicedWelcome, Options, _countof(Options));
+		*(void**)(Result + 0x930) = &WelcomeCallback;
+		FirstBootFlag();
+	}
+	if (Game::xtbl_scan_status.gotr_detected == 1 && !FileExists("GOTR.txt")) {
+		const wchar_t* GOTRWarning = L"does not increase stability or fix the game, in some cases it can even do the opposite.\n\n"
+			L"Crashes and issues that may occur are NOT usually the cause of Juiced Patch.\n\n"
+			L"Think of GOTR as a DLC mod rather than a fix patch.\n\n"
+			L"This message is only to spread awareness, make GOTR.txt in your game directory to remove this message.";
+		const wchar_t* TitleJ = L"[format][color:#FF5349]Gentlemen of the Row[/format]";
+		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
+		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
+		int Result = AddMessageCustomized(TitleJ, GOTRWarning, Options, 0);
+		*(void**)(Result + 0x930) = &WelcomeCallback;
+	}
 
+	return ((int* (*)())0x73D900)();
+}
 int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-
+	patchJmp((void*)0x697339, sub_73D900);
 
 
 	LUA_Key = GameConfig::GetValue("Debug", "ExecutorBind", VK_INSERT);

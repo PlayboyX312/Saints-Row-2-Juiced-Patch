@@ -527,7 +527,7 @@ void ExceptionTracer::PrintBacktrace()
         has_symbol_api = true;
         old_options = SymSetOptions(SYMOPT_DEFERRED_LOADS | SYMOPT_LOAD_LINES | SYMOPT_NO_PROMPTS | SYMOPT_FAIL_CRITICAL_ERRORS);
     }
-
+    Print("GOTR: %s \nxtbl_scan_status flags: 0x%X\n", Game::xtbl_scan_status.gotr_detected ? "YES" : "NO", Game::xtbl_scan_status);
     Print("Backtrace (may be wrong):");
     EnterScope();
     {

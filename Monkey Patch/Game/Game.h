@@ -69,5 +69,13 @@ namespace Game
 		extern crc_strT str_to_hash;
 	}
 	extern SafetyHookMid FixFrametimeVehicleSkids;
+	struct XTBLScanStatus {
+		unsigned __int8 bitmap_sheets_scanned : 1;
+		unsigned __int8 outfits_scanned : 1;
+		unsigned __int8 cheats_scanned : 1;
+		unsigned __int8 gotr_detected : 1;
+		unsigned __int8 unused : 4;
+	};
+	extern XTBLScanStatus xtbl_scan_status;
 };
 
