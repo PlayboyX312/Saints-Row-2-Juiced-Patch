@@ -1587,7 +1587,9 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 	InternalPrint::Init();
 	RPCHandler::Init();
 
-	//BlingMenuInstall::AddOptions();
+#if !RELOADED
+	BlingMenuInstall::AddOptions();
+#endif
 
 #endif
 	Gamespy::Init();
