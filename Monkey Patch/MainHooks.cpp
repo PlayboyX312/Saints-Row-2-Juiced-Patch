@@ -17,6 +17,7 @@
 #include "Mem/Memory.h"
 #if RELOADED
 #include "UGC/thaRow/Reloaded.h"
+#include "UGC/thaRow/packfile.h"
 #endif
 #include "UGC/InternalPrint.h"
 
@@ -1510,8 +1511,12 @@ bool FileExists(const char* fileName) {
 	}
 	return found;
 }
+
 int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+
+
+
 	LUA_Key = GameConfig::GetValue("Debug", "ExecutorBind", VK_INSERT);
 	InGameConfig::AddOptions();
 	General::TopWinMain();
@@ -1560,6 +1565,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 	}
 	
 	// Instead of data being in %LOCALAPPDATA%\\THQ\\Saints Row 2, move it to current direcetory\\userdata
+#if !RELOADED
 	if (GameConfig::GetValue("Misc", "portable", 0) && PathRemoveFileSpecA(NameBuffer) && PathAppendA(NameBuffer, "userdata")) {
 		CreateDirectoryA(NameBuffer, NULL);
 		Logger::TypedLog(CHN_DLL, "Final Path: %s \n", NameBuffer);
@@ -1567,6 +1573,15 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 		patchNop((void*)0x00520FCD, 5);
 		patchNop((void*)0x520F65, 6);
 	}
+#else
+	if (PathRemoveFileSpecA(NameBuffer) && PathAppendA(NameBuffer, "thaRow_userData")) {
+		CreateDirectoryA(NameBuffer, NULL);
+		Logger::TypedLog(CHN_DLL, "Final Path: %s \n", NameBuffer);
+		SafeWriteBuf(0x0144E650, NameBuffer, MAX_PATH);
+		patchNop((void*)0x00520FCD, 5);
+		patchNop((void*)0x520F65, 6);
+	}
+#endif
 #if !JLITE
 	InternalPrint::Init();
 	RPCHandler::Init();
@@ -1590,6 +1605,7 @@ int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCm
 #if RELOADED
 	Reloaded::Init();
 	Behavior::BetterMovement();
+	packfile::PatchThaRowPackfiles();
 #else
 	Render2D::InitMenVerNum();
 	Debug::PatchDatafiles();

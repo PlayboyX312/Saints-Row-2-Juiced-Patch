@@ -36,6 +36,13 @@ inline const char* juicedversion = "1.3.0";
 inline const char* juicedversion = "7.6.0";
 #endif
 
+inline const char* thaRowversion = "%s - thaRow 0\.1beta";
+
+inline char* lobby_list[2] = {
+        const_cast<char*>("sr2_mp_lobby02"),
+        const_cast<char*>("sr2_mp_lobby03")
+};
+
 inline std::string getShortCommitHash(size_t length = 7) {
     return std::string(GIT_COMMIT_HASH).substr(0, length);
 }

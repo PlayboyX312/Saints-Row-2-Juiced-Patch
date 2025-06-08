@@ -48,8 +48,8 @@ namespace Gamespy
 #if !JLITE
 		if (GameConfig::GetValue("Multiplayer", "NewLobbyList", 1))
 		{
-			char newLobby1[MAX_PATH];
-			char newLobby2[MAX_PATH];
+			static char newLobby1[MAX_PATH];
+			static char newLobby2[MAX_PATH];
 
 			Logger::TypedLog(CHN_DEBUG, "Changing Lobby List...\n");
 

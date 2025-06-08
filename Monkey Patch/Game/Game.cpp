@@ -7,6 +7,7 @@
 #include "../Patcher/CPatch.h"
 #include "../Player/Input.h"
 #include "../UGC/Debug.h"
+#include "../UtilsGlobal.h"
 namespace Game
 {
 	namespace Timer {
@@ -374,7 +375,7 @@ namespace Game
 		void RLServerNameUpdateOnce() {
 			char* playerName = (CHAR*)0x0212AB48;
 			char finalSName[2048];
-			sprintf(finalSName, "%s - SR2 RL 1\.0b4", playerName);
+			sprintf(finalSName, UtilsGlobal::thaRowversion, playerName);
 			char* GameName = reinterpret_cast<char*>(0x0212AA08);
 			strcpy(GameName, finalSName);
 		}

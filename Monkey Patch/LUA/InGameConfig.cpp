@@ -602,6 +602,7 @@ namespace InGameConfig {
 
                                 // First add the "Juiced Options" header
                                 int headerIndex = currentNumItems;
+                                
                                 menuEntries += "\t[" + std::to_string(headerIndex) +
                                     "] = { label = \"Juiced Options\", type = MENU_ITEM_TYPE_SELECTABLE, on_select = nil, disabled = true, it_is_caption_label = true, dimm_disabled = true },\n";
 
@@ -673,7 +674,9 @@ namespace InGameConfig {
             }
         }
         int MP_game_mode = *(int*)0x00E8B210;
+#if !RELOADED
         if (isCoop() == false && MP_game_mode == -1) {
+#endif 
             // Find a good insertion point - look for Pause_display_menu_PC
             std::string displayMenuStr = "Pause_display_menu_PC = {";
             size_t displayMenuPos = buffer.find(displayMenuStr);
@@ -1043,7 +1046,9 @@ namespace InGameConfig {
                     }
                 }
             }
+#if !RELOADED
         }
+#endif
         return modified;
     }
 }
