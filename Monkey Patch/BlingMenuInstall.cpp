@@ -297,6 +297,9 @@ namespace BlingMenuInstall
        BlingMenuAddFuncCustom("Juiced", "Better Ambient Occlusion", NULL, &BM_BetterAO, NULL);
        BlingMenuAddFuncCustom("Juiced", "Disable Cutscene black-bars", NULL, &BM_DisableCutSceneBlackBars, NULL);
        BlingMenuAddFuncCustom("Juiced", "Disable Fog", NULL, &BM_DisableFog, NULL);
+       BlingMenuAddBool("Juiced", "X360Gamma", (bool*)&Render3D::ShaderOptions.X360Gamma, &Render3D::ChangeShaderOptions);
+       BlingMenuAddBool("Juiced", "ShadowFiltering", (bool*)&Render3D::ShaderOptions.ShadowFilter, &Render3D::ChangeShaderOptions);
+       BlingMenuAddFuncCustom("Juiced", "X360GammaUI", NULL, &BM_UI_hook, NULL);
        BlingMenuAddDouble("Juiced", "FOV Multiplier", &Render3D::FOVMultiplier, []() {
            Render3D::AspectRatioFix();
            GameConfig::SetDoubleValue("Gameplay", "FOVMultiplier", Render3D::FOVMultiplier);
@@ -397,7 +400,6 @@ namespace BlingMenuInstall
        BlingMenuAddInt("Juiced Debug", "SHADER_LOD", (int*)&Render3D::SHADER_LOD, NULL, 1, -2, 10);
        BlingMenuAddFloat("Juiced Debug", "SHADER_DISTANCE_SQUARED_MULT", &Render3D::SHADER_DISTANCE_SQUARED_MULT, NULL, 0.1f, 1.f, 250.f);
        BlingMenuAddFuncCustom("Juiced Debug", "Math_multiplication_NAN_fix", NULL, &BM_Math_multiplication_NAN_fix, NULL);
-       BlingMenuAddFuncCustom("Juiced Debug", "final 2d render hook", NULL, &BM_UI_hook, NULL);
        BlingMenuAddBool("Juiced Debug", "useTextPrompts", &Input::useTextPrompts, NULL);
        BlingMenuAddInt("Juiced Debug", "Use PS3 Prompts", &Input::usePS3Prompts, NULL, 1, 0, 1);
        }
