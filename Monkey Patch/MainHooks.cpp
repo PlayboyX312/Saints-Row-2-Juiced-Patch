@@ -1551,7 +1551,7 @@ int* sub_73D900() {
 		*(void**)(Result + 0x930) = &WelcomeCallback;
 		FirstBootFlag();
 	}
-	if (Game::xtbl_scan_status.gotr_detected == 1 && !FileExists("GOTR.txt")) {
+	if (Game::xtbl_scan_status.gotr_detected == 1 && !(FileExists("GOTR.txt") || FileExists("GOTR.txt.txt")) ) {
 		const wchar_t* GOTRWarning = L"does not increase stability or fix the game, in some cases it can even do the opposite.\n"
 			L"Crashes and issues that may occur are usually NOT the cause of Juiced Patch.\n"
 			L"Think of GOTR as a DLC mod rather than a fix patch.\n"
