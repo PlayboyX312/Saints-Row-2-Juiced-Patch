@@ -1548,7 +1548,7 @@ int* sub_73D900() {
 			L"Crashes and issues that may occur are NOT usually the cause of Juiced Patch.\n\n"
 			L"Think of GOTR as a DLC mod rather than a fix patch.\n\n"
 			L"This message is only to spread awareness, make GOTR.txt in your game directory to remove this message.";
-		const wchar_t* TitleJ = L"[format][color:#FF5349]Gentlemen of the Row[/format]";
+		const wchar_t* TitleJ = L"[format][color:#FF5349]Gentlemen of the Row[/format] - [format][color:#B200FF]Juiced[/format]";
 		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
 		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
 		int Result = AddMessageCustomized(TitleJ, GOTRWarning, Options, 0);
