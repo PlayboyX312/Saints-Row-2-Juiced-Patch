@@ -1516,16 +1516,16 @@ int* sub_73D900() {
 
 		if (result.updateAvailable) {
 			std::string updateMessage =
-				"A new version of [format][color:#B200FF]Juiced[/format] is available!\n\n"
+				"A new version of [format][color:#B200FF]Juiced Patch[/format] is available!\n\n"
 				"Current Version: " + result.currentVersion + "\n"
 				"Latest Version: [format][color:#00FF00]" + result.latestVersion + "[/format]\n\n"
 				"Download the latest version to get bug fixes and new features.\n"
-				"- [format][color:#B200FF]Juiced Team[/format]";
+				"- [format][color:#B200FF]Kobraworks[/format]";
 
 			std::wstring wideMessage(updateMessage.begin(), updateMessage.end());
 
-			const wchar_t* updateTitle = L"Update Available - Juiced";
-			const wchar_t* UpdateOptions[] = { L"Open Github Downloads", L"OK", L"Disable UpdateChecks" };
+			const wchar_t* updateTitle = L"Update Available";
+			const wchar_t* UpdateOptions[] = { L"Open Github Downloads", L"OK, Remind me later", L"Disable UpdateChecks" };
 			int updateResult = AddMessageCustomized(updateTitle, wideMessage.c_str(), UpdateOptions, _countof(UpdateOptions));
 			*(void**)(updateResult + 0x930) = &UpdateCallback;
 		}
