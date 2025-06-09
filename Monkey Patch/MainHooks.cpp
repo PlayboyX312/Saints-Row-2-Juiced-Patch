@@ -1486,7 +1486,6 @@ bool FileExists(const char* fileName) {
 	}
 	return found;
 }
-const wchar_t* Options[] = { L"OK", L"Join the [format][color:#5864F6]Discord[/format]\n\n" };
 #if !JLITE && !RELOADED
 import PatchNotifier;
 void __cdecl UpdateCallback(int Unk, int SelectedOption, int Action) {
@@ -1504,6 +1503,14 @@ void __cdecl UpdateCallback(int Unk, int SelectedOption, int Action) {
 	}
 }
 #endif
+
+void __cdecl QuitGameCallback(int Unk, int SelectedOption, int Action) {
+
+	if (Action == 2 && SelectedOption == 0) {
+		*(bool*)0x252A41C = true;
+	}
+}
+
 int* sub_73D900() {
 #if !JLITE && !RELOADED
 	if(GameConfig::GetValue("Misc", "UpdateChecks", 1)){
@@ -1539,6 +1546,7 @@ int* sub_73D900() {
 			L"- [format][color:#B200FF]Juiced Team[/format]"
 			L"[format][scale:1.0][image:ui_hud_inv_d_ginjuice][/format]";
 		const wchar_t* Title = L"Juiced";
+		const wchar_t* Options[] = { L"OK", L"Join the [format][color:#5864F6]Discord[/format]\n\n" };
 		int Result = AddMessageCustomized(Title, JuicedWelcome, Options, _countof(Options));
 		*(void**)(Result + 0x930) = &WelcomeCallback;
 		FirstBootFlag();
@@ -1552,8 +1560,9 @@ int* sub_73D900() {
 		const wchar_t* TitleJ = L"[format][color:#FF5349]Gentlemen of the Row[/format]";
 		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
 		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
-		int Result = AddMessageCustomized(TitleJ, GOTRWarning, Options, 0);
-		*(void**)(Result + 0x930) = &WelcomeCallback;
+		const wchar_t* GOptions[] = { L"EXIT GAME", };
+		int Result = AddMessageCustomized(TitleJ, GOTRWarning, GOptions, _countof(GOptions));
+		*(void**)(Result + 0x930) = &QuitGameCallback;
 	}
 
 	return ((int* (*)())0x73D900)();
