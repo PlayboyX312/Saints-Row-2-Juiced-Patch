@@ -1095,8 +1095,10 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		WriteRelJump(0x0068CAA0, (UInt32)&CutscenePauseWorkaround); // we need to make the cutscene process(?) function run even if the game's paused, original if check is dumb
 		WriteRelJump(0x006D8E0A, (UInt32)&CutscenePauseCheck); // editing one of the ifs to prevent cutscenes from getting updated when paused
 #endif
-	//patchCall((void*)0x00C080C0, (void*)TextureCrashFixDefinitive);
-	//WriteRelJump(0x00C080E8, (UInt32)&TextureCrashFixRemasteredByGroveStreetGames);
+		if (GameConfig::GetValue("Misc", "DefaultToNativeRes", 1)) {
+			SafeWrite32(0x774112 + 6, userResX);
+			SafeWrite32(0x77411C + 6, userResY);
+		}
 		Logger::TypedLog(CHN_DLL, "SetProcessDPIAware result: %s\n", SetProcessDPIAware() ? "TRUE" : "FALSE");
 #if !RELOADED
 		/*if (FileExists("gotr.txt"))
