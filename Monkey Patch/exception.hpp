@@ -803,6 +803,10 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
             case 0x00C13519:
                 wcscat_s(errorPopup, L"Details:\nCannot poll connected input device\n\nOne or more input devices connected to your computer is causing issues with Saints Row 2.\n\nIf it is a controller, consider using an input re-mapper like Steam Input or DS4Windows.\n\n");
                 break;
+
+            case 0x0051CE07:
+                wcscat_s(errorPopup,L"Details:\nFailed to Direct3DDevice9->CreateTexture as Direct3DDevice9 is NULL, most likely due to a non standard VESA display.\n\n Most commonly caused by native portrait displays (eg. Steam Deck running Windows), delete settings.dat and restart the game if you previously attempted to start the game without Juiced and creating a settings.dat.");
+                break;
             }
             wcscat_s(errorPopup, L"Please send this logging file located at:\n\n");
             wcscat_s(errorPopup, filename);
