@@ -1544,10 +1544,11 @@ int* sub_73D900() {
 		FirstBootFlag();
 	}
 	if (Game::xtbl_scan_status.gotr_detected == 1 && !FileExists("GOTR.txt")) {
-		const wchar_t* GOTRWarning = L"does not increase stability or fix the game, in some cases it can even do the opposite.\n\n"
-			L"Crashes and issues that may occur are NOT usually the cause of Juiced Patch.\n\n"
-			L"Think of GOTR as a DLC mod rather than a fix patch.\n\n"
-			L"This message is only to spread awareness, make GOTR.txt in your game directory to remove this message.";
+		const wchar_t* GOTRWarning = L"does not increase stability or fix the game, in some cases it can even do the opposite.\n"
+			L"Crashes and issues that may occur are usually NOT the cause of Juiced Patch.\n"
+			L"Think of GOTR as a DLC mod rather than a fix patch.\n"
+			L"This message is only to spread awareness, make a GOTR.txt file in your game directory to remove this message."
+			L"\n-Juiced Team";
 		const wchar_t* TitleJ = L"[format][color:#FF5349]Gentlemen of the Row[/format]";
 		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
 		VintExecute("audio_play(\"SYS_RACE_FAIL\")");
