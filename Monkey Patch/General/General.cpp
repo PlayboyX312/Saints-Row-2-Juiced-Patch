@@ -370,8 +370,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		if (strcmp(filename, "vint_lib.lua") == 0 || 
 			strcmp(filename, "hud_btnmash.lua") == 0 || 
 			strcmp(filename, "completion.lua") == 0 ||
-			strcmp(filename, "pause_map.lua") == 0 || 
-			strcmp(filename, "pause_menu.lua") == 0) {
+			strcmp(filename, "pause_map.lua") == 0) {
 			if (!modified) {
 				// If we haven't created finalContent yet, do it now
 				finalContent = std::string(currentBuff, sz);

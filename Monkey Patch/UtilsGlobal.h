@@ -31,9 +31,9 @@ inline bool invert;
 inline bool isPaused;
 
 #if JLITE
-inline const char* juicedversion = "1.5.0";
+inline const char* juicedversion = "1.5.1";
 #else
-inline const char* juicedversion = "7.7.0";
+inline const char* juicedversion = "7.7.1";
 #endif
 
 inline const char* thaRowmenuversion = "0.0.1";
