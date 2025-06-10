@@ -162,7 +162,6 @@ namespace InGameConfig {
         if (strcmp(var, "IVRadarScaling") == 0) {
             if (!write) {
                 *value = Render2D::IVRadarScaling;
-                GameConfig::SetValue("Graphics", "IVRadarScaling", *value);
             }
             else if(write) {
                 Render2D::IVRadarScaling = true;
