@@ -10,6 +10,8 @@
 #include "../Game/Game.h"
 #include "../General/General.h"
 #include <safetyhook.hpp>
+#include "Hooking.Patterns.h"
+#include "../Game/CrashFixes.h"
 namespace XACT
 {
 
@@ -30,7 +32,55 @@ namespace XACT
 		}
 #endif
 	}
+	float empty[9]{};
+	SAFETYHOOK_NOINLINE float* __fastcall XACT_CCue_GetMatrixCoefficients(DWORD* CCue)
+	{
+		if (CCue != NULL)
+			return (float*)*((DWORD*)CCue + 18);
+		else {
+			AssertHandler::AssertOnce("XACT_CCue_GetMatrixCoefficients hook", "CCue is null\n");
+			return empty;
+		}
+	}
 
+	float* __fastcall XACT_CGlobalSettings_GetCategoryVolumes(DWORD* CGlobalSettings)
+	{
+		static float* lastValidPointer = nullptr;
+
+		float* currentPointer = (float*)*((DWORD*)CGlobalSettings + 0x21);
+
+		if (currentPointer != nullptr) {
+			lastValidPointer = currentPointer;
+			return currentPointer;
+		}
+		else {
+			AssertHandler::AssertOnce("XACT_CGlobalSettings_GetCategoryVolumes hook", "CCue the return is NULL, so we return last valid one.\n");
+			return lastValidPointer;
+		}
+	}
+
+	void __cdecl setup_audio_hook() {
+		((void(__cdecl*)())0x465020)();
+		HMODULE hXAct32 = GetModuleHandle(L"xactengine3_2.dll");
+
+		if (hXAct32 != NULL) {
+			Logger::TypedLog(CHN_XACT,"xactengine3_2.dll is loaded at: 0x%p\n", hXAct32);
+		}
+		else {
+			Logger::TypedLog(CHN_XACT,"xactengine3_2.dll is not loaded\n");
+			return;
+		}
+		auto pattern = hook::pattern(hXAct32, "8B FF 55 8B EC 51 89 4D ? 8B 45 ? 8B 40 ? 8B E5 5D C3 CC CC CC CC CC CC CC CC CC CC CC CC CC 8B FF 55 8B EC 51 89 4D ? 8B 45 ? 66 8B 40 ? 8B E5 5D C3 CC CC CC CC CC CC CC CC CC CC CC CC 8B FF 55 8B EC 51");
+		if (pattern.empty()) {
+			Logger::TypedLog(CHN_XACT, "XACT pattern is empty, possible non-syswow version?\n");
+			return;
+		}
+
+		patchJmp(pattern.get_first<void*>(), XACT_CCue_GetMatrixCoefficients);
+		pattern = hook::pattern(hXAct32, "8B FF 55 8B EC 51 89 4D ? 8B 45 ? 8B 80 ? ? ? ? 8B E5 5D C3 CC CC CC CC CC CC CC CC CC CC 8B FF 55 8B EC 51 89 4D ? 8B 45 ? 8B 4D ? 89 88 ? ? ? ? 8B E5 5D C2 ? ? CC CC CC CC CC 8B FF 55 8B EC 51 89 4D ? 8B 45 ? 05");
+		patchJmp(pattern.get_first<void*>(), XACT_CGlobalSettings_GetCategoryVolumes);
+
+	}
 	void UpdateToNewerXACT()
 	{
 		if (GameConfig::GetValue("Audio", "UseFixedXACT", 1)) // Scanti the Goat
@@ -41,7 +91,13 @@ namespace XACT
 			GUID ixaudio = { 0x8bcf1f58, 0x9fe7, 0x4583, 0x8a, 0xc6, 0xe2, 0xad, 0xc4, 0x65, 0xc8, 0xbb };
 			SafeWriteBuf((0x00DD8A08), &xaudio, sizeof(xaudio));
 			SafeWriteBuf((0x00DD8A18), &ixaudio, sizeof(ixaudio));
+
+			//GUID xact_engine = { 0x94c1affa, 0x66e7, 0x4961, 0x95, 0x21, 0xcf, 0xde, 0xf3, 0x12, 0x8d, 0x4f };
+			//SafeWriteBuf((0xDD89AC), &xact_engine, sizeof(xact_engine));
 			Logger::TypedLog(CHN_MOD, "Forcing the use of a fixed XACT version.\n");
+
+			patchCall((void*)0x51FC96, setup_audio_hook);
+
 		}
 	}
 	void ChangeSpeakerCount()
