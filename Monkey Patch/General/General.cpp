@@ -19,11 +19,13 @@ and / or run completely on startup or after we check everything else.*/
 #include "../Math/Math.h"
 #include "../UtilsGlobal.h"
 #include "../Game/Game.h"
+#include "JuicedAPI.h"
 
 using namespace Math;
 #pragma warning( disable : 4409)
 namespace General {
 	bool DeletionMode;
+	bool allowJuicedAPI = true;
 	const wchar_t* SaveMessage = L"Are you sure you want to delete this save?"; // ultimately, if we get extra strings to load, we should use a string label and request the string instead of hardcoding it
 	const char* JVLib = "juiced_vint_lib";
 	const char* JStr = "juiced";
@@ -564,7 +566,20 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 
 				std::string finalContent;
 				finalContent = std::string(currentBuff, sz);
+				if (allowJuicedAPI) {
+					bool externallyModified = false;
 
+					for (auto& callback : g_VintluaHooksAPI) {
+						if (callback) {
+							if (callback(filename, finalContent, finalContent.length())) {
+								externallyModified = true;
+							}
+						}
+					}
+
+						modified = externallyModified;
+					
+				}
 				std::string customCode = "";
 				// remove .lua
 				std::string cached_str = filename;
@@ -1076,6 +1091,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 
 	}
 	void TopWinMain() {
+		allowJuicedAPI = GameConfig::GetValue("API", "JuicedAPI", 1);
 		WriteRelJump(0x00685858, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Apply()
 		WriteRelJump(0x00685EE0, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Restore()
 		patchNop((BYTE*)0x004D6795, 5); // Fix for the sun flare disappearing upon reloading a save. Prevents the game from deallocating the flare.

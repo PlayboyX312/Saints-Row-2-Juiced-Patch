@@ -167,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="OptionsManager.ixx" />
     <ClCompile Include="PatchNotifier.ixx" />
+    <ClCompile Include="General\JuicedAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFEngine.h">
@@ -314,6 +317,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LUA\InGameConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="General\JuicedAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

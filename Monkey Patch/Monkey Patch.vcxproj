@@ -266,6 +266,7 @@ copy /Y "$(TargetDir)DFEngine.dll" "E:\Steam\steamapps\common\Saints Row 2\DFEng
     <ClCompile Include="Ext\safetyhook\Zydis.c" />
     <ClCompile Include="Game\CrashFixes.cpp" />
     <ClCompile Include="Game\timestamp.ixx" />
+    <ClCompile Include="General\JuicedAPI.cpp" />
     <ClCompile Include="LUA\InGameConfig.cpp" />
     <ClCompile Include="OptionsManager.ixx" />
     <ClCompile Include="Patcher\CMultiPatch.cpp" />
@@ -311,6 +312,7 @@ copy /Y "$(TargetDir)DFEngine.dll" "E:\Steam\steamapps\common\Saints Row 2\DFEng
     <ClInclude Include="Ext\safetyhook\Zydis.h" />
     <ClInclude Include="Game\CrashFixes.h" />
     <ClInclude Include="General\General.h" />
+    <ClInclude Include="General\JuicedAPI.h" />
     <ClInclude Include="InternalNameLists.h" />
     <ClInclude Include="LUA\InGameConfig.h" />
     <ClInclude Include="Network\Gamespy.h" />
