@@ -566,6 +566,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 
 				std::string finalContent;
 				finalContent = std::string(currentBuff, sz);
+#if !RELOADED
 				if (allowJuicedAPI) {
 					bool externallyModified = false;
 
@@ -580,6 +581,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 						modified = externallyModified;
 					
 				}
+#endif
 				std::string customCode = "";
 				// remove .lua
 				std::string cached_str = filename;
