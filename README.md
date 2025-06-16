@@ -38,7 +38,6 @@ this repository for security purposes, So code will not build properly when usin
 - [Tervel](https://github.com/Tervel1337)
 - [Clippy](https://github.com/Clippy95)
 - [Scanti](https://github.com/scanti2)
-- [Caboose](https://github.com/CabooseSayzWTF)
 
 ## Contributing
 This [issues list](https://github.com/kobraworksmodding/SR2IssuesList/issues) is a good lead on SR2-specific issues to attempt to fix.
