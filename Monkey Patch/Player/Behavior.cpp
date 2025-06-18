@@ -253,7 +253,7 @@ CMultiPatch CMPatches_SR1Reloading = {
 #endif
 	SafetyHookInline player_data_loadT{};
 	unsigned int __cdecl player_data_load(int save_ptr, char arg4) {
-		unsigned int result = player_data_loadT.ccall<unsigned int>(save_ptr, arg4);
+		unsigned int result = player_data_loadT.unsafe_ccall<unsigned int>(save_ptr, arg4);
 		int gender = *(int*)(save_ptr + 0xE754);
 		if (gender == 1) // female
 			character_set_anim_set((DWORD*)UtilsGlobal::getplayer(false), 0, (char*)"GFL1");
