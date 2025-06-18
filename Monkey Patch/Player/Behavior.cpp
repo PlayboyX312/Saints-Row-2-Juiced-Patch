@@ -302,9 +302,13 @@ CMultiPatch CMPatches_SR1Reloading = {
 		if (GameConfig::GetValue("Gameplay", "AlwaysDisarmOnRagdoll", 0))
 		{
 			patchNop((BYTE*)0x009AC517, 11); // NOP out an if statement that holsters on ragdoll.
-			patchNop((BYTE*)0x009AC52B, 8); 
+			patchNop((BYTE*)0x009AC52B, 8);
 			patchByte((BYTE*)0x009C3AB8, 0xEB); // jmp a check in can drop weapons.
 		}
+#else
+		patchNop((BYTE*)0x009AC517, 11); // NOP out an if statement that holsters on ragdoll.
+		patchNop((BYTE*)0x009AC52B, 8);
+		patchByte((BYTE*)0x009C3AB8, 0xEB); // jmp a check in can drop weapons.
 #endif
 
 		if (GameConfig::GetValue("Gameplay", "AllowWeaponSwitchInAllCases", 0))

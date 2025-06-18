@@ -1551,6 +1551,7 @@ int* sub_73D900() {
 		*(void**)(Result + 0x930) = &WelcomeCallback;
 		FirstBootFlag();
 	}
+#if !RELOADED
 	if (Game::xtbl_scan_status.gotr_detected == 1 && !(FileExists("GOTR.txt") || FileExists("GOTR.txt.txt")) ) {
 		const wchar_t* GOTRWarning = L"does not increase stability or fix the game, in some cases it can even do the opposite.\n"
 			L"Crashes and issues that may occur are usually NOT the cause of Juiced Patch.\n"
@@ -1564,7 +1565,7 @@ int* sub_73D900() {
 		int Result = AddMessageCustomized(TitleJ, GOTRWarning, GOptions, _countof(GOptions));
 		*(void**)(Result + 0x930) = &QuitGameCallback;
 	}
-
+#endif
 	return ((int* (*)())0x73D900)();
 }
 int WINAPI Hook_WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
