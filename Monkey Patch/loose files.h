@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include <map>
 #include <string>
+#include <safetyhook.hpp>
 
 #include "Shlwapi.h"
 #pragma comment(lib,"Shlwapi.lib")
@@ -45,6 +46,7 @@ bool CreateCache(char* DirListFile);
 void DumpCache();
 void CacheConflicts();
 void ClearDirCache();
+void InsertFileHashes(SafetyHookContext& ctx);
 
 const char* TranslateFilePath(const char* FilePath);
 FILEDATA* TranslateFilePathData(const char* FilePath);

@@ -1,4 +1,4 @@
-#include "loose files.h"
+﻿#include "loose files.h"
 #include "FileLogger.h"
 #include <algorithm>
 
@@ -280,5 +280,72 @@ void ClearDirCache()
 	return;
 }
 
+struct VPPFile
+{
+	const char* FileName;
+	const char* Extension;
+};
 
+struct VPPFileData
+{
+	unsigned int Hash;
+	VPPFile* Data;
+};
+
+int FileHashExists(const char* FileName) {
+	return ((int(__cdecl*)(const char*))0xC0A3B0)(FileName);
+}
+
+void AddFileHash(VPPFileData* Struct) {
+	((void(__cdecl*)(VPPFileData*))0xC0A350)(Struct);
+}
+
+int GetStringHash(const char* String) {
+	return ((int(__fastcall*)(int, const char*))0xBF2BD0)(0, String);
+}
+
+void InsertFileHashes(SafetyHookContext& ctx) {
+	const char* validExts[] = {
+		".cmesh_pc", ".g_cmesh_pc", ".peg_pc", ".g_peg_pc", ".pcm_pc", ".sim_pc", ".cvtf", ".morph_pc"
+	};
+
+	for (std::map<std::string, FILEDATA>::iterator it = DirCache.begin(), it_end = DirCache.end(); it != it_end; ++it) {
+		const std::string& filename = it->first;
+		const char* matchedExt = NULL;
+
+		for (int i = 0; i < sizeof(validExts) / sizeof(validExts[0]); i++) {
+			const char* ext = validExts[i];
+			size_t extLen = strlen(ext);
+
+			if (filename.length() >= extLen) {
+				if (filename.compare(filename.length() - extLen, extLen, ext) == 0) {
+					matchedExt = ext;
+					break;
+				}
+			}
+		}
+
+		if (!matchedExt)
+			continue;
+
+		if (!FileHashExists(filename.c_str())) {
+			int Hash = GetStringHash(filename.c_str());
+			std::string BaseName = filename.substr(0, filename.length() - strlen(matchedExt));
+			std::string Extension = (matchedExt[0] == '.') ? matchedExt + 1 : matchedExt;
+
+			char* tempBase = _strdup(BaseName.c_str());
+			char* tempExt = _strdup(Extension.c_str());
+
+			VPPFile* Entry = new VPPFile();
+			Entry->FileName = tempBase;
+			Entry->Extension = tempExt;
+
+			VPPFileData* Data = new VPPFileData();
+			Data->Hash = Hash;
+			Data->Data = Entry;
+
+			AddFileHash(Data);
+		}
+	}
+}
 
