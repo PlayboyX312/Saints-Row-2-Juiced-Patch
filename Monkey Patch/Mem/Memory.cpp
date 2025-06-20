@@ -28,14 +28,6 @@ namespace Memory
 		Logger::TypedLog(CHN_DEBUG, "Expanded perm mesh cpu to 1376256\n");
 	}
 
-	void ExpandRenderDist()
-	{
-		// Increases the Render Distance by x1.85
-		// Might be glitchy, would've loved to increase this to x3.00 or x4.00 but the LOD starts bugging out
-		Logger::TypedLog(CHN_MEMORY, "Increasing LOD Distance by x1.85. (Only a slight increase.)\n");
-		patchBytesM((BYTE*)0x00E996B4, (BYTE*)"\x00\x00\xEC\x3F", 4);
-	}
-
 	void ExpandTreeDist()
 	{
 		// Increases the Tree Fade Distance from 250000 to 500000
@@ -188,11 +180,6 @@ namespace Memory
 		if (GameConfig::GetValue("Debug", "ExpandMemoryPools", 0))
 		{
 			ExpandGeneralPools();
-		}
-
-		if (GameConfig::GetValue("Graphics", "ExtendedRenderDistance", 0))
-		{
-			ExpandRenderDist();
 		}
 
 		if (GameConfig::GetValue("Graphics", "ExtendedTreeFadeDistance", 0))
