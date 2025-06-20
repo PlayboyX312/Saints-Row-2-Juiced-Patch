@@ -865,6 +865,9 @@ namespace Render3D
 			Render3D::UncapFPS();
 		}
 
+		Logger::TypedLog(CHN_DEBUG, "Patching amount of Shadow job threads to be %d\n", std::clamp((int)GameConfig::GetValue("Debug", "ShadowThreadCount", 2), 1, 8));
+		patchDWord((void*)0x528524, std::clamp((int)GameConfig::GetValue("Debug", "ShadowThreadCount", 2), 1, 8));
+
 		// Removes all necessary sleep calls in the game, doubles fps and mitigates stutter, tanks CPU usage.
 		if (GameConfig::GetValue("Debug", "SleepHack", 0) == 1) // LOW patch
 		{
