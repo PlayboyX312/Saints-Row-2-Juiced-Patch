@@ -548,7 +548,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 #endif
 		bool needBufferMod = Render2D::UltrawideFix
 #if !JLITE
-			|| Render2D::IVRadarScaling
+			|| Render2D::IVRadarScaling || allowJuicedAPI
 #endif
 			|| (strcmp(filename, "pause_menu.lua") == 0 && !InGameConfig::g_sliders.empty());
 		{
