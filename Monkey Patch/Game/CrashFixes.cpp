@@ -115,6 +115,10 @@ namespace CrashFixes {
 	void Init() {
 		AssertHandler::CvarFixCrashes = GameConfig::GetValue("Debug", "FixCrashes", 2);
 		static auto FixAudioLoop_null_crash1_hook = safetyhook::create_mid(0x0046EE64, &FixAudioLoop_null_crash1);
+		static auto player_vehicle_C4_crash = safetyhook::create_mid(0x4FA07B, [](SafetyHookContext& ctx) {
+			if (ctx.eax == NULL)
+				ctx.eip = 0x4FA09E;
+			});
 		// The one above should work always..
 		if (GameConfig::GetValue("Debug", "FixCrashes", 2)) {	
 			static auto Fix_0x0055B681_hook = safetyhook::create_mid(0x0055B681, &Fix_0x0055B681_crash);
