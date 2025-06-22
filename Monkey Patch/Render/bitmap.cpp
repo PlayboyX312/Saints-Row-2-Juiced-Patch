@@ -23,51 +23,44 @@ int __declspec(naked) create_empty(string_hash_table* table, int hash_table_size
     __asm {
         push ebp
         mov ebp, esp
-        push esi
+        sub esp, __LOCAL_SIZE
 
-        mov eax, [ebp + 20]
-        mov ecx, [ebp + 16]
-        push[ebp + 12]
-        push[ebp + 8]
+        mov     ecx, to_use
+        push    hash_table_size
+        push    table
+        mov     eax, string_pool_size
 
         mov esi, 0xC07A80
         call esi
 
-        pop esi
         mov esp, ebp
         pop ebp
         ret
     }
 }
 
-int __declspec(naked) add_string(string_hash_table* table, char* text, short user_data) {
+int __declspec(naked) add_string(string_hash_table* table, char* text, int user_data) {
     __asm {
+
         push ebp
         mov ebp, esp
-        push esi
+        sub esp, __LOCAL_SIZE
 
-        mov eax, [ebp + 8]
-        movzx edx, word ptr[ebp + 16]
-        push edx
-        push dword ptr[ebp + 12]
+        push user_data
+        push text
+        mov eax, table
 
         mov esi, 0xC07AF0
         call esi
 
-        pop esi
         mov esp, ebp
         pop ebp
         ret
     }
 }
 
-
 int Bm_discovery_callback(bitmap_entry* fuck) {
     return ((int(__cdecl*)(bitmap_entry*))0x51D700)(fuck);
-}
-
-Tex_register_callback get_Tex_register_callback() {
-    return *(Tex_register_callback*)0x252A554;
 }
 
 uint32_t* Bm_entry_count = (uint32_t*)0x2348904;
@@ -114,40 +107,72 @@ int __cdecl bm_add_bitmap(const char* filename)
 {
     bitmap_entry* b;
     int handle = 0;
+    if (filename == NULL)
+        return -1;
+    if ((strcmp("null", filename) == 0) || (strcmp(".tga", filename) == 0))
+        return -1;
     if (*Bm_entry_count <= *Bm_bitmap_count + 1)
     {
         int f = 0;
         bitmap_entry* frame = nullptr;
-        char extension_less[64];
+        char extension_less[64] = {};
         int entries_needed = 0;
         EnterCriticalSection(Bm_add_lock);
         set_thread_ownership(pool);
         set_thread_ownership((mempool*)Extra_bm_filename_hash_table);
-        handle = *Bm_bitmap_count++;
-        b = (bitmap_entry*)&Bm_bitmaps[handle];
+        handle = (*Bm_bitmap_count)++;
+        bitmap_entry* Bm_bitmaps = (bitmap_entry*)*(uintptr_t*)(0x234890C);
+        b = (bitmap_entry*)&Bm_bitmaps[handle];;
         file_remove_extension(extension_less, 0x40u, filename);
         b->filename_ptr = (char*)add_string(Extra_bm_filename_hash_table, extension_less, handle);
         b->frame_number = 0;
+        b->this_peg = (peg_entry*)*(uintptr_t*)0x0252A560;
         Bm_discovery_callback(b);
         LeaveCriticalSection(Bm_add_lock);
     }
     else
     {
         bitmap_entry* Bogus_static_bitmap_entry = (bitmap_entry*)*(int*)(0x252A564);
-        if(b != nullptr)
-        *b = *Bogus_static_bitmap_entry;
+        if (b != nullptr)
+            *b = *Bogus_static_bitmap_entry;
     }
     return handle;
 }
 
+
+
+
 SafetyHookInline bm_findT{};
 __int16 __fastcall bm_find(void* dummy1, void* dummy2, uintptr_t a2, char* String2) {
-    auto hndl = bm_findT.thiscall<__int16>(dummy1, a2, String2);
+    int hndl = 0;
+    if (a2 == 0xEC5D38) {
+        char extension_less[64] = {};
+        file_remove_extension(extension_less, 0x40u, String2);
+        hndl = bm_findT.thiscall<__int16>(dummy1, a2, extension_less);
+    }
+    else
+    {
+        hndl = bm_findT.thiscall<__int16>(dummy1, a2, String2);
+    }
     if (a2 == 0xEC5D38 && hndl == -1) {
         return bm_add_bitmap(String2);
     }
     return hndl;
 }
+
+SAFETYHOOK_NOINLINE __int16 __fastcall bm_find_og(void* dummy1, void* dummy2, uintptr_t a2, char* String2) {
+    int hndl = 0;
+    if (a2 == 0xEC5D38) {
+        char extension_less[64] = {};
+        file_remove_extension(extension_less, 0x40u, String2);
+        hndl = bm_findT.thiscall<__int16>(dummy1, a2, extension_less);
+    }
+    else {
+        hndl = bm_findT.thiscall<__int16>(dummy1, a2, String2);
+    }
+    return hndl;
+}
+
 namespace bitmap_loader {
     void Init() {
         if (GameConfig::GetValue("Modding", "addon_bitmaps", 0)) {
@@ -155,6 +180,11 @@ namespace bitmap_loader {
             SafeWrite32(0x00C08817 + 1, 1806336);
             bm_findT = safetyhook::create_inline(0xC07160, &bm_find);
             static auto bitmap_test = safetyhook::create_mid(0xC083AB, &bitmap_testf);
+            if (GameConfig::GetValue("Modding", "addon_bitmaps", 0) == 180) {
+                WriteRelCall(0xC08421, (int)&bm_find_og);
+                WriteRelCall(0xC08F69, (int)&bm_find_og);
+                WriteRelCall(0xC08551, (int)&bm_find_og);
+            }
         }
     }
 }

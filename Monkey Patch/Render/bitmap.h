@@ -101,14 +101,16 @@ public:
         uint32_t string_pool_size);
 };
 
+typedef uintptr_t peg_entry;
+
 struct bitmap_entry
 {
     char* filename_ptr;
-    uintptr_t* this_peg;
+    peg_entry* this_peg;
     unsigned __int16 frame_number;
     unsigned __int16 user_data;
 };
-typedef void(__cdecl* Tex_register_callback)(bitmap_entry*);
+
 
 namespace bitmap_loader {
     extern void Init();
