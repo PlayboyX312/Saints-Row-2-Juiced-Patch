@@ -700,9 +700,10 @@ namespace Render3D
 		arr4[3] = 0.f;
 		float Res[4] = { (float)*General::GameResX, (float)*General::GameResY, GameConfig::GetValue("Graphics", "UHQTreeShadows", 0) ? 960 : 2048, 0.f};
 		// distortion_juicedsettings for Gamma.
-		if(pDevice)
-		pDevice->SetPixelShaderConstantF(187, &arr4[0], 1);
-		pDevice->SetPixelShaderConstantF(188, &Res[0], 1);
+		if (pDevice) {
+			pDevice->SetPixelShaderConstantF(187, &arr4[0], 1);
+			pDevice->SetPixelShaderConstantF(188, &Res[0], 1);
+		}
 	}
 	void SETLOD(SafetyHookContext& ctx) {
 		if (OVERRIDE_SHADER_LOD == 1) {
