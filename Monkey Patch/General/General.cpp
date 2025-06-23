@@ -20,6 +20,7 @@ and / or run completely on startup or after we check everything else.*/
 #include "../UtilsGlobal.h"
 #include "../Game/Game.h"
 #include "JuicedAPI.h"
+#include "..\Render\d3d9_hook.h"
 
 #include "../Render/bitmap.h"
 using namespace Math;
@@ -1034,11 +1035,11 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 			mp.AddWriteRelCall(0x00C08493,(uintptr_t)TextureCrashFix);
 		},
 	};
-	std::function<void()> D3D9_create = nullptr;
-
-	SAFETYHOOK_NOINLINE void CreateD3D9DeviceFunction(safetyhook::Context32& ctx) {
-	
+	SafetyHookInline D3D9CreateFunctionT{};
+	SAFETYHOOK_NOINLINE bool __cdecl CreateD3D9DeviceFunction(void* a1) {
+		bool result = D3D9CreateFunctionT.unsafe_ccall<bool>(a1);
 		Render3D::ChangeShaderOptions();
+		return result;
 	}
 
 	void LoadSaveSetPos(SafetyHookContext& ctx) {
@@ -1094,6 +1095,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 
 	}
 	void TopWinMain() {
+		Logger::TypedLog("D3D9", "D3D9 Hook: %d", D3D9Hook::initialize());
 		allowJuicedAPI = GameConfig::GetValue("API", "JuicedAPI", 1);
 		bitmap_loader::Init();
 		WriteRelJump(0x00685858, (UInt32)&LowGravity_cheat_fix_basejumping); // LowGravity_Apply()
@@ -1103,7 +1105,7 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 		SafeWrite8(0x00BFA6B6, 0xEB);
 		static SafetyHookMid LoadPosHook = safetyhook::create_mid(0x006938EB, &LoadSaveSetPos);
 		static SafetyHookMid SavePosHook = safetyhook::create_mid(0x00695BBF, &SaveCurrentPos);
-		static SafetyHookMid D3D9Create = safetyhook::create_mid(0x00D1F7B0, &CreateD3D9DeviceFunction);
+		D3D9CreateFunctionT = safetyhook::create_inline(0xD1F3F0, &CreateD3D9DeviceFunction);
 		WriteRelJump(0x007F46E4, (UInt32)&AddStrings); // add custom string loading - the game automatically appends the string so it will load the right string file based on your language, eg - juiced_us.le_strings
 #if !JLITE
 		WriteRelJump(0x00B91541, (UInt32)&AddVintLib); // allows us to add our own side lib for vint to add new global variables without messing up mod support
