@@ -18,6 +18,29 @@ inline int RetZero() {
     return 0;
 }
 
+// Returns the address last in the chain, for example if value of ADDRESS (0x1)
+// 0x1 + 0x2 = 0x4,
+// and value of ADDRESS (0x4)
+// 0x4 + 0x1 = 0x9, 
+// then ReadPointer(0x1,{0x2,0x1}); will return 0x9.
+inline uintptr_t ReadPointer(uintptr_t baseAddress, const std::vector<uintptr_t>& offsets) {
+    uintptr_t address = baseAddress;
+
+    if (address == 0) {
+        return 0;
+    }
+
+    for (size_t i = 0; i < offsets.size(); ++i) {
+        uintptr_t* nextAddress = reinterpret_cast<uintptr_t*>(address);
+        if (nextAddress == nullptr || *nextAddress == 0) {
+            return 0;
+        }
+        address = *nextAddress + offsets[i];
+    }
+
+    return address;
+}
+
 inline void GetPlayerXYZ(vector3* Dest) {
     memcpy(Dest, (void*)(0x25F5BB4), sizeof(vector3));
 }

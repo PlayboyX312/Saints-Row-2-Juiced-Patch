@@ -110,29 +110,6 @@ void UpdateKeys()
 	}
 }
 
-// Returns the address last in the chain, for example if value of ADDRESS (0x1)
-// 0x1 + 0x2 = 0x4,
-// and value of ADDRESS (0x4)
-// 0x4 + 0x1 = 0x9, 
-// then ReadPointer(0x1,{0x2,0x1}); will return 0x9.
-uintptr_t ReadPointer(uintptr_t baseAddress, const std::vector<uintptr_t>& offsets) {
-	uintptr_t address = baseAddress;
-
-	if (address == 0) {
-		return 0;
-	}
-
-	for (size_t i = 0; i < offsets.size(); ++i) {
-		uintptr_t* nextAddress = reinterpret_cast<uintptr_t*>(address);
-		if (nextAddress == nullptr || *nextAddress == 0) {
-			return 0;
-		}
-		address = *nextAddress + offsets[i];
-	}
-
-	return address;
-}
-
 __declspec(noinline) bool IsKeyPressed(unsigned char Key, bool Hold) // USE THIS FROM NOW ON
 {
 	if (General::IsSRFocused())
@@ -935,7 +912,7 @@ SetInvulnerableT SetInvulnerable = (SetInvulnerableT)0x965F40;
 
 #if !RELOADED
 void ResetYVel() {
-	uintptr_t YVelBase = ReadPointer(UtilsGlobal::getplayer(true), { 0x570 });
+	uintptr_t YVelBase = UtilsGlobal::ReadPointer(UtilsGlobal::getplayer(true), { 0x570 });
 	float* YVelPositive = (float*)(*(int*)YVelBase + 0x164);
 	float* YVelNegative = (float*)(*(int*)YVelBase + 0x144);
 	*YVelPositive = 0.0f;
@@ -1010,7 +987,7 @@ void Noclip() {
 	float* PlayerCos = (float*)(PlayerBase + 0x40);
 
 	if (NoclipEnabled && !slewMode && !IsWaiting) {
-		uintptr_t CoordsPointer = ReadPointer(UtilsGlobal::getplayer(true), { 0x570,0x8,0x40,0x18 });
+		uintptr_t CoordsPointer = UtilsGlobal::ReadPointer(UtilsGlobal::getplayer(true), { 0x570,0x8,0x40,0x18 });
 		if (!CoordsPointer) {
 			return; // Noclip will still be enabled if this passes.. - Clippy95.
 		}

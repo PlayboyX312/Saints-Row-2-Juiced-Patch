@@ -6,6 +6,7 @@
 #include "Patcher/patch.h"
 #include <codecvt>
 #include "GameConfig.h"
+#include "UtilsGlobal.h"
 //#pragma comment (lib, "../Discord/discord_game_sdk.dll.lib")
 #define DISCORD_LIB_NAME "discord_game_sdk.dll"
 
@@ -210,9 +211,13 @@ namespace RPCHandler {
 		}
 	}
 
+	std::string wchar_to_utf8(const std::wstring& wstr) {
+		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+		return converter.to_bytes(wstr);
+	}
+
 	typedef bool(*isCoopT)();
 	isCoopT isCoop = (isCoopT)0x007F7AD0;
-
 	// Updates state info for discord.
 	void UpdateDiscordParams() {
 		BYTE CurrentGamemode = *(BYTE*)0x00E8B210; // Parses the current gamemode from EXE
@@ -221,6 +226,7 @@ namespace RPCHandler {
 		char* playerName = (CHAR*)0x0212AB48; // parses player name
 		wchar_t* partnerName = (WCHAR*)0x02CD1870; // parses Co-op Partner name, usually
 		BYTE IsInCutscene = *(BYTE*)0x02527D14; // Checks if user is in a cutscene.
+		BYTE CurDifficulty = *(BYTE*)0x00E986F4; // Current Difficulty
 
 		std::wstring wPartnerName = partnerName; // parse co-op partner name to a wstring
 		std::string f_PartnerName = wstring_to_string(wPartnerName); // THEN to a string
@@ -230,13 +236,37 @@ namespace RPCHandler {
 		char finalCOOPDescCutsc[2048];
 		char finalCOOPDesc[2048];
 		char finalMisCOOPDesc[2048];
+		char finalSPDesc[2048];
+		char finalSPMisDesc[2048];
 
+		// -- Get Current Players District
+		const wchar_t* district_name = (const wchar_t*)UtilsGlobal::ReadPointer(UtilsGlobal::getplayer(true), { 0x18CC,0x44,0 });
+		std::wstring district_test = L"";
+		if (district_name) {
+			district_test += district_name;
+			if (district_test.empty())
+				district_test += L"Stilwater";
+		}
+		// -----
+
+		std::string Difficulty = "";
+		if (CurDifficulty == 0x0) {
+			Difficulty = "Casual";
+		}
+		else if (CurDifficulty == 0x1) {
+			Difficulty = "Normal";
+		}
+		else {
+			Difficulty = "Hardcore";
+		}
 		BYTE IsInMission = *(BYTE*)0x27B3C60; // parses mission (?)
 		sprintf(finalUsername, "%s", playerName);
 		sprintf(finalMPDesc, "%s (In Map: %s)", playerName, *FancyChunkName);
 		sprintf(finalCOOPDescCutsc, "Watching a Cutscene with %s", COOPPartner);
-		sprintf(finalCOOPDesc, "Exploring Stilwater with %s", COOPPartner);
-		sprintf(finalMisCOOPDesc, "Reclaiming Stilwater with %s", COOPPartner);
+		sprintf(finalCOOPDesc, "Exploring %s with %s - %s", wchar_to_utf8(district_test).c_str(), COOPPartner, Difficulty.c_str());
+		sprintf(finalMisCOOPDesc, "Reclaiming Stilwater with %s - %s", COOPPartner, Difficulty.c_str());
+		sprintf(finalSPDesc, "Exploring %s - %s", wchar_to_utf8(district_test).c_str(), Difficulty.c_str());
+		sprintf(finalSPMisDesc, "Reclaiming Stilwater - %s", Difficulty.c_str());
 
 		static DWORD lastTick = 0;
 
@@ -260,12 +290,12 @@ namespace RPCHandler {
 				else
 				{
 					if (f_PartnerName == playerName || f_PartnerName.empty() || !isCoop) {
-						if (!IsInMission) {
-							strcpy_s(pres.details, "Exploring Stilwater...");
-						}
-						else {
-							strcpy_s(pres.details, "Reclaiming Stilwater...");
-						}
+							if (!IsInMission) {
+								strcpy_s(pres.details, finalSPDesc);
+							}
+							else {
+								strcpy_s(pres.details, finalSPMisDesc);
+							}
 					}
 					else
 					{
