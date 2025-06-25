@@ -7,6 +7,7 @@
 #include "../GameConfig.h"
 #include "../SafeWrite.h"
 #include "Gamespy.h"
+#include "../UtilsGlobal.h"
 
 namespace Gamespy
 {
@@ -71,6 +72,9 @@ namespace Gamespy
 			patchDWord((void*)(0x0082F4CC + 3), (int)&lobby_list);
 			patchDWord((void*)(0x00842497 + 3), (int)&lobby_list);
 		}
+
+		if (*(int*)0x819570 == 0x0104EC81)
+			patchJmp((void*)0x819570, &UtilsGlobal::RetZero);
 
 		if (GameConfig::GetValue("Multiplayer", "FreeMPClothing", 1))
 		{
