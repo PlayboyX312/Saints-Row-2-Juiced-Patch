@@ -307,7 +307,8 @@ int GetStringHash(const char* String) {
 void InsertFileHashes(SafetyHookContext& ctx) {
 	const char* validExts[] = {
 		".cmesh_pc", ".g_cmesh_pc", ".peg_pc", ".g_peg_pc", ".pcm_pc", ".sim_pc", ".cvtf", ".morph_pc",
-		".car_pc", ".g_car_pc", ".smesh_pc", ".g_smesh_pc"
+		".car_pc", ".g_car_pc", ".smesh_pc", ".g_smesh_pc", ".chunk_pc", ".g_chunk_pc", ".effect_pc",
+		".g_effect_pc"
 	};
 
 	for (std::map<std::string, FILEDATA>::iterator it = DirCache.begin(), it_end = DirCache.end(); it != it_end; ++it) {
