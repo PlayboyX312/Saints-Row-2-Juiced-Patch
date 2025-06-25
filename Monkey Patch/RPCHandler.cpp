@@ -216,6 +216,76 @@ namespace RPCHandler {
 		return converter.to_bytes(wstr);
 	}
 
+	enum gang
+	{
+		saints = 0x0,
+		brotherhood = 0x1,
+		ronin = 0x2,
+		samedi = 0x3,
+		ultor = 0x6,
+	};
+
+	enum activities
+	{
+		none = -1,
+		demoderby = 0x0,
+		demoderby2 = 0x1,
+		escort = 0x2,
+		fightclub = 0x3,
+		fraud = 0x4,
+		fuzz = 0x5,
+		trailblaze = 0x7,
+		snatch = 0x8,
+		trafficking = 0xA,
+		crowdcontrol = 0xB,
+		septicavenger = 0xC,
+		zombieuprising = 0xD,
+		racing = 0xE,
+		heliassault = 0xF,
+		mayhem = 0x10,
+	};
+
+	typedef activities Activity_TypeT();
+	Activity_TypeT* Activity_Type = (Activity_TypeT*)(0x53C4D0);
+
+	std::unordered_map<gang, const char*> gangToString = {
+	{saints, "tss"},
+	{brotherhood, "brotherhood"},
+	{ronin, "ronin"},
+	{samedi, "samedi"},
+	{ultor, "ultor"}
+	};
+
+	std::unordered_map<activities, const char*> activitiesToString = {
+	{none, ""},
+	{demoderby, "Demo Derby"},
+	{demoderby2, "Demo Derby"},
+	{escort, "Escort"},
+	{fightclub, "Fight Club"},
+	{fraud, "Insurance Fraud"},
+	{fuzz, "Fuzz"},
+	{trailblaze, "Trail Blazing"},
+	{snatch, "Snatch"},
+	{trafficking, "Drug Trafficking"},
+	{crowdcontrol, "Crowd Control"},
+	{septicavenger, "Septic Avenger"},
+	{zombieuprising, "Zombie Uprising"},
+	{racing, "Racing"},
+	{heliassault, "Heli Assault"},
+	{mayhem, "Mayhem"}
+	};
+
+	std::string getActivityLowercase(activities activity) {
+		auto it = activitiesToString.find(activity);
+		if (it == activitiesToString.end()) {
+			return "";
+		}
+		std::string result = it->second;
+		std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+		std::replace(result.begin(), result.end(), ' ', '_');
+		return result;
+	}
+
 	typedef bool(*isCoopT)();
 	isCoopT isCoop = (isCoopT)0x007F7AD0;
 	// Updates state info for discord.
@@ -238,6 +308,7 @@ namespace RPCHandler {
 		char finalMisCOOPDesc[2048];
 		char finalSPDesc[2048];
 		char finalSPMisDesc[2048];
+		char smalltxtmission[256];
 
 		// -- Get Current Players District
 		const wchar_t* district_name = (const wchar_t*)UtilsGlobal::ReadPointer(UtilsGlobal::getplayer(true), { 0x18CC,0x44,0 });
@@ -248,6 +319,29 @@ namespace RPCHandler {
 				district_test += L"Stilwater";
 		}
 		// -----
+
+		const wchar_t* mission_name = (const wchar_t*)UtilsGlobal::ReadPointer(0x027B3C60, { 0x34,0 });
+		gang* mission_team = (gang*)UtilsGlobal::ReadPointer(0x027B3C60, { 0x40 });
+		auto Current_Activity = Activity_Type();
+		if (Current_Activity == none) {
+			if (mission_team) {
+
+				//wprintf(L"mission team: %i\n", *mission_team);
+				strcpy_s(pres.assets.small_image, gangToString[*mission_team]);
+			}
+			else {
+				strcpy_s(pres.assets.small_image, "");
+			}
+			if (mission_name) {
+				sprintf(smalltxtmission, "%s", wchar_to_utf8(mission_name).c_str());
+				strcpy_s(pres.assets.small_text, smalltxtmission);
+			}
+	    }
+		else {
+			//wprintf(L"mission name: %i\n", Activity_Type());
+			strcpy_s(pres.assets.small_text, activitiesToString[Current_Activity]);
+			strcpy_s(pres.assets.small_image, getActivityLowercase(Current_Activity).c_str());
+		}
 
 		std::string Difficulty = "";
 		if (CurDifficulty == 0x0) {
@@ -264,9 +358,9 @@ namespace RPCHandler {
 		sprintf(finalMPDesc, "%s (In Map: %s)", playerName, *FancyChunkName);
 		sprintf(finalCOOPDescCutsc, "Watching a Cutscene with %s", COOPPartner);
 		sprintf(finalCOOPDesc, "Exploring %s with %s - %s", wchar_to_utf8(district_test).c_str(), COOPPartner, Difficulty.c_str());
-		sprintf(finalMisCOOPDesc, "Reclaiming Stilwater with %s - %s", COOPPartner, Difficulty.c_str());
+		sprintf(finalMisCOOPDesc, "Reclaiming %s with %s - %s", wchar_to_utf8(district_test).c_str(), COOPPartner, Difficulty.c_str());
 		sprintf(finalSPDesc, "Exploring %s - %s", wchar_to_utf8(district_test).c_str(), Difficulty.c_str());
-		sprintf(finalSPMisDesc, "Reclaiming Stilwater - %s", Difficulty.c_str());
+		sprintf(finalSPMisDesc, "Reclaiming %s - %s", wchar_to_utf8(district_test).c_str(), Difficulty.c_str());
 
 		static DWORD lastTick = 0;
 
