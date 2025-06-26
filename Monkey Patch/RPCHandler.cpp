@@ -7,6 +7,7 @@
 #include <codecvt>
 #include "GameConfig.h"
 #include "UtilsGlobal.h"
+#include "Game/Game.h"
 //#pragma comment (lib, "../Discord/discord_game_sdk.dll.lib")
 #define DISCORD_LIB_NAME "discord_game_sdk.dll"
 
@@ -305,9 +306,7 @@ namespace RPCHandler {
 		char finalMPDesc[2048];
 		char finalCOOPDescCutsc[2048];
 		char finalCOOPDesc[2048];
-		char finalMisCOOPDesc[2048];
 		char finalSPDesc[2048];
-		char finalSPMisDesc[2048];
 		char smalltxtmission[256];
 
 		// -- Get Current Players District
@@ -353,20 +352,24 @@ namespace RPCHandler {
 		else {
 			Difficulty = "Hardcore";
 		}
-		BYTE IsInMission = *(BYTE*)0x27B3C60; // parses mission (?)
+		//BYTE IsInMission = *(BYTE*)0x27B3C60; // parses mission (?)
 		sprintf(finalUsername, "%s", playerName);
 		sprintf(finalMPDesc, "%s (In Map: %s)", playerName, *FancyChunkName);
 		sprintf(finalCOOPDescCutsc, "Watching a Cutscene with %s", COOPPartner);
 		sprintf(finalCOOPDesc, "Exploring %s with %s - %s", wchar_to_utf8(district_test).c_str(), COOPPartner, Difficulty.c_str());
-		sprintf(finalMisCOOPDesc, "Reclaiming %s with %s - %s", wchar_to_utf8(district_test).c_str(), COOPPartner, Difficulty.c_str());
 		sprintf(finalSPDesc, "Exploring %s - %s", wchar_to_utf8(district_test).c_str(), Difficulty.c_str());
-		sprintf(finalSPMisDesc, "Reclaiming %s - %s", wchar_to_utf8(district_test).c_str(), Difficulty.c_str());
 
 		static DWORD lastTick = 0;
 
 		DWORD currentTick = GetTickCount();
 		if (currentTick - lastTick >= 600) {
 			lastTick = currentTick;
+
+			// If GOTR, Change name and logo to GOTR
+			if (Game::xtbl_scan_status.gotr_detected == 1) {
+				strcpy_s(pres.assets.large_image, "gotr");
+				strcpy_s(pres.assets.large_text, "Gentlemen of the Row mod in use.");
+			}
 
 			if (!LobbyCheck == 0x0 && CurrentGamemode == 0xFF) // This should be CO-OP / Singleplayer
 			{
@@ -384,21 +387,11 @@ namespace RPCHandler {
 				else
 				{
 					if (f_PartnerName == playerName || f_PartnerName.empty() || !isCoop) {
-							if (!IsInMission) {
-								strcpy_s(pres.details, finalSPDesc);
-							}
-							else {
-								strcpy_s(pres.details, finalSPMisDesc);
-							}
+						strcpy_s(pres.details, finalSPDesc);
 					}
 					else
 					{
-						if (!IsInMission) {
-							strcpy_s(pres.details, finalCOOPDesc);
-						}
-						else {
-							strcpy_s(pres.details, finalMisCOOPDesc);
-						}
+						strcpy_s(pres.details, finalCOOPDesc);
 						strcpy_s(pres.state, finalUsername);
 					}
 				}
