@@ -32,6 +32,8 @@ namespace General {
 	extern char* InMission;
 	extern char* CurrentGamemode;
 	extern char* LobbyCheck;
+	int AddMessage(const wchar_t* Title, const wchar_t* Desc);
+	int AddMessageCustomized(const wchar_t* Title, const wchar_t* Desc, const wchar_t* Options[], int OptionCount);
 	bool VintGetGlobalBool(const char* Name);
 	bool VintSetGlobalBool(const char* Name, bool Value);
 	bool IsInSaveMenu();

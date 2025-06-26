@@ -655,53 +655,6 @@ void VehicleSpawner(const char* Name, const char* Var) {
 	}
 }
 
-int __declspec(naked) AddMessage(const wchar_t* Title, const wchar_t* Desc) { // we can use this for juiced-related info prompts
-	__asm {
-		push ebp
-		mov ebp, esp
-		sub esp, __LOCAL_SIZE
-
-
-		mov edx, Desc
-		push edx
-		mov esi, Title
-		push esi
-
-		mov eax, 0x7E6250
-		call eax
-
-		mov esp, ebp
-		pop ebp
-		ret
-	}
-}
-
-int __declspec(naked) AddMessageCustomized(const wchar_t* Title, const wchar_t* Desc, const wchar_t* Options[], int OptionCount) { // same thing as above except we have freedom over everything
-	__asm {
-		push ebp
-		mov ebp, esp
-		sub esp, __LOCAL_SIZE
-
-		push 0
-		push 1
-		push 2
-		push OptionCount
-		mov edx, Options
-		push edx
-		push Desc
-		mov eax, Title
-		push eax
-		or eax, -1
-
-		mov ecx, 0x753080
-		call ecx
-
-		mov esp, ebp
-		pop ebp
-		ret
-	}
-}
-
 bool hasCheatMessageBeenSeen = 0;
 
 typedef void(__cdecl* ShowPauseDialogT)(bool a1, bool a2, bool a3, bool a4);

@@ -10,14 +10,14 @@
 #include <iomanip>
 #include <sstream>
 #include "../Player/Input.h"
+#include "../General/General.h"
+using namespace General;
 import OptionsManager; 
 #if !RELOADED
 const wchar_t* gameindheader = L"Juiced";
 #else
 const wchar_t* gameindheader = L"thaRow";
 #endif
-int AddMessage(const wchar_t* Title, const wchar_t* Desc);
-int AddMessageCustomized(const wchar_t* Title, const wchar_t* Desc, const wchar_t* Options[], int OptionCount);
 namespace InGameConfig {
     typedef bool(*isCoopT)();
     isCoopT isCoop = (isCoopT)0x007F7AD0;
