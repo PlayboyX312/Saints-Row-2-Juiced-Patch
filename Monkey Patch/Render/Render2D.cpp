@@ -397,6 +397,8 @@ char SR2Ultrawide_HUDScale() {
 	char result;
 
 	float aspectRatio = currentX / currentY;
+	// Cutscene black bars
+	SafeWrite32((0x00755C49 + 1), (uint32_t)(aspectRatio * 720));
 	Render3D::AspectRatioFix(true);
 	if (aspectRatio >= 1.77) {
 		// Fix reflections being broken at ultrawide.
