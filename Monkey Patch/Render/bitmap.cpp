@@ -175,7 +175,7 @@ SAFETYHOOK_NOINLINE __int16 __fastcall bm_find_og(void* dummy1, void* dummy2, ui
 
 namespace bitmap_loader {
     void Init() {
-        if (GameConfig::GetValue("Modding", "addon_bitmaps", 0)) {
+        if (GameConfig::GetValue("Modding", "addon_bitmaps", 1)) {
             SafeWrite32(0x00C08803 + 1, 1806336);
             SafeWrite32(0x00C08817 + 1, 1806336);
             bm_findT = safetyhook::create_inline(0xC07160, &bm_find);

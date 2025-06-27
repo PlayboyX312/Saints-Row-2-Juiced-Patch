@@ -70,7 +70,6 @@ namespace Math
 		}
 	}
 	void Init() {
-		if(GameConfig::GetValue("Debug","MathFixes",1))
 		Math::Fixes::Init();
 	}
 }
