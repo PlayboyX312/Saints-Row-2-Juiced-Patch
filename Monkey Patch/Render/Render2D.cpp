@@ -274,7 +274,6 @@ namespace Render2D
 #else
 #if !RELOADED
 		if (*(BYTE*)0x02527B75 == 1 && *(BYTE*)0xE8D56B == 1) {
-			Sleep(1);
 			ChangeTextColor(160, 160, 160, 128);
 			__asm pushad
 			InGamePrint(("JUICED " + std::string(UtilsGlobal::juicedversion)).c_str(), 680, processtextwidth(1120), 2);
@@ -282,7 +281,6 @@ namespace Render2D
 		}
 #else
 		if (*(BYTE*)0xE8D56B == 1) {
-			Sleep(1);
 			ChangeTextColor(160, 160, 160, 128);
 			__asm pushad
 			InGamePrint(("THAROW " + std::string(UtilsGlobal::thaRowmenuversion)).c_str(), 680, processtextwidth(1120), 2);
@@ -504,6 +502,8 @@ void ApplyX360Gamma(color& col) {
 
 SafetyHookMid final_2d_render{};
 	void Init() {
+		// Fix vint UI speeding up at 1000?+ FPS
+		patchNop((void*)0x00B8BC6B, 6);
 		final_2d_render = safetyhook::create_mid(0xD1DFAA, [](SafetyHookContext& ctx) {
 			texture_2d* pass = (texture_2d*)ctx.eax;
 			ApplyX360Gamma(pass->color_info);
