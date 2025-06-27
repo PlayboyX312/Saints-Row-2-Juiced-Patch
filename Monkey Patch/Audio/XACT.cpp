@@ -38,7 +38,7 @@ namespace XACT
 		if (CCue != NULL)
 			return (float*)*((DWORD*)CCue + 18);
 		else {
-			AssertHandler::AssertOnce("XACT_CCue_GetMatrixCoefficients hook", "CCue is null\n");
+			AssertHandler::AssertOnce("XACT_CCue_GetMatrixCoefficients hook", "CCue is null\n",true);
 			return empty;
 		}
 	}
@@ -54,7 +54,7 @@ namespace XACT
 			return currentPointer;
 		}
 		else {
-			AssertHandler::AssertOnce("XACT_CGlobalSettings_GetCategoryVolumes hook", "CCue the return is NULL, so we return last valid one.\n");
+			AssertHandler::AssertOnce("XACT_CGlobalSettings_GetCategoryVolumes hook", "CCue the return is NULL, so we return last valid one.\n",true);
 			return lastValidPointer;
 		}
 	}

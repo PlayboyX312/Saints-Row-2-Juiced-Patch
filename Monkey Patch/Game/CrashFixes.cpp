@@ -6,13 +6,13 @@
 #include "../GameConfig.h"
 #include "../FileLogger.h"
 #include <unordered_set>
-
+#include "CrashFixes.h"
 namespace AssertHandler {
 	static std::unordered_set<std::string> ignored_asserts;
 	static std::mutex assert_mutex;
 	static std::unordered_set<std::string> active_asserts;
 	static uint8_t CvarFixCrashes;
-	inline void AssertOnce(const char* id, const char* message) {
+	inline void AssertOnce(const char* id, const char* message, bool hide_by_default) {
 		{
 			std::lock_guard<std::mutex> lock(assert_mutex);
 			if (ignored_asserts.count(id) || active_asserts.count(id))
@@ -20,7 +20,7 @@ namespace AssertHandler {
 			active_asserts.insert(id);
 		}
 		Logger::TypedLog(CHN_DEBUG, "[Assert ID: %s] %s", id, message);
-		if (CvarFixCrashes >= 200)
+		if ((CvarFixCrashes >= 200) || (hide_by_default && (CvarFixCrashes != 201)))
 			return;
 		std::string id_copy(id);
 		std::string msg_copy(message);
