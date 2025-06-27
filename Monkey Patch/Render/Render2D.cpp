@@ -16,6 +16,7 @@
 #include "..\General\General.h"
 #include "Render3D.h"
 #include "..\Ext\Hooking.Patterns.h"
+#include <random>
 namespace Render2D
 {
 	float* currentAR = (float*)0x022FD8EC;
@@ -262,6 +263,7 @@ namespace Render2D
 
 	typedef void SomePMFunc_Native();
 	SomePMFunc_Native* UpdateSomePMFunc = (SomePMFunc_Native*)(0x00B99DB0);
+	const char* JuicedText = "JUICED ";
 	void SomeMMFunc_Hacked()
 	{
 #if JLITE
@@ -276,7 +278,7 @@ namespace Render2D
 		if (*(BYTE*)0x02527B75 == 1 && *(BYTE*)0xE8D56B == 1) {
 			ChangeTextColor(160, 160, 160, 128);
 			__asm pushad
-			InGamePrint(("JUICED " + std::string(UtilsGlobal::juicedversion)).c_str(), 680, processtextwidth(1120), 2);
+			InGamePrint((JuicedText + std::string(UtilsGlobal::juicedversion)).c_str(), 680, processtextwidth(1120), 2);
 			__asm popad
 		}
 #else
@@ -313,6 +315,13 @@ namespace Render2D
 		{
 			Logger::TypedLog(CHN_MOD, "Patching MenuVersionNumber...\n");
 			//patchCall((void*)0x0052050C, (void*)SomeMMFunc_Hacked);
+
+			std::random_device rd;
+			std::mt19937 gen(rd());
+
+			std::bernoulli_distribution chance(0.1);
+			if (chance(gen))
+				JuicedText = "JUICER ";
 			patchCall((void*)0x0073CE0D, (void*)SomeMMFunc_Hacked);
 			//patchCall((void*)0x00B995D5, (void*)SomePMFunc_Hacked);
 		}
