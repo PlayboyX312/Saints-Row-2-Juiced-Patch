@@ -260,9 +260,6 @@ SlewCameraT SlewCamera = (SlewCameraT)0xC01650;
 typedef void(__cdecl* UpdateCameraT)();
 UpdateCameraT UpdateCamera = (UpdateCameraT)0x4932F0;
 
-typedef bool(*isCoopT)();
-isCoopT isCoop = (isCoopT)0x007F7AD0;
-
 typedef void(__cdecl* CoopRemotePauseT)(char pause);
 CoopRemotePauseT CoopRemotePause = (CoopRemotePauseT)0x008CB140;
 
@@ -527,9 +524,6 @@ VehicleSpawnT VehicleSpawn = (VehicleSpawnT)0x00AE4AE0;
 
 typedef int(__thiscall* GetVehIndexT)(const char* Vehicle);
 GetVehIndexT GetVehIndex = (GetVehIndexT)0x00AE4090;
-
-typedef bool(__thiscall* isMissionCompletedT)(const char* mission_name);
-isMissionCompletedT IsMissionCompleted = (isMissionCompletedT)0x6A6E50;
 
 typedef int(__fastcall* GetPointerT)(int VehiclePointer);
 GetPointerT GetPointer = (GetPointerT)0x00AE28F0;

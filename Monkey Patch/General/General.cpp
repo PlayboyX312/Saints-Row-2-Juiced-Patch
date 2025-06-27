@@ -215,6 +215,14 @@ namespace General {
 	typedef void __cdecl HudControlT(bool Hide);
 	HudControlT* HudControl = (HudControlT*)(0x793D60);
 
+	bool isCoop() {
+		return ((bool(*)())0x007F7AD0)();
+	}
+
+	bool isMissionCompleted(const char* Name) {
+		return ((bool(__thiscall*)(const char*))0x006A6E50)(Name);
+	}
+
 	void IdleFix(bool Hide) {
 
 		patchByte((BYTE*)0x004F81EE, Hide ? 0x00 : 0x32);
