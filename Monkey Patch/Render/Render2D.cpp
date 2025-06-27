@@ -319,7 +319,7 @@ namespace Render2D
 			std::random_device rd;
 			std::mt19937 gen(rd());
 
-			std::bernoulli_distribution chance(0.1);
+			std::bernoulli_distribution chance(0.01);
 			if (chance(gen))
 				JuicedText = "JUICER ";
 			patchCall((void*)0x0073CE0D, (void*)SomeMMFunc_Hacked);
