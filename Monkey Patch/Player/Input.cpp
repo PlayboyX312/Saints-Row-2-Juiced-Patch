@@ -15,6 +15,7 @@ import OptionsManager;
 #include "../UtilsGlobal.h"
 #include <safetyhook.hpp>
 #include "../Game/Game.h"
+#include <Hooking.Patterns.h>
 bool IsKeyPressed(unsigned char Key, bool Hold);
 int __fastcall subT_6218F0(DWORD* a1);
 namespace Input {
@@ -509,8 +510,6 @@ namespace Input {
 	{"PCKEY_LEFT_MOUSE_BUTTON", 0x100},
 	{"PCKEY_RIGHT_MOUSE_BUTTON", 0x101},
 	{"PCKEY_MIDDLE_MOUSE_BUTTON", 0x102},
-	{"MOUSE 4", 0x103},
-	{"MOUSE 5", 0x104},
 	{"PCKEY_ENTER", 0x1C},
 	{"PCKEY_ESC", 0x01},
 	{"PCKEY_TAB", 0x0F},
@@ -535,6 +534,8 @@ namespace Input {
 	{"PCKEY_NUM_STAR", 0x37},
 	{"PCKEY_NUM_PLUS", 0x4E},
 	{"PCKEY_NUM_DOT", 0x53},
+	{"MOUSE 4", 0x103},
+	{"MOUSE 5", 0x104},
 	{"PCKEY_UNASSIGNED", 0xFFFFFFFF}
 	};
 
@@ -564,9 +565,22 @@ namespace Input {
 			// currently I add mouse4 and mouse5 support, requires getpckeyboardimage_T hook.
 			static auto key_held_hook = safetyhook::create_mid(0xC11214, &key_held_midhook_special_mousecase_midhook1);
 			static auto special_mouse_cases_midhook = safetyhook::create_mid(0xC12A74, &special_mouse_cases_midhook1);
-			patchDWord((void*)(0xC119B0 + 2), (uint32_t)&specialKeys[0].key_code);
-			patchDWord((void*)(0xC119C2 + 2), (uint32_t)&specialKeys[0].localization_name);
-			patchDWord((void*)(0xC119CD + 3), (uint32_t)&specialKeys[0].localization_name);
+			//patchDWord((void*)(0xC119B0 + 2), (uint32_t)&specialKeys[0].key_code);
+			//patchDWord((void*)(0xC119C2 + 2), (uint32_t)&specialKeys[0].localization_name);
+			//patchDWord((void*)(0xC119CD + 3), (uint32_t)&specialKeys[0].localization_name);
+
+			//auto pattern = hook::pattern("A0 37 E8 00");
+			//pattern.for_each_result([](hook::pattern_match match) {
+			//	void* addr = match.get<void*>();
+			//	patchDWord((void*)addr, (uint32_t)&specialKeys[0].localization_name);
+			//	});
+
+			//pattern = hook::pattern("A4 37 E8 00");
+			//pattern.for_each_result([](hook::pattern_match match) {
+			//	void* addr = match.get<void*>();
+			//	patchDWord((void*)addr, (uint32_t)&specialKeys[0].key_code);
+			//	});
+
 		}
 		LoadXInputDLL();
 
