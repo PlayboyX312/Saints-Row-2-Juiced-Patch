@@ -620,33 +620,6 @@ namespace Render3D
 	bool crash;
 
 	constexpr uintptr_t add_to_entry_func_addr = 0xC080C0;
-	struct peg_entry
-	{
-		unsigned __int8* data;
-		unsigned __int16 width;
-		unsigned __int16 height;
-		unsigned __int16 bm_fmt;
-		unsigned __int16 pal_fmt;
-		unsigned int mip_filter_value;
-		unsigned __int16 num_frames;
-		unsigned __int16 flags;
-		char* filename;
-		unsigned __int16 pal_size;
-		unsigned __int8 fps;
-		unsigned __int8 mip_levels;
-		unsigned int frame_size;
-		peg_entry* next;
-		peg_entry* prev;
-		unsigned int cache[2];
-	};
-
-	struct bitmap_entry
-	{
-		BYTE gap0[4];
-		peg_entry* current_peg_entry;
-		WORD word8;
-		WORD wordA;
-	};
 
 // This whole thing might have a performance hit.
 // SafeAddToEntry might be a bit redundant? since it seems to have not worked at all. but I'll keep it.
@@ -715,26 +688,59 @@ namespace Render3D
 			*distance_squared /= SHADER_DISTANCE_SQUARED_MULT;
 		}
 	}
-/*	void LODtest(SafetyHookContext& ctx) {
-		uintptr_t& LOD = ctx.esi;
-		if(OVERRIDE_SHADER_LOD == 2)
-		LOD = SHADER_LOD;
-		BYTE num_lods = *(BYTE*)(ctx.ecx + 9);
 
+	// Current hooks the parsing function for shaders_pc to only DELETE lines.. it can be expanded to do addition by using a new buffer, but that isn't really a use-case right now. - Clippy
+	void shaders_pc_hook() {
+		static auto shaders_pc_parse_hook = safetyhook::create_mid(0x00D1B67F, [](SafetyHookContext& ctx) {
+			char* buffer = (char*)ctx.ebx;
+			size_t& buffer_size1 = ctx.eax;
+			size_t& buffer_size2 = ctx.edi;
 
-		if (num_lods - 1 >= LOD)
-			LOD = LOD;
-		else
-			LOD = num_lods - 1;
-		ctx.eip = 0x00D1A891;
-		//printf("num_lods %d \n", num_lods);
+			auto remove_line = [&](const char* line_to_remove) {
+				std::string buffer_str(buffer, buffer_size1);
+				std::string target_line = line_to_remove;
 
-	}*/
+				size_t pos = buffer_str.find(target_line);
+				if (pos != std::string::npos) {
+					size_t line_start = pos;
+					while (line_start > 0 && buffer_str[line_start - 1] != '\n') {
+						line_start--;
+					}
+
+					size_t line_end = pos + target_line.length();
+					while (line_end < buffer_str.length() &&
+						(buffer_str[line_end] == '\r' || buffer_str[line_end] == '\n')) {
+						line_end++;
+					}
+
+					size_t line_length = line_end - line_start;
+
+					buffer_str.erase(line_start, line_length);
+
+					size_t new_size = buffer_str.length();
+					memcpy(buffer, buffer_str.c_str(), new_size);
+
+					buffer_size1 = new_size;
+					buffer_size2 = new_size;
+
+					return true;
+				}
+				return false;
+				};
+
+			if (GameConfig::GetValue("Graphics", "RemovePixelationShader", 0)) {
+				remove_line("data\\shaders\\standard\\sr2-pixelate_c.fxo_pc");
+				Logger::TypedLog(CHN_MOD, "Patching shaders_pc to remove %s\n", "data\\shaders\\standard\\sr2-pixelate_c.fxo_pc");
+			}
+			});
+	}
 
 	volatile float VehicleDespawnDistance = 140.f;
 	CPatch CIncreaseVehicleDespawnDistance = CPatch::SafeWrite32(0x0093BDF9,(uint32_t)&VehicleDespawnDistance);
 	void Init()
 	{
+		if(GameConfig::GetValue("Graphics","RemovePixelationShader",0))
+		shaders_pc_hook();
 		OptionsManager::registerOption("Graphics", "ShaderOverride", &OVERRIDE_SHADER_LOD,1);
 		static auto GiveLOD = safetyhook::create_mid(0x00D19D1B,&SETLOD);
 		//static auto RenderLOD1 = safetyhook::create_mid(0x00D0681D, &LODtest);

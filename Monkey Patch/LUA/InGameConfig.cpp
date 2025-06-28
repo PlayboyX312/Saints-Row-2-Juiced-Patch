@@ -31,6 +31,7 @@ namespace InGameConfig {
     { "Graphics", "RemoveVignette" },
 #endif
     { "Audio", "UseFixedXACT" },
+    {"Graphics","RemovePixelationShader"},
     };
     static PatchEntry patch_registry[] = {
 #if !JLITE
