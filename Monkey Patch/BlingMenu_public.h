@@ -8,6 +8,12 @@ extern "C" {
 #ifdef __cplusplus
     typedef void (*BlingMenuAddFuncStd_TYPE)(const char* path, const char* name,
         std::function<void()> func);
+    typedef void (*BlingMenuAddFuncCustomStd_TYPE)(
+        const char* path,
+        const char* name,
+        std::function<const char* (int)> customFunc,
+        std::function<void()> triggerFunc
+        );
 #endif
     typedef void (*BlingMenuAddInt8_TYPE)(const char* path, const char* name, signed char* ptr,
         void (*triggerFunc)(), signed char step,
@@ -45,12 +51,15 @@ extern "C" {
         void (*triggerFunc)(), __int64 step,
         __int64 lowerBound, __int64 upperBound);
 
+    typedef void (*BlingMenuAddCategory_TYPE)(const char* path);
+
     struct BlingMenuAPI
     {
         bool isLoaded;
         HMODULE module;
 #ifdef __cplusplus
         BlingMenuAddFuncStd_TYPE AddFuncStd;
+        BlingMenuAddFuncCustomStd_TYPE AddFuncCustomStd;
 #endif
         BlingMenuAddInt8_TYPE AddInt8;
         BlingMenuAddBool_TYPE AddBool;
@@ -61,6 +70,7 @@ extern "C" {
         BlingMenuAddFuncCustom_TYPE AddFuncCustom;
         BlingMenuAddDouble_TYPE AddDouble;
         BlingMenuAddInt64_TYPE AddInt64;
+        BlingMenuAddCategory_TYPE AddCategory;
     };
 
 
@@ -71,6 +81,17 @@ extern "C" {
     {
         if (gBlingMenuAPI.isLoaded && gBlingMenuAPI.AddFuncStd)
             gBlingMenuAPI.AddFuncStd(path, name, func);
+    }
+
+    inline void BlingMenuAddFuncCustomStd(
+        const char* path,
+        const char* name,
+        std::function<const char* (int)> customFunc,
+        std::function<void()> triggerFunc
+    )
+    {
+        if (gBlingMenuAPI.isLoaded && gBlingMenuAPI.AddFuncCustomStd)
+            gBlingMenuAPI.AddFuncCustomStd(path, name, customFunc, triggerFunc);
     }
 #endif
     inline void BlingMenuAddInt8(const char* path, const char* name, signed char* ptr,
@@ -144,8 +165,14 @@ extern "C" {
         if (gBlingMenuAPI.isLoaded && gBlingMenuAPI.AddInt64)
             gBlingMenuAPI.AddInt64(path, name, ptr, triggerFunc, step, lowerBound, upperBound);
     }
-}
 
+    inline void BlingMenuAddCategory(const char* path)
+    {
+        if (gBlingMenuAPI.isLoaded && gBlingMenuAPI.AddCategory)
+            gBlingMenuAPI.AddCategory(path);
+    }
+
+}
 
 inline bool BlingMenuLoad(void)
 {
@@ -182,9 +209,11 @@ inline bool BlingMenuLoad(void)
     gBlingMenuAPI.AddFuncCustom = (BlingMenuAddFuncCustom_TYPE)GetProcAddress(mod, "BlingMenuAddFuncCustom");
 #ifdef __cplusplus
     gBlingMenuAPI.AddFuncStd = (BlingMenuAddFuncStd_TYPE)GetProcAddress(mod, "BlingMenuAddFuncStd");
+    gBlingMenuAPI.AddFuncCustomStd = (BlingMenuAddFuncCustomStd_TYPE)GetProcAddress(mod, "BlingMenuAddFuncCustomStd");
 #endif
     gBlingMenuAPI.AddDouble = (BlingMenuAddDouble_TYPE)GetProcAddress(mod, "BlingMenuAddDouble");
     gBlingMenuAPI.AddInt64 = (BlingMenuAddInt64_TYPE)GetProcAddress(mod, "BlingMenuAddInt64");
+    gBlingMenuAPI.AddCategory = (BlingMenuAddCategory_TYPE)GetProcAddress(mod, "BlingMenuAddCategory");
     if (!gBlingMenuAPI.AddInt8 || !gBlingMenuAPI.AddBool || !gBlingMenuAPI.AddFloat ||
         !gBlingMenuAPI.AddInt || !gBlingMenuAPI.AddFunc || !gBlingMenuAPI.AddFuncRaw) {
         FreeLibrary(mod);
