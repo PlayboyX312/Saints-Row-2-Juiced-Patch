@@ -1151,9 +1151,11 @@ void __declspec(naked) TextureCrashFixRemasteredByGroveStreetGames()
 
 	}
 	void TopWinMain() {
-		static auto PlaceholderStringFix = safetyhook::create_mid(0x00B92C0F, [](SafetyHookContext& ctx) {
-			if (*(short*)ctx.eax == 0x0001) ctx.ebp = ctx.eax + 2; // eax + 2 because the game returns a bad pointer that always starts with 01 00 instead of the string start
-		});
+		// UNCOMMENT ME IN THE BRANCH
+		//static auto PlaceholderStringFix = safetyhook::create_mid(0x00B92C0F, [](SafetyHookContext& ctx) {
+		//	if(ctx.eax)
+		//	if (*(short*)ctx.eax == 0x0001) ctx.ebp = ctx.eax + 2; // eax + 2 because the game returns a bad pointer that always starts with 01 00 instead of the string start
+		//});
 		Logger::TypedLog("D3D9", "D3D9 Hook: %d\n", D3D9Hook::initialize());
 		allowJuicedAPI = GameConfig::GetValue("API", "JuicedAPI", 1);
 		bitmap_loader::Init();
