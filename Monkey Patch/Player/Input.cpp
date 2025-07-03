@@ -258,67 +258,6 @@ namespace Input {
 		if((disable_aim_assist_noMatterInput >= 1 && g_lastInput == GAME_LAST_INPUT::MOUSE) || disable_aim_assist_noMatterInput >= 2)
 		ctx.eip = 0x9D7757;
 	}
-
-	volatile char KEY_inventory_up = 'W';
-	volatile char KEY_inventory_down = 'S';
-	volatile char KEY_inventory_left = 'A';
-	volatile char KEY_inventory_right = 'D';
-	void Process_Inventory_Hack_KBM() {
-#define ARROW_UP (bool*)0x23494E0
-#define ARROW_DOWN (bool*)0x2349540
-#define ARROW_RIGHT (bool*)0x0234951C 
-#define ARROW_LEFT (bool*)0x02349504
-		static bool was_up_pressed = false;
-		static bool was_down_pressed = false;
-		static bool was_left_pressed = false;
-		static bool was_right_pressed = false;
-
-		if ((*(byte*)0x00E863C8 == 36)) {
-			// Handle UP key
-			bool is_up_pressed_now = IsKeyPressed(KEY_inventory_up, true);
-			if (is_up_pressed_now) {
-				*ARROW_UP = 1;
-				was_up_pressed = true;
-			}
-			else if (was_up_pressed) {
-				*ARROW_UP = 0;
-				was_up_pressed = false;
-			}
-
-
-			bool is_down_pressed_now = IsKeyPressed(KEY_inventory_down, true);
-			if (is_down_pressed_now) {
-				*ARROW_DOWN = 1;
-				was_down_pressed = true;
-			}
-			else if (was_down_pressed) {
-				*ARROW_DOWN = 0;
-				was_down_pressed = false;
-			}
-
-
-			bool is_left_pressed_now = IsKeyPressed(KEY_inventory_left, true);
-			if (is_left_pressed_now) {
-				*ARROW_LEFT = 1;
-				was_left_pressed = true;
-			}
-			else if (was_left_pressed) {
-				*ARROW_LEFT = 0;
-				was_left_pressed = false;
-			}
-
-
-			bool is_right_pressed_now = IsKeyPressed(KEY_inventory_right, true);
-			if (is_right_pressed_now) {
-				*ARROW_RIGHT = 1;
-				was_right_pressed = true;
-			}
-			else if (was_right_pressed) {
-				*ARROW_RIGHT = 0;
-				was_right_pressed = false;
-			}
-		}
-	}
 	struct PC_port_controller_keys
 	{
 		// idk wtf is this
@@ -552,8 +491,29 @@ namespace Input {
 		}
 
 	}
-
+	volatile char KEY_inventory_up = 'W';
+	volatile char KEY_inventory_down = 'S';
+	volatile char KEY_inventory_left = 'A';
+	volatile char KEY_inventory_right = 'D';
 	void Init() {
+		if (GameConfig::GetValue("Input", "better_inventory_keyboard", 1)) {
+			static auto properInventory_keyboard = safetyhook::create_mid(0xB997F3, [](SafetyHookContext& ctx) {
+				if (!ctx.ebx || *is_controller_connect) // shouldn't allow this to work while a controller is connected, vanilla game bug but having a controller connected + using WASD will move the weapon wheel as if it's LS. -- Clippy95
+					return;
+				float& value = *(float*)(ctx.esp + 0x10);
+				const char* event = (const char*)*(uintptr_t*)(ctx.ebx + 0x14);
+				if (!event)
+					return;
+				if (strcmp(event, "inventory_up") == 0)
+					value = IsKeyPressed(KEY_inventory_up, true) ? 1.0f : value;
+				else if (strcmp(event, "inventory_down") == 0)
+					value = IsKeyPressed(KEY_inventory_down, true) ? 1.0f : value;
+				else if (strcmp(event, "inventory_left") == 0)
+					value = IsKeyPressed(KEY_inventory_left, true) ? 1.0f : value;
+				else if (strcmp(event, "inventory_right") == 0)
+					value = IsKeyPressed(KEY_inventory_right, true) ? 1.0f : value;
+				});
+		}
 		OptionsManager::registerOption("Input", "HoldFineAim", &HoldFineAim);
 		if (EnableDynamicPrompts) {
 			OptionsManager::registerOption("Input", "ForceInputPrompt", &ForceInput, 0);
@@ -587,10 +547,6 @@ namespace Input {
 			player_autoaim_do_assisted_aiming_midhook = safetyhook::create_mid(0x009D7752, &player_autoaim_do_assisted_aiming_midhookfunc_disableaimassistmouse);
 			Logger::TypedLog(CHN_MOD, "Disabling Aim Assist while using mouse...\n");
 			disable_aim_assist_noMatterInput = (BYTE)std::clamp((int)GameConfig::GetValue("Gameplay", "DisableAimAssist", 1), 0, 2);
-		
-
-		
-		allow_hacked_inventory_KBM = GameConfig::GetValue("Gameplay", "allow_hacked_inventory_KBM", 1);
 		DisableXInput();
 		ForceNoVibration();
 

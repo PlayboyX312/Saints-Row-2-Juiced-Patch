@@ -1253,8 +1253,6 @@ int RenderLoopStuff_Hacked()
 	if (Render3D::useFPSCam) {
 		Render3D::FPSCamHack();
 	}
-	if(Input::allow_hacked_inventory_KBM)
-	Input::Process_Inventory_Hack_KBM();
 #endif
 
 
