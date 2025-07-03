@@ -77,5 +77,6 @@ namespace Game
 		unsigned __int8 unused : 4;
 	};
 	extern XTBLScanStatus xtbl_scan_status;
+	extern int s_CursorPosition;
 };
 

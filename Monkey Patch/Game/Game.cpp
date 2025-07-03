@@ -215,7 +215,7 @@ namespace Game
 	XTBLScanStatus xtbl_scan_status = {};
 	wchar_t* chat_message = (wchar_t*)0x1F76948;
 	SafetyHookInline open_chat_T;
-	static int s_CursorPosition = 0;
+	int s_CursorPosition = 0;
 	char open_chat_hook() {
 		s_CursorPosition = 0;
 		return open_chat_T.call<char>();

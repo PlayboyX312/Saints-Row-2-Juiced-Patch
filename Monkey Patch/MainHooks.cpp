@@ -1119,6 +1119,7 @@ void LuaExecutor() {
 
 							if (remSpace > 0) {
 								wcsncat_s(ChatInput, 128, clipboardInput, remSpace);
+								Game::s_CursorPosition = wcslen(ChatInput);
 							}
 
 							GlobalUnlock(hData);
