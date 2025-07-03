@@ -213,7 +213,76 @@ namespace Game
 	SafetyHookMid xtbl_read_and_parse_file_hook{};
 	SafetyHookMid FixFrametimeVehicleSkids{};
 	XTBLScanStatus xtbl_scan_status = {};
+	wchar_t* chat_message = (wchar_t*)0x1F76948;
+	SafetyHookInline open_chat_T;
+	static int s_CursorPosition = 0;
+	char open_chat_hook() {
+		s_CursorPosition = 0;
+		return open_chat_T.call<char>();
+	}
+	void chat_box_cursor_support_hooks(){
+		open_chat_T = safetyhook::create_inline(0x75C8F0, open_chat_hook);
+
+		static auto cursor_render = safetyhook::create_mid(0x75D6B6, [](SafetyHookContext& ctx) {
+			wchar_t* a3 = (wchar_t*)(ctx.esp + 0x20);
+
+			wchar_t* message_start = wcsstr(a3, L"> ");
+			if (message_start) {
+				message_start += 2; // Skip "> "
+				int cursor_pos = (message_start - a3) + s_CursorPosition;
+
+				size_t current_length = wcslen(a3);
+				if (cursor_pos <= (int)current_length) {
+					// Shift characters right to make room for cursor
+					wmemmove(&a3[cursor_pos + 1],
+						&a3[cursor_pos],
+						(current_length - cursor_pos + 1) * sizeof(wchar_t));
+					a3[cursor_pos] = L'|';
+				}
+			}
+			ctx.eip = 0x75D6D3;
+			});
+
+		static auto cursor_chat = safetyhook::create_mid(0x75CCFE, [](SafetyHookContext& ctx) {
+			wchar_t& new_char = (wchar_t&)ctx.eax;
+			size_t current_length = wcslen(chat_message);
+			wmemmove(&chat_message[s_CursorPosition + 1],
+				&chat_message[s_CursorPosition],
+				(current_length - s_CursorPosition + 1) * sizeof(wchar_t));
+			chat_message[s_CursorPosition] = new_char;
+			s_CursorPosition++;
+			ctx.eip = 0x75CD03;
+			});
+		// arrow_move and backspace_chat can be combined but i cant be bothered with it rn, -- Clippy95
+		static auto arrow_move = safetyhook::create_mid(0x75CBA5, [](SafetyHookContext& ctx) {
+			auto character = ctx.edi;
+			if (character == 203) {
+				if (s_CursorPosition > 0) {
+					s_CursorPosition--;
+				}
+			}
+			else if (character == 205) {
+				if (s_CursorPosition < (int)wcslen(chat_message)) {
+					s_CursorPosition++;
+				}
+			}
+			});
+		static auto backspace_chat = safetyhook::create_mid(0x75CBB6, [](SafetyHookContext& ctx) {
+			if (s_CursorPosition > 0) { // Can only backspace if not at start
+				size_t current_length = wcslen(chat_message);
+				wmemmove(&chat_message[s_CursorPosition - 1],
+					&chat_message[s_CursorPosition],
+					(current_length - s_CursorPosition + 1) * sizeof(wchar_t));
+				s_CursorPosition--;
+				ctx.eip = 0x75CBC0;
+			}
+			else {
+				ctx.eip = 0x75CBC0;
+			}
+			});
+	}
 	void Init() { 
+		chat_box_cursor_support_hooks();
 		FixFrametimeVehicleSkids = safetyhook::create_mid(0xA9DDB3, [](SafetyHookContext& ctx) {
 			using namespace Timer;
 			float* wheel_force_local = (float*)(ctx.esp + 0xC);
