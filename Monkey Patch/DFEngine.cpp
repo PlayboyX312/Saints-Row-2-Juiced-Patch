@@ -221,7 +221,7 @@ int	CDFObjectInstance::GetAbsoluteFilename(void* that, wchar_t* filenamepath_out
 	{
 		wcscpy(filenamepath_out, game_directory);
 		wcscpy(&filenamepath_out[path_size], default_ad_dir);
-		Logger::TypedLog(CHN_DLL, "Billboard directory not found or empty. Using default billboard.\n");
+		//Logger::TypedLog(CHN_DLL, "Billboard directory not found or empty. Using default billboard.\n");
 		//PrintLog->PrintSys("CDFObjectInstance::GetAbsoluteFilename(%S)\n",filenamepath_out);
 	}
 	else
