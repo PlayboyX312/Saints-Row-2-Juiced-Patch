@@ -23,11 +23,6 @@ extern "C" {
     }
 
     __declspec(dllexport) bool UnregisterVintLuaHookString(VintLuaHookString callback) {
-        auto it = std::find(g_VintluaHooksAPI.begin(), g_VintluaHooksAPI.end(), callback);
-        if (it != g_VintluaHooksAPI.end()) {
-            g_VintluaHooksAPI.erase(it);
-            return true;
-        }
         return false;
     }
 }
