@@ -227,8 +227,8 @@ namespace Shadows {
                 SignalWorkAvailable();
                 });
         }
-        Logger::TypedLog(CHN_DEBUG, "Patching amount of Shadow job threads to be %d\n", std::clamp((int)GameConfig::GetValue("Debug", "ShadowThreadCount", 4), 1, 64));
-        SafeWrite32(0x528524, std::clamp((int)GameConfig::GetValue("Debug", "ShadowThreadCount", 4), 1, 64));
+        Logger::TypedLog(CHN_DEBUG, "Patching amount of Shadow job threads to be %d\n", std::clamp((int)GameConfig::GetValue("Debug", "ShadowThreadCount", 4), 1, (int)std::thread::hardware_concurrency()));
+        SafeWrite32(0x528524, std::clamp((int)GameConfig::GetValue("Debug", "ShadowThreadCount", 4), 1, (int)std::thread::hardware_concurrency()));
     }
 
     void Cleanup() {
