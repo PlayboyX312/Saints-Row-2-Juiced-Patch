@@ -7,6 +7,7 @@
 #include "../FileLogger.h"
 #include <unordered_set>
 #include "CrashFixes.h"
+#include "../SafeWrite.h"
 namespace AssertHandler {
 	static std::unordered_set<std::string> ignored_asserts;
 	static std::mutex assert_mutex;
@@ -112,6 +113,23 @@ namespace CrashFixes {
 	crash_cs_start_characters_for_shot_009AEE86:
 		AssertHandler::AssertOnce("cs_start_characters_for_shot_009AEE86", "Crash prevented due to bad preload breaking cutscene objects, please fix your preload, game might still crash \n");
 	}
+
+	void __declspec(naked) crash_0x0071447C_fix() {
+		static const DWORD null_jump = 0x714396;
+		static const DWORD continue_jump = 0x714483;
+
+		__asm {
+			test edx, edx
+			jz null_case
+
+			movaps xmm0, xmmword ptr[edx + 110h]
+			jmp continue_jump
+
+			null_case :
+			jmp null_jump
+		}
+	}
+
 	void Init() {
 		AssertHandler::CvarFixCrashes = GameConfig::GetValue("Debug", "FixCrashes", 2);
 		static auto FixAudioLoop_null_crash1_hook = safetyhook::create_mid(0x0046EE64, &FixAudioLoop_null_crash1);
@@ -145,6 +163,13 @@ namespace CrashFixes {
 					Logger::TypedLog(CHN_DEBUG, "Avoided 0x943711 crash?\n");
 					}
 				});
+
+			WriteRelJump(0x0071447C, (int)&crash_0x0071447C_fix);
+
+			//static auto fix_0x0071447C_hook = safetyhook::create_mid(0x0071447C, [](SafetyHookContext& ctx) {
+			//	if(ctx.edx == NULL)
+			//	ctx.eip = 0x714396;
+			//	});
 
 		}
 		// I kind of want these seperated, idk why but let's say 2+ is confirmed by mods or modded setups?
