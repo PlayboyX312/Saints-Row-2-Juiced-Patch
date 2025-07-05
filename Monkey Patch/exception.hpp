@@ -737,9 +737,12 @@ LONG WINAPI CustomUnhandledExceptionFilter(LPEXCEPTION_POINTERS ExceptionInfo)
         ex.ExceptionPointers = ExceptionInfo;
         ex.ClientPointers = TRUE;
 
-        if (FAILED(MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpWithDataSegs, &ex, NULL, NULL)))
-        {
-        }
+        if (FAILED(MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hFile,
+            (MINIDUMP_TYPE)(MiniDumpNormal |
+                MiniDumpWithThreadInfo |
+                MiniDumpWithIndirectlyReferencedMemory |
+                MiniDumpWithUnloadedModules |
+                MiniDumpWithProcessThreadData), &ex, NULL, NULL)))
 
         CloseHandle(hFile);
     }
