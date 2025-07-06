@@ -1303,9 +1303,17 @@ void PrintCoords(float x, float z,float y, bool showplayerorient) {
 }
 
 void PrintFrametime() {
+	static DWORD lastUpdate = 0;
+	static int fr;
+	static int frms;
+
+	DWORD currentTime = GetTickCount();
+	if (currentTime - lastUpdate >= 500) {
+		lastUpdate = currentTime;
+		fr = 1.0f / *(float*)(0xE84380);
+		frms = 1.0f / fr * 1000;
+	}
 	char buffer[50];
-	int fr = 1.0f / *(float*)(0xE84380);
-	int frms = 1.0f / fr * 1000;
 	snprintf(buffer, sizeof(buffer), "RenderMS: %i", frms);
 	Render2D::ChangeTextColor(255, 255, 255, 255);
 	__asm pushad
@@ -1314,8 +1322,16 @@ void PrintFrametime() {
 }
 
 void PrintGameFrametime() {
+	static DWORD lastUpdate = 0;
+	static int ft;
+
+	DWORD currentTime = GetTickCount();
+	if (currentTime - lastUpdate >= 500) {
+		lastUpdate = currentTime;
+		ft = *(float*)(0x02527DA4) * 1000;
+		//fr = static_cast<int>(1.0f / *(float*)(0xE84380));
+	}
 	char buffer[50];
-	int ft = *(float*)(0x02527DA4) * 1000;
 	snprintf(buffer, sizeof(buffer), "GameMS: %i", ft);
 	Render2D::ChangeTextColor(255, 255, 255, 255);
 	__asm pushad
@@ -1324,8 +1340,17 @@ void PrintGameFrametime() {
 }
 
 void PrintFramerate() {
+	static DWORD lastUpdate = 0;
+	static int fr;
+
+	DWORD currentTime = GetTickCount();
+	if (currentTime - lastUpdate >= 500) {
+		lastUpdate = currentTime;
+		fr = static_cast<int>(1.0f / *(float*)(0xE84380));
+	}
+
 	char buffer[50];
-	int fr = 1.0f / *(float*)(0xE84380);
+	//int fr = 1.0f / *(float*)(0xE84380);
 	snprintf(buffer, sizeof(buffer), "FPS: %i", fr);
 	if (fr < 20.0) {
 		Render2D::ChangeTextColor(255, 5, 5, 255);
