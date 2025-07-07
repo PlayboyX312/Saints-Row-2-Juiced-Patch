@@ -1134,6 +1134,7 @@ void LuaExecutor() {
 				cmdIndex++;
 				wmemset(ChatInput, L'\0', 128);
 				wcsncpy_s(ChatInput, 128, cmdLog[cmdN - 1 - cmdIndex].c_str(), 127);
+				Game::s_CursorPosition = wcslen(ChatInput);
 
 			}
 
@@ -1143,6 +1144,7 @@ void LuaExecutor() {
 					cmdIndex--;
 					wmemset(ChatInput, L'\0', 128);
 					wcsncpy_s(ChatInput, 128, cmdLog[cmdN - 1 - cmdIndex].c_str(), 127);
+					Game::s_CursorPosition = wcslen(ChatInput);
 				}
 
 				else if (cmdIndex == 0) { // this is needed, otherwise you can have infinite negative indexes (unless you limit indexes somewhere)
