@@ -510,9 +510,18 @@ void ApplyX360Gamma(color& col) {
 	col.b = static_cast<unsigned __int8>(saturate(b) * 255.0f);
 }
 
+void fix_screen_fade_notint() {
+	static auto screen_fade_notint_fix = safetyhook::create_mid(0x518F39, [](SafetyHookContext& ctx) {
+		vector3* tint = (vector3*)(ctx.eax + 0xC);
+		vector3* fade = (vector3*)0x00E9D670;
+		*tint *= *fade;
+		});
+}
+
 SafetyHookMid final_2d_render{};
 	void Init() {
 		// Fix vint UI speeding up at 1000?+ FPS
+		fix_screen_fade_notint();
 		patchNop((void*)0x00B8BC6B, 6);
 		final_2d_render = safetyhook::create_mid(0xD1DFAA, [](SafetyHookContext& ctx) {
 			texture_2d* pass = (texture_2d*)ctx.eax;

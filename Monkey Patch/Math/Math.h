@@ -25,6 +25,12 @@ struct vector3
 	vector3 operator*(float scalar) const {
 		return vector3(x * scalar, y * scalar, z * scalar);
 	}
+	vector3& operator*=(const vector3& other) {
+		x *= other.x;
+		y *= other.y;
+		z *= other.z;
+		return *this;
+	}
 
 	vector3 operator/(float scalar) const {
 		if (scalar != 0.0f) {
